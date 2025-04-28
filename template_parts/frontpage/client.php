@@ -36,7 +36,7 @@ $clients = new WP_Query([
 
 if ($clients->have_posts()) : ?>
     <section class="client-section py-5" role="region" aria-label="<?php esc_attr_e('Our Clients', 'arnabwp'); ?>" <?php echo $bg_style; ?>>
-        <div class="container">
+    <div class="site-container">
             <div class="owl-carousel owl-theme client-carousel" role="region" aria-label="Clients Carousel">
                 <?php
                 // Start client loop

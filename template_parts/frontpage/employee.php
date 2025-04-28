@@ -19,6 +19,9 @@ if (! $section_enabled) {
 $section_title       = get_theme_mod('arnabwp_employee_section_title', __('Meet Our Team', 'arnabwp'));
 $section_description = get_theme_mod('arnabwp_employee_section_description', __('We’re a passionate group of professionals.', 'arnabwp'));
 
+$section_title_font_size =  absint(get_theme_mod('arnabwp_section_title_font_size', 32));
+$section_desc_font_size =  absint(get_theme_mod('arnabwp_section_description_font_size', 16));
+
 // Get and sanitize employee count
 $employee_count = absint(get_theme_mod('arnabwp_employee_count', 6));
 
@@ -40,11 +43,11 @@ $social_icon_color    = esc_attr(get_theme_mod('employee_social_icon_color', '#1
 
 
 <section id="team" class="py-5" role="region" aria-labelledby="team-section">
-    <div class="container">
+<div class="site-container">
         <!-- Section Header -->
         <div class="text-center mb-4">
-            <h2 class="fw-bold"><?php echo esc_html($section_title); ?></h2>
-            <p class="text-muted"><?php echo esc_html($section_description); ?></p>
+            <h2 class="fw-bold" style="font-size: <?php echo $section_title_font_size; ?>px; "><?php echo esc_html($section_title); ?></h2>
+            <p class="text-muted" style="font-size: <?php echo $section_desc_font_size; ?>px; "><?php echo esc_html($section_description); ?></p>
         </div>
 
         <?php

@@ -5,6 +5,9 @@
  * @package ArnabWP
  */
 
+ $section_title_font_size =  absint(get_theme_mod('arnabwp_section_title_font_size', 32));
+ $section_desc_font_size =  absint(get_theme_mod('arnabwp_section_description_font_size', 16));
+
 // Background customization with proper escaping
 $bg_type   = esc_attr(get_theme_mod('newsletter_section_bg_type', 'none'));
 $bg_color  = esc_attr(get_theme_mod('newsletter_section_bg_color', '#ffffff'));
@@ -24,20 +27,20 @@ if ($bg_type === 'color') {
 if ( get_theme_mod( 'show_newsletter_section', true ) ) :
 ?>
     <section id="newsletter" class="py-5 text-center" aria-labelledby="newsletter-section-heading" <?php echo $bg_style; ?>>
-        <div class="container">
+    <div class="site-container">
             <div class="row justify-content-center">
                 <div class="col-lg-8">
 
                     <?php if ( get_theme_mod( 'newsletter_title' ) || get_theme_mod( 'newsletter_description' ) ) : ?>
                         <header class="mb-4">
                             <?php if ( get_theme_mod( 'newsletter_title' ) ) : ?>
-                                <h2 id="newsletter-section-heading" class="mb-3">
+                                <h2 id="newsletter-section-heading" class="mb-3" style="font-size: <?php echo $section_title_font_size; ?>px; ">
                                     <?php echo esc_html( get_theme_mod( 'newsletter_title', __( 'Subscribe to Our Newsletter', 'arnabwp' ) ) ); ?>
                                 </h2>
                             <?php endif; ?>
 
                             <?php if ( get_theme_mod( 'newsletter_description' ) ) : ?>
-                                <p class="mb-0">
+                                <p class="mb-0" style="font-size: <?php echo $section_desc_font_size; ?>px; ">
                                     <?php echo esc_html( get_theme_mod( 'newsletter_description', __( 'Get the latest updates and offers.', 'arnabwp' ) ) ); ?>
                                 </p>
                             <?php endif; ?>

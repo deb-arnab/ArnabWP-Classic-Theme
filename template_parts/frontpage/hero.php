@@ -48,7 +48,7 @@ if ($hero_type === 'image' && $hero_image) :
         <img src="<?php echo esc_url( $hero_image ); ?>" alt="Hero Background Image" loading="lazy" class="visually-hidden">
 
         <!-- Hero Content -->
-        <div class="hero-content">
+        <div class="hero-content site-container">
             <h1><?php echo esc_html($hero_title); ?></h1>
             <p><?php echo esc_html($hero_subtitle); ?></p>
 
@@ -91,7 +91,7 @@ elseif ($hero_type === 'slider' && !empty($hero_slider)) :
                         endforeach;?>" loading="lazy" class="visually-hidden">
 
                 <!-- Slider Content (same as image section) -->
-                <div class="hero-content">
+                <div class="hero-content site-container">
                     <h1><?php echo esc_html($hero_title); ?></h1>
                     <p><?php echo esc_html($hero_subtitle); ?></p>
 

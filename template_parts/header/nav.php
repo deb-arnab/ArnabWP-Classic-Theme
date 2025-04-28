@@ -19,7 +19,7 @@ $walker     = $menu_class->arnabwp_get_navwalker();
 <a class="skip-link screen-reader-text" href="#content"><?php esc_html_e( 'Skip to content', 'arnabwp' ); ?></a>
 
 <nav class="navbar navbar-expand-lg navbar-dark" role="navigation" aria-label="<?php esc_attr_e( 'Main Navigation', 'arnabwp' ); ?>">
-    <div class="container">
+    <div class="container site-container">
 
         <!-- Site Logo / Site Name -->
         <a class="navbar-brand" href="<?php echo esc_url( home_url( '/' ) ); ?>">

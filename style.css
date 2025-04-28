@@ -38,6 +38,7 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--heading-color);
 }
 
+
 a {
   color: var(--link-color);
 }
@@ -314,4 +315,34 @@ body.loaded #preloader {
     .site-main .container .row {
         display: block;
     }
+}
+
+/* Scroll to Top Button */
+.scroll-to-top {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  background-color: #0073aa;
+  color: #ffffff;
+  border: none;
+  padding: 5px 15px;
+  font-size: 20px;
+  cursor: pointer;
+  display: none; /* Hidden by default */
+  transition: all 0.3s ease;
+  z-index: 9999; /* Ensure it's above other content */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Soft shadow for depth */
+}
+
+/* Hover Effect for a Modern Look */
+.scroll-to-top:hover {
+  background-color: #005f7f;
+  transform: translateY(-5px); /* Slight lift effect */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover */
+}
+
+/* Focus Effect for Accessibility */
+.scroll-to-top:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.6); /* Blue focus outline */
 }

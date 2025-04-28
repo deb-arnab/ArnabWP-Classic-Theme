@@ -46,15 +46,19 @@
 
 <body <?php body_class(); ?>>
   <!-- Preloader -->
-  <?php $section_enabled = get_theme_mod('arnabwp_preloader_enable', true);
-if (! $section_enabled) {
-    return;
-}?>
-  <div id="preloader" class="preloader">
-        <div class="preloader-inner">
-            <div class="preloader-spinner"></div>
+  <?php 
+    $section_enabled = get_theme_mod('arnabwp_preloader_enable', true);
+    if ($section_enabled) {
+        // Show preloader when enabled
+        ?>
+        <div id="preloader" class="preloader">
+            <div class="preloader-inner">
+                <div class="preloader-spinner"></div>
+            </div>
         </div>
-    </div>
+        <?php
+    }
+?>
 <?php
 // Fires the wp_body_open hook (for compatibility with modern themes and third-party tools)
 if ( function_exists( 'wp_body_open' ) ) {
@@ -65,6 +69,7 @@ if ( function_exists( 'wp_body_open' ) ) {
 <div id="page" class="site">
 
     <header id="header_area" class="site-header" role="banner">
+       
         <?php 
         // Load the topbar template part if enabled in Customizer
         if ( get_theme_mod( 'arnabwp_show_topbar', true ) ) {
@@ -74,6 +79,7 @@ if ( function_exists( 'wp_body_open' ) ) {
         // Load the main navigation menu template part
         get_template_part( 'template_parts/header/nav' ); 
         ?>
+    
     </header>
 
     <div id="content" class="site-content">

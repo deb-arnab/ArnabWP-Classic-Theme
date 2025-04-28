@@ -15,6 +15,7 @@ use ARNABWP_THEME\Inc\Traits\Basic_Options;
 
 if ( is_customize_preview() || is_admin() ) {
 require_once ARNABWP_DIR_PATH . '/inc/classes/controls/class-toggle-control.php';
+require_once ARNABWP_DIR_PATH . '/inc/classes/controls/class-range-control.php';
 require_once ARNABWP_DIR_PATH . '/inc/classes/controls/class-repeater-control.php';
 
 }
@@ -29,7 +30,6 @@ class Theme_Customizer {
     use Singleton;
     use Footer_Options;
     use Header_Options;
-
     use Frontpage_Options;
     use Basic_Options;
 
@@ -72,7 +72,18 @@ class Theme_Customizer {
      */
     public function arnabwp_output_customizer_styles() {
         
+        $container_width = get_theme_mod( 'arnabwp_container_width', 1200 );
 
+        echo '<style type="text/css">';
+        echo '.site-container {
+            max-width: ' . absint( $container_width ) . 'px;
+            margin: 0 auto;
+            padding-left: 15px;
+            padding-right: 15px;
+        }';
+        echo '</style>';
+      
+        
       
             $preloader_bg_color = get_theme_mod('preloader_background_color', '#ffffff');
             $preloader_spinner_color = get_theme_mod('preloader_spinner_color', '#007bff');

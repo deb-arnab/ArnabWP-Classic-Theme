@@ -21,6 +21,21 @@ function add_typography_section( $wp_customize ) {
             'panel'    => 'arnabwp_theme_basic_options_panel',
         ]);
 
+          // Divider: Show/Hide Controls
+    $wp_customize->add_setting('arnabwp_typography_divider', [
+        'sanitize_callback' => '__return_null',
+    ]);
+
+    $wp_customize->add_control(new WP_Customize_Control(
+        $wp_customize,
+        'arnabwp_typography_divider',
+        [
+            'type'        => 'hidden',
+            'section'     => 'arnabwp_typography_section',
+            'description' => '<hr><strong style="font-size:15px; color:#db007c">Site Font Family</strong><hr>',
+        ]
+    ));
+
         /**
          * Body Font Family Setting & Control
          */
@@ -52,24 +67,44 @@ function add_typography_section( $wp_customize ) {
             'choices'  => get_font_choices(),
         ]);
 
+         // Divider: Show/Hide Controls
+         $wp_customize->add_setting('arnabwp_typography_divider1', [
+            'sanitize_callback' => '__return_null',
+        ]);
+    
+        $wp_customize->add_control(new WP_Customize_Control(
+            $wp_customize,
+            'arnabwp_typography_divider1',
+            [
+                'type'        => 'hidden',
+                'section'     => 'arnabwp_typography_section',
+                'description' => '<hr><strong style="font-size:15px; color:#db007c">Site Font Size</strong><hr>',
+            ]
+        ));
+
         /**
          * Body Font Size Setting & Control
          */
         $wp_customize->add_setting('arnabwp_body_font_size', [
             'default'           => 16,
-            'sanitize_callback' => 'sanitize_font_size',
+            'sanitize_callback' => 'absint',
         ]);
 
-        $wp_customize->add_control('arnabwp_body_font_size', [
+        $wp_customize->add_control(new \ARNABWP_THEME\Inc\Controls\Range_Control(
+        $wp_customize,
+        'arnabwp_body_font_size', 
+        [
             'label'       => __('Body Font Size (px)', 'arnabwp'),
             'section'     => 'arnabwp_typography_section',
             'type'        => 'number',
             'input_attrs' => [
-                'min'  => 12,
-                'max'  => 20,
+                'min'  => 10,
+                'max'  => 30,
                 'step' => 1,
             ],
-        ]);
+            'class'     => 'arnabwp-range-control',
+        ]
+        ));
 
         /**
          * Heading Font Size Setting & Control
@@ -77,38 +112,152 @@ function add_typography_section( $wp_customize ) {
 
         $wp_customize->add_setting('arnabwp_heading_font_size', [
             'default'           => 32,
-            'sanitize_callback' => 'sanitize_font_size',
+            'sanitize_callback' => 'absint',
         ]);
 
-        $wp_customize->add_control('arnabwp_heading_font_size', [
+        $wp_customize->add_control(new \ARNABWP_THEME\Inc\Controls\Range_Control(
+        $wp_customize,
+        'arnabwp_heading_font_size', [
             'label'       => __('Heading Font Size (px)', 'arnabwp'),
             'section'     => 'arnabwp_typography_section',
             'type'        => 'number',
             'input_attrs' => [
-                'min'  => 20,
+                'min'  => 25,
                 'max'  => 60,
                 'step' => 1,
+                'class'     => 'arnabwp-range-control',
             ],
+        ]
+        ));
+
+          // Divider: Show/Hide Controls
+          $wp_customize->add_setting('arnabwp_typography_divider2', [
+            'sanitize_callback' => '__return_null',
         ]);
     
+        $wp_customize->add_control(new WP_Customize_Control(
+            $wp_customize,
+            'arnabwp_typography_divider2',
+            [
+                'type'        => 'hidden',
+                'section'     => 'arnabwp_typography_section',
+                'description' => '<hr><strong style="font-size:15px; color:#db007c">Blogs Font Size</strong><hr>',
+            ]
+        ));
+
+             /**
+         * Body Font Size Setting & Control
+         */
+        $wp_customize->add_setting('arnabwp_blog_body_font_size', [
+            'default'           => 16,
+            'sanitize_callback' => 'absint',
+        ]);
+
+        $wp_customize->add_control(new \ARNABWP_THEME\Inc\Controls\Range_Control(
+        $wp_customize,
+        'arnabwp_blog_body_font_size', 
+        [
+            'label'       => __('Blog Content Font Size (px)', 'arnabwp'),
+            'section'     => 'arnabwp_typography_section',
+            'type'        => 'number',
+            'input_attrs' => [
+                'min'  => 10,
+                'max'  => 30,
+                'step' => 1,
+            ],
+            'class'     => 'arnabwp-range-control',
+        ]
+        ));
+
+        /**
+         * Heading Font Size Setting & Control
+         */
+
+        $wp_customize->add_setting('arnabwp_blog_title_font_size', [
+            'default'           => 32,
+            'sanitize_callback' => 'absint',
+        ]);
+
+        $wp_customize->add_control(new \ARNABWP_THEME\Inc\Controls\Range_Control(
+        $wp_customize,
+        'arnabwp_blog_title_font_size', [
+            'label'       => __('Blog Title Font Size (px)', 'arnabwp'),
+            'section'     => 'arnabwp_typography_section',
+            'type'        => 'number',
+            'input_attrs' => [
+                'min'  => 25,
+                'max'  => 60,
+                'step' => 1,
+                'class'     => 'arnabwp-range-control',
+            ],
+        ]
+        ));
+
+                // Divider: Show/Hide Controls
+                $wp_customize->add_setting('arnabwp_typography_divider3', [
+                    'sanitize_callback' => '__return_null',
+                ]);
+            
+                $wp_customize->add_control(new WP_Customize_Control(
+                    $wp_customize,
+                    'arnabwp_typography_divider3',
+                    [
+                        'type'        => 'hidden',
+                        'section'     => 'arnabwp_typography_section',
+                        'description' => '<hr><strong style="font-size:15px; color:#db007c">Front Page Font Size</strong><hr>',
+                    ]
+                ));
+        
+                     /**
+                 * Body Font Size Setting & Control
+                 */
+                $wp_customize->add_setting('arnabwp_section_description_font_size', [
+                    'default'           => 16,
+                    'sanitize_callback' => 'absint',
+                ]);
+        
+                $wp_customize->add_control(new \ARNABWP_THEME\Inc\Controls\Range_Control(
+                $wp_customize,
+                'arnabwp_section_description_font_size', 
+                [
+                    'label'       => __('Section Description Font Size (px)', 'arnabwp'),
+                    'section'     => 'arnabwp_typography_section',
+                    'type'        => 'number',
+                    'input_attrs' => [
+                        'min'  => 10,
+                        'max'  => 30,
+                        'step' => 1,
+                    ],
+                    'class'     => 'arnabwp-range-control',
+                ]
+                ));
+        
+                /**
+                 * Heading Font Size Setting & Control
+                 */
+        
+                $wp_customize->add_setting('arnabwp_section_title_font_size', [
+                    'default'           => 32,
+                    'sanitize_callback' => 'absint',
+                ]);
+        
+                $wp_customize->add_control(new \ARNABWP_THEME\Inc\Controls\Range_Control(
+                $wp_customize,
+                'arnabwp_section_title_font_size', [
+                    'label'       => __('Section Title Font Size (px)', 'arnabwp'),
+                    'section'     => 'arnabwp_typography_section',
+                    'type'        => 'number',
+                    'input_attrs' => [
+                        'min'  => 25,
+                        'max'  => 60,
+                        'step' => 1,
+                        'class'     => 'arnabwp-range-control',
+                    ],
+                ]
+                ));
+    
     }
-    /**
-     * Sanitize font size input.
-     *
-     * @param mixed $value Font size value.
-     * @return int Sanitized and constrained font size.
-     */
-  function sanitize_font_size($value)
-    {
-        $value = absint($value);
-        if ($value < 12) {
-            return 12;
-        }
-        if ($value > 100) {
-            return 100;
-        }
-        return $value;
-    }
+
 
     /**
      * Get list of font family choices.

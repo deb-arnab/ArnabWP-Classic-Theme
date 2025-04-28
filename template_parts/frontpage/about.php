@@ -18,6 +18,10 @@ if (! $section_enabled) {
 $title        =  get_theme_mod('about_section_title', __('About Us', 'arnabwp' ));
 $subtitle     = get_theme_mod('about_section_subtitle', __('Who We Are', 'arnabwp' ));
 $description  = get_theme_mod('about_section_description',  __( 'We are a passionate team delivering top-tier solutions.', 'arnabwp' ) ) ;
+
+$section_title_font_size =  absint(get_theme_mod('arnabwp_section_title_font_size', 32));
+$section_desc_font_size =  absint(get_theme_mod('arnabwp_section_description_font_size', 16));
+
 $image        = esc_url(get_theme_mod('about_section_image', ''));
 $alt_text     = esc_attr(get_theme_mod('about_section_image_alt', $title));
 $button_text  =  get_theme_mod('about_section_button_text', __('Learn More', 'arnabwp' ));
@@ -38,7 +42,7 @@ if ($bg_image) {
     <?php if ($has_bg_image) : ?>
         <div class="bg-overlay" aria-hidden="true"></div>
     <?php endif; ?>
-    <div class="container">
+    <div class="site-container">
         <div class="row align-items-center">
             <!-- About Section Image -->
             <?php if ($image) : ?>
@@ -53,11 +57,11 @@ if ($bg_image) {
                 <?php endif; ?>
 
                 <?php if ($title) : ?>
-                    <h2 class="mb-4"><?php echo esc_html($title); ?></h2>
+                    <h2 class="mb-4" style="font-size: <?php echo $section_title_font_size; ?>px; "><?php echo esc_html($title); ?></h2>
                 <?php endif; ?>
 
                 <?php if ($description) : ?>
-                    <p class="mb-4"><?php echo wp_kses_post($description); ?></p>
+                    <p class="mb-4" style="font-size: <?php echo $section_desc_font_size; ?>px; "><?php echo wp_kses_post($description); ?></p>
                 <?php endif; ?>
 
                 <?php if ($button_text && $button_url) : ?>

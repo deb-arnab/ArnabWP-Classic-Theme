@@ -1,3 +1,14 @@
+
+/* Full Width for Topbar */
+.topbar {
+  width: 100%; /* Full width */
+  background-color: #f8f9fa; /* Set the background color */
+  position: relative; /* Make sure it spans the full width */
+}
+
+
+
+
 /* ===========================================
    HERO SECTION STYLES
 =========================================== */

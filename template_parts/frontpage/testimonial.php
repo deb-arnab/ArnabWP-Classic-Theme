@@ -28,6 +28,9 @@ $show_quotation_mark = (bool) get_theme_mod('show_testimonial_quotation_mark', t
 $section_title       = get_theme_mod('testimonial_section_title', __('What Our Clients Say', 'arnabwp'));
 $section_description =  get_theme_mod('testimonial_section_description', __('Experience the difference with us', 'arnabwp'));
 
+$section_title_font_size =  absint(get_theme_mod('arnabwp_section_title_font_size', 32));
+$section_desc_font_size =  absint(get_theme_mod('arnabwp_section_description_font_size', 16));
+
 $name_font_size      = absint(get_theme_mod('testimonial_name_font_size', 18));
 $name_color          = esc_attr(get_theme_mod('testimonial_name_color', '#ffffff'));
 
@@ -45,11 +48,11 @@ $social_icon_color   = esc_attr(get_theme_mod('testimonial_social_icon_color', '
 
 if ($testimonial_query->have_posts()) : ?>
     <section class="testimonial-section py-5" id="testimonials" aria-label="Client Testimonial">
-        <div class="container">
+    <div class="site-container">
             <!-- Section heading -->
             <div class="text-center mb-5">
-                <h2 class="fw-bold"><?php echo esc_html($section_title); ?></h2>
-                <p class="text-muted"><?php echo esc_html($section_description); ?></p>
+                <h2 class="fw-bold" style="font-size: <?php echo $section_title_font_size; ?>px; "><?php echo esc_html($section_title); ?></h2>
+                <p class="text-muted" style="font-size: <?php echo $section_desc_font_size; ?>px; "><?php echo esc_html($section_description); ?></p>
             </div>
 
             <div class="owl-carousel owl-theme testimonial-carousel" role="region" aria-label="Testimonials Carousel">

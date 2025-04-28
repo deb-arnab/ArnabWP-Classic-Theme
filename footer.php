@@ -14,7 +14,7 @@ $align_class    = 'align-' . esc_attr($text_align);
 ?>
 
 <footer class="site-footer py-4" style="background-color: <?php echo esc_attr($footer_bg_color); ?>;">
-  <div class="container">
+  <div class="site-container">
   
   <?php if ($show_widgets) : ?>
       <div class="row mb-4">
@@ -39,11 +39,18 @@ $align_class    = 'align-' . esc_attr($text_align);
     <?php endif; ?>
 
   </div>
+
 </footer>
 
-</div>
-</div>
 
+</div>
+</div>
+<?php if ( get_theme_mod( 'enable_scroll_to_top', '1' ) == '1' ) : ?>
+    <!-- Scroll to Top Button -->
+    <button id="scrollToTop" class="scroll-to-top" aria-label="Scroll to top">
+        <i class="fas fa-arrow-up"></i> <!-- You can use a FontAwesome icon for the arrow -->
+    </button>
+<?php endif; ?>
 <?php wp_footer(); ?>
 </body>
 </html>

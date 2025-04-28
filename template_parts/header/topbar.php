@@ -20,8 +20,8 @@ if (!$phone && !$email && !$address) {
 ?>
 
 <!-- Topbar Section -->
-<div class="topbar bg-light py-1" role="banner" aria-label="Top Contact Information">
-    <div class="container d-flex justify-content-between align-items-center flex-wrap">
+<div class="topbar py-1" role="banner" aria-label="Top Contact Information">
+    <div class="site-container d-flex justify-content-between align-items-center flex-wrap">
 
         <?php if ($phone) : ?>
             <div class="topbar-left" aria-label="Phone Number">

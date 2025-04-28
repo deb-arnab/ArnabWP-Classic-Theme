@@ -30,6 +30,10 @@ $service_query = new WP_Query([
 $section_title       =  get_theme_mod('service_section_title', __('Our Services', 'arnabwp'));
 $section_description =  get_theme_mod('service_section_description', __('Explore the solutions we offer', 'arnabwp'));
 
+$section_title_font_size =  absint(get_theme_mod('arnabwp_section_title_font_size', 32));
+$section_desc_font_size =  absint(get_theme_mod('arnabwp_section_description_font_size', 16));
+
+
 $name_font_size      = absint(get_theme_mod('service_name_font_size', 18));
 $name_color          = esc_attr(get_theme_mod('service_name_color', '#ffffff'));
 
@@ -41,11 +45,11 @@ $icon_radius         = absint(get_theme_mod('service_icon_radius', 50));
 
 if ($service_query->have_posts()) : ?>
     <section class="services-section py-5" aria-label="Services">
-        <div class="container">
+    <div class="site-container">
             <!-- Section heading -->
             <div class="text-center mb-4">
-                <h2 class="fw-bold"><?php echo esc_html($section_title); ?></h2>
-                <p class="text-muted"><?php echo esc_html($section_description); ?></p>
+                <h2 class="fw-bold" style="font-size: <?php echo $section_title_font_size; ?>px; "><?php echo esc_html($section_title); ?></h2>
+                <p class="text-muted" style="font-size: <?php echo $section_desc_font_size; ?>px; "><?php echo esc_html($section_description); ?></p>
             </div>
 
             <div class="row">

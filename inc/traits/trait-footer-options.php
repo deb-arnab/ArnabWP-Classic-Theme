@@ -100,7 +100,7 @@ trait Footer_Options
 
 		// Footer copyright text
 		$wp_customize->add_setting('arnabwp_footer_copyright_text', [
-			'default'           => __("'© ' . get_the_date('Y') . ' ArnabWP. All rights reserved.'", 'arnabwp'),
+			'default'           => __('© ' . get_the_date('Y') . ' ArnabWP. All rights reserved.', 'arnabwp'),
 			'sanitize_callback' => 'wp_kses_post',
 		]);
 

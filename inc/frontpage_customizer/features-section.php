@@ -117,7 +117,9 @@ function add_feature_section($wp_customize)
         'default'           => 18,
         'sanitize_callback' => 'arnabwp_sanitize_service_name_font_size',
     ]);
-    $wp_customize->add_control('service_name_font_size', [
+    $wp_customize->add_control(new \ARNABWP_THEME\Inc\Controls\Range_Control(
+        $wp_customize,
+        'service_name_font_size', [
         'label'       => __('Service Name Font Size', 'arnabwp'),
         'section'     => 'arnabwp_feature_section',
         'type'        => 'number',
@@ -126,7 +128,9 @@ function add_feature_section($wp_customize)
             'max'  => 26,
             'step' => 1,
         ],
-    ]);
+        'class'     => 'arnabwp-range-control',
+    ]
+    ));
 
     // === Color: Service Name === //
     $wp_customize->add_setting('service_name_color', [
@@ -157,16 +161,20 @@ function add_feature_section($wp_customize)
         'default'           => 14,
         'sanitize_callback' => 'arnabwp_sanitize_service_description_font_size',
     ]);
-    $wp_customize->add_control('service_description_font_size', [
+    $wp_customize->add_control(new \ARNABWP_THEME\Inc\Controls\Range_Control(
+        $wp_customize,
+        'service_description_font_size', [
         'label'       => __('Service Description Font Size', 'arnabwp'),
         'section'     => 'arnabwp_feature_section',
-        'type'        => 'number',
+        'type'        => 'range',
         'input_attrs' => [
             'min'  => 12,
             'max'  => 20,
             'step' => 1,
         ],
-    ]);
+        'class'     => 'arnabwp-range-control',
+    ]
+    ));
 
     // === Color: Service Description === //
     $wp_customize->add_setting('service_description_color', [
@@ -197,7 +205,9 @@ function add_feature_section($wp_customize)
         'default'           => 70,
         'sanitize_callback' => 'arnabwp_sanitize_service_icon_size',
     ]);
-    $wp_customize->add_control('service_icon_size', [
+    $wp_customize->add_control(new \ARNABWP_THEME\Inc\Controls\Range_Control(
+        $wp_customize,
+        'service_icon_size', [
         'label'       => __('Service Icon Size (px)', 'arnabwp'),
         'section'     => 'arnabwp_feature_section',
         'type'        => 'range',
@@ -206,23 +216,29 @@ function add_feature_section($wp_customize)
             'max'  => 150,
             'step' => 1,
         ],
-    ]);
+        'class'     => 'arnabwp-range-control',
+    ]
+    ));
 
     // === Icon Border Radius === //
     $wp_customize->add_setting('service_icon_radius', [
         'default'           => 50,
         'sanitize_callback' => 'arnabwp_sanitize_service_icon_radius',
     ]);
-    $wp_customize->add_control('service_icon_radius', [
+    $wp_customize->add_control(new \ARNABWP_THEME\Inc\Controls\Range_Control(
+        $wp_customize,
+        'service_icon_radius', [
         'label'       => __('Service Icon Border Radius (%)', 'arnabwp'),
         'section'     => 'arnabwp_feature_section', // fixed typo: was 'feature_section'
         'type'        => 'range',
         'input_attrs' => [
             'min'  => 0,
-            'max'  => 100,
+            'max'  => 50,
             'step' => 1,
         ],
-    ]);
+        'class'     => 'arnabwp-range-control',
+    ]
+    ));
 }
 
 
@@ -254,6 +270,6 @@ if (! function_exists('arnabwp_sanitize_service_icon_size')) {
 if (! function_exists('arnabwp_sanitize_service_icon_radius')) {
     function arnabwp_sanitize_service_icon_radius($value)
     {
-        return max(0, min(100, absint($value)));
+        return max(0, min(50, absint($value)));
     }
 }
