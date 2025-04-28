@@ -1,0 +1,88 @@
+.repeater-control .repeater-item {
+  background: #fff;
+  border: 1px solid #ccc;
+  margin-bottom: 10px;
+  padding: 10px;
+}
+.repeater-control .repeater-item label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+/* === Customizer Modern Look for ArnabWP === */
+
+/* Global panel styling */
+.wp-full-overlay-sidebar {
+  font-family: 'Inter', 'Roboto', sans-serif;
+  background: #f8f9fa;
+}
+
+/* Each section looks like a card */
+.accordion-section {
+  background: #ffffff;
+  margin: 12px 20px;
+  padding: 16px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  transition: all 0.3s ease;
+  border: 1px solid #e2e8f0;
+}
+
+/* Hover effect for better interactivity */
+.accordion-section:hover {
+  background: #f0f4f8;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.12);
+}
+
+/* Section titles */
+.accordion-section-title {
+  font-size: 17px;
+  font-weight: 600;
+  color: #1e293b;
+}
+
+/* Reduce the default divider lines */
+.customize-section-title {
+  border-bottom: none;
+}
+
+/* Improve back buttons and top nav */
+.customize-panel-back,
+.customize-section-back {
+  background: none;
+  color: #475569;
+  font-weight: 500;
+}
+
+/* Highlight active section */
+.accordion-section.open {
+  background: #e0f2fe;
+  border-color: #38bdf8;
+}
+
+/* Publish button */
+.wp-core-ui .button-primary {
+  background: #3b82f6;
+  border-color: #3b82f6;
+  box-shadow: none;
+  transition: background 0.3s ease;
+}
+
+.wp-core-ui .button-primary:hover {
+  background: #2563eb;
+}
+
+/* Sidebar scroll smooth */
+.wp-full-overlay-sidebar-content {
+  scrollbar-width: thin;
+  scrollbar-color: #cbd5e1 #f1f5f9;
+}
+
+/* For Webkit browsers */
+.wp-full-overlay-sidebar-content::-webkit-scrollbar {
+  width: 6px;
+}
+.wp-full-overlay-sidebar-content::-webkit-scrollbar-thumb {
+  background-color: #cbd5e1;
+  border-radius: 10px;
+}

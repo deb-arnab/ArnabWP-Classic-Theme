@@ -1,0 +1,15 @@
+# Ignore WordPress core files if working within wp-content
+/.DS_Store
+/node_modules/
+/*.log
+/.idea/
+/*.zip
+/.vscode/
+/*.sql
+*.local
+*.env
+.env.*
+
+# Build/Cache
+/assets/css/*.map
+/assets/js/*.map
