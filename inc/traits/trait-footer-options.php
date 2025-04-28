@@ -33,7 +33,7 @@ trait Footer_Options
 		// Add the footer section to the Customizer
 		$wp_customize->add_section('arnabwp_footer_section', [
 			'title'    => __('Footer Options', 'arnabwp'), // Section title
-			'priority' => 20, // Priority to determine position in the Customizer
+			'priority' => 45, // Priority to determine position in the Customizer
 		]);
 
 		// Divider: Show/Hide Controls

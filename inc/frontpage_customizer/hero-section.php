@@ -192,7 +192,7 @@ function add_hero_section($wp_customize)
      * Button Hover Background Color
      */
     $wp_customize->add_setting('arnabwp_hero_btn_hover_bg_color', [
-        'default'           => '#0073e8',
+        'default'           => get_theme_mod( 'primary_color', '#000000' ),
         'sanitize_callback' => 'sanitize_hex_color',
     ]);
 
@@ -220,7 +220,7 @@ function add_hero_section($wp_customize)
      * Button Hover Text Color
      */
     $wp_customize->add_setting('arnabwp_hero_btn_hover_text_color', [
-        'default'           => '#ffffff',
+        'default'           => get_theme_mod( 'secondary_color', '#000000' ),  // Default to primary_color or fallback to black,
         'sanitize_callback' => 'sanitize_hex_color',
     ]);
 

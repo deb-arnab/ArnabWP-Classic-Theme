@@ -31,7 +31,7 @@ trait Header_Options
 	{
 		$wp_customize->add_section('arnabwp_header_options', [
 			'title'    => __('Header Options', 'arnabwp'),
-			'priority' => 25,
+			'priority' => 40,
 		]);
 
 		// Divider: Show/Hide Controls
@@ -76,7 +76,7 @@ trait Header_Options
 			[
 				'type'        => 'hidden',
 				'section'     => 'arnabwp_header_options',
-				'description' => '<hr><strong style="font-size:15px; color:#db007c">Topbar Contents</strong><hr>',
+				'description' => '<hr><strong style="font-size:15px; color:#db007c">Topbar Contents</strong></br><span>Fill topbar contents to see topbar</span><hr>',
 				'active_callback' => function() {
 					return get_theme_mod('arnabwp_show_topbar') === true;
 				},

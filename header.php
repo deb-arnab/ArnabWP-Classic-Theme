@@ -28,7 +28,7 @@
         <meta property="og:url" content="<?php echo esc_url( home_url( add_query_arg( null, null ) ) ); ?>">
         <meta property="og:site_name" content="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>">
         <meta property="og:type" content="website">
-        <?php if ( has_post_thumbnail() && is_singular() ) :
+        <?php if ( has_post_thumbnail() && is_single() ) :
             $thumb = wp_get_attachment_image_src( get_post_thumbnail_id(), 'full' );
             if ( ! empty( $thumb[0] ) ) : ?>
                 <meta property="og:image" content="<?php echo esc_url( $thumb[0] ); ?>">
@@ -45,7 +45,16 @@
 </head>
 
 <body <?php body_class(); ?>>
-
+  <!-- Preloader -->
+  <?php $section_enabled = get_theme_mod('arnabwp_preloader_enable', true);
+if (! $section_enabled) {
+    return;
+}?>
+  <div id="preloader" class="preloader">
+        <div class="preloader-inner">
+            <div class="preloader-spinner"></div>
+        </div>
+    </div>
 <?php
 // Fires the wp_body_open hook (for compatibility with modern themes and third-party tools)
 if ( function_exists( 'wp_body_open' ) ) {

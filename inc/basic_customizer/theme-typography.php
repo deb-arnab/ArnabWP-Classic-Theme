@@ -1,31 +1,24 @@
 <?php
 
 /**
- * Trait for adding typography options to the WordPress Customizer.
- * 
- * 
+ * Color Section Options
+ * This function registers customizer settings and controls for the "Color" section
+ * on the front page of the theme.
+ *
+ * @param WP_Customize_Manager $wp_customize Theme Customizer object.
  * @package ArnabWP
  */
+function add_typography_section( $wp_customize ) {
 
-namespace ARNABWP_THEME\Inc\Traits;
 
-trait Typography_Options
-{
-    /**
-     * Register customizer settings and controls for typography.
-     *
-     * @param WP_Customize_Manager $wp_customize Theme Customizer object.
-     */
-    public function add_typography_section($wp_customize)
-    {
-
-        // ============================
+    // ============================
         // Typography Customizer Section
         // ============================
         $wp_customize->add_section('arnabwp_typography_section', [
             'title'       => __('Typography Settings', 'arnabwp'),
             'description' => __('Customize body and heading fonts.', 'arnabwp'),
-            'priority'    => 30,
+            'priority'    => 20,
+            'panel'    => 'arnabwp_theme_basic_options_panel',
         ]);
 
         /**
@@ -40,7 +33,7 @@ trait Typography_Options
             'label'    => __('Body Font Family', 'arnabwp'),
             'section'  => 'arnabwp_typography_section',
             'type'     => 'select',
-            'choices'  => $this->get_font_choices(),
+            'choices'  => get_font_choices(),
 
         ]);
 
@@ -56,7 +49,7 @@ trait Typography_Options
             'label'       => __('Heading Font Family', 'arnabwp'),
             'section'     => 'arnabwp_typography_section',
             'type'     => 'select',
-            'choices'  => $this->get_font_choices(),
+            'choices'  => get_font_choices(),
         ]);
 
         /**
@@ -64,7 +57,7 @@ trait Typography_Options
          */
         $wp_customize->add_setting('arnabwp_body_font_size', [
             'default'           => 16,
-            'sanitize_callback' => [$this, 'sanitize_font_size'],
+            'sanitize_callback' => 'sanitize_font_size',
         ]);
 
         $wp_customize->add_control('arnabwp_body_font_size', [
@@ -84,7 +77,7 @@ trait Typography_Options
 
         $wp_customize->add_setting('arnabwp_heading_font_size', [
             'default'           => 32,
-            'sanitize_callback' => [$this, 'sanitize_font_size'],
+            'sanitize_callback' => 'sanitize_font_size',
         ]);
 
         $wp_customize->add_control('arnabwp_heading_font_size', [
@@ -97,6 +90,7 @@ trait Typography_Options
                 'step' => 1,
             ],
         ]);
+    
     }
     /**
      * Sanitize font size input.
@@ -104,7 +98,7 @@ trait Typography_Options
      * @param mixed $value Font size value.
      * @return int Sanitized and constrained font size.
      */
-    public function sanitize_font_size($value)
+  function sanitize_font_size($value)
     {
         $value = absint($value);
         if ($value < 12) {
@@ -121,7 +115,7 @@ trait Typography_Options
      *
      * @return array
      */
-    public function get_font_choices()
+  function get_font_choices()
     {
         return [
             'Arial, sans-serif'            => 'Arial',
@@ -138,4 +132,4 @@ trait Typography_Options
             'Montserrat, sans-serif'       => 'Montserrat',
         ];
     }
-}
+

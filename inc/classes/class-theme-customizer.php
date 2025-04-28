@@ -9,11 +9,9 @@ namespace ARNABWP_THEME\Inc;
 
 use ARNABWP_THEME\Inc\Traits\Singleton;
 use ARNABWP_THEME\Inc\Traits\Footer_Options;
-use ARNABWP_THEME\Inc\Traits\Typography_Options;
-use ARNABWP_THEME\Inc\Traits\Color_Options;
 use ARNABWP_THEME\Inc\Traits\Header_Options;
-use ARNABWP_THEME\Inc\Traits\Breadcrumb_Options;
 use ARNABWP_THEME\Inc\Traits\Frontpage_Options;
+use ARNABWP_THEME\Inc\Traits\Basic_Options;
 
 if ( is_customize_preview() || is_admin() ) {
 require_once ARNABWP_DIR_PATH . '/inc/classes/controls/class-toggle-control.php';
@@ -30,11 +28,10 @@ class Theme_Customizer {
 
     use Singleton;
     use Footer_Options;
-    use Typography_Options;
-    use Color_Options;
     use Header_Options;
-    use Breadcrumb_Options;
+
     use Frontpage_Options;
+    use Basic_Options;
 
     /**
      * Constructor. Registers hooks.
@@ -65,11 +62,9 @@ class Theme_Customizer {
      */
     public function arnabwp_register_customizer_settings( $wp_customize ) {
         $this->add_footer_section( $wp_customize );
-        $this->add_typography_section( $wp_customize );
-        $this->add_color_section( $wp_customize );
         $this->add_header_section( $wp_customize );
-        $this->add_breadcrumb_section( $wp_customize );
         $this->add_frontpage_panel( $wp_customize );
+        $this->add_theme_basic_options_panel( $wp_customize );
     }
 
     /**
@@ -77,6 +72,24 @@ class Theme_Customizer {
      */
     public function arnabwp_output_customizer_styles() {
         
+
+      
+            $preloader_bg_color = get_theme_mod('preloader_background_color', '#ffffff');
+            $preloader_spinner_color = get_theme_mod('preloader_spinner_color', '#007bff');
+            ?>
+            <style type="text/css">
+                /* Preloader Customization */
+                #preloader {
+                    background-color: <?php echo esc_attr($preloader_bg_color); ?>;
+                }
+        
+                #preloader .preloader-spinner {
+                    border-top-color: <?php echo esc_attr($preloader_spinner_color); ?>;
+                }
+            </style>
+            <?php
+        
+
         // === Typography Styles === //
         $body_font      = get_theme_mod( 'arnabwp_body_font_family', 'Arial, sans-serif' );
         $heading_font   = get_theme_mod( 'arnabwp_heading_font_family', 'Georgia, serif' );

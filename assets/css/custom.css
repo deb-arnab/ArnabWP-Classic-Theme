@@ -54,7 +54,14 @@
   text-decoration: none;
   border-radius: 30px;
   font-weight: 600;
+  background-color: var(--button-color); /* Button background from root variable */
+  color: var(--button-text-color); /* Button text color from root variable */
   transition: background 0.3s ease;
+}
+
+.hero-buttons .hero-btn:hover {
+  background-color: var(--primary-color);
+  color: var(--secondary-color); /* Change on hover using primary color */
 }
 
 /* ===========================================

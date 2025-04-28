@@ -1,3 +1,8 @@
+
+window.addEventListener("load", function() {
+  document.body.classList.add('loaded');
+});
+
 jQuery(document).ready(function($){
     $(".owl-carousel.hero-slider").owlCarousel({
       items: 1, // Show one slide at a time
