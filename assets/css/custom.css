@@ -61,9 +61,9 @@
 .hero-buttons .hero-btn {
   display: inline-block;
   margin: 10px;
-  padding: 12px 28px;
+  padding: var(--arnabwp-button-padding-top-bottom, 10px) var(--arnabwp-button-padding-left-right, 15px);
+  border-radius: var(--arnabwp-button-radius, 5px);
   text-decoration: none;
-  border-radius: 30px;
   font-weight: 600;
   background-color: var(--button-color); /* Button background from root variable */
   color: var(--button-text-color); /* Button text color from root variable */

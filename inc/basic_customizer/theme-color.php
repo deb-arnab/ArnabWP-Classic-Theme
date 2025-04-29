@@ -12,7 +12,6 @@ function add_color_section( $wp_customize ) {
 
 
 
-    // Panel or Section (you can group all colors into one section)
     $wp_customize->add_section( 'theme_color_options', [
         'title'    => __( 'Color Scheme', 'arnabwp' ),
         'description' => __('Control the colors of the theme', 'arnabwp'),

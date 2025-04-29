@@ -10,7 +10,7 @@ get_header(); // Includes the header part
 ?>
 
 <main id="primary" class="site-main py-5">
-    <div class="container">
+<div class="site-container">
         <div class="row">
             <!-- Main Content Area -->
             <div class="col-lg-8">

@@ -83,7 +83,28 @@ class Theme_Customizer {
         }';
         echo '</style>';
       
-        
+        $padding_top_bottom = get_theme_mod( 'arnabwp_button_padding_top_bottom', 10 ); // fallback 10px if not set
+        $padding_left_right = get_theme_mod( 'arnabwp_button_padding_left_right', 15 ); // fallback 15px if not set
+        $button_radius      = get_theme_mod( 'arnabwp_button_radius', 5);
+    
+        // Ensure values are integers
+        $padding_top_bottom = absint( $padding_top_bottom );
+        $padding_left_right = absint( $padding_left_right );
+        $button_radius      = absint( $button_radius );
+    
+        // Only output if values exist
+        if ( $padding_top_bottom || $padding_left_right ) :
+        ?>
+        <style>
+            :root {
+                --arnabwp-button-padding-top-bottom: <?php echo esc_attr( $padding_top_bottom ); ?>px;
+                --arnabwp-button-padding-left-right: <?php echo esc_attr( $padding_left_right ); ?>px;
+                --arnabwp-button-radius: <?php echo esc_attr( $button_radius ); ?>px;
+            }
+        </style>
+        <?php
+        endif;
+    
       
             $preloader_bg_color = get_theme_mod('preloader_background_color', '#ffffff');
             $preloader_spinner_color = get_theme_mod('preloader_spinner_color', '#007bff');

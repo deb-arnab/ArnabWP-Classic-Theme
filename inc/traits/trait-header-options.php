@@ -85,7 +85,7 @@ trait Header_Options
 		// === Topbar Phone ===
 		$wp_customize->add_setting('arnabwp_topbar_phone', [
 			'default'           => '',
-			'sanitize_callback' => 'sanitize_text_field',
+			'sanitize_callback' => 'absint',
 			'transport'         => 'refresh',
 		]);
 

@@ -43,9 +43,17 @@ a {
   color: var(--link-color);
 }
 
-button, .btn {
+.btn,
+.arnabwp-button {
   background-color: var(--button-color);
   color: var(--button-text-color);
+}
+
+.btn,
+input[type="submit"],
+.arnabwp-button {
+    padding: var(--arnabwp-button-padding-top-bottom, 10px) var(--arnabwp-button-padding-left-right, 15px) !important;
+    border-radius: var(--arnabwp-button-radius, 5px) !important;
 }
 
 /* Reset or Global styles */
