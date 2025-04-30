@@ -1,0 +1,97 @@
+/*
+ * Tab Navigation Styles
+ * ----------------------
+ * This section defines the layout and appearance for the tab navigation 
+ * and individual tab items in the arnabwp theme.
+ */
+
+/* Tab Navigation Container */
+.arnabwp-tab-nav {
+    display: flex; /* Use flexbox for horizontal layout */
+    align-items: center; /* Vertically center the items */
+    margin-top: 10px 0;
+}
+
+/* Tab Navigation for responsive design (column layout on small screens) */
+.arnabwp-tab-nav.responsive {
+    flex-direction: column; /* Stack tabs vertically on smaller screens */
+}
+
+/*
+ * Individual Tab Item Styles
+ * ---------------------------
+ * Each tab in the navigation is styled with spacing, borders, and interactive effects.
+ */
+
+/* Individual Tab Item */
+.arnabwp-tab-nav li {
+    flex: 1; /* Makes each tab take equal width */
+    text-align: center; /* Center the text */
+    padding: 12px 0; /* Vertical padding for tab height */
+    cursor: pointer; /* Pointer cursor on hover */
+    border-right: 1px solid #ccc; /* Border between tabs */
+    border-left: 1px solid #ccc; /* Border between tabs */
+    background: #ececec; /* Light gray background */
+    font-weight: 600; /* Bold text */
+    transition: all 0.3s ease; /* Smooth transition for hover and active state */
+    color: #333; /* Dark text color */
+    text-transform: uppercase; /* Uppercase text for tab labels */
+    font-size: 12px; /* Smaller font size */
+    position: relative;
+}
+
+/* Remove right margin for the last tab item */
+.arnabwp-tab-nav li:last-child {
+    margin-right: 0;
+}
+
+/*
+ * Hover Effect on Tabs
+ * ---------------------
+ * Adds visual feedback for tab interaction when hovered over.
+ */
+
+/* Hover Effect on Tabs */
+.arnabwp-tab-nav li:hover {
+    background: #e4e4e4; /* Slightly darker background on hover */
+    transform: scale(1.05); /* Slight scale-up effect for interaction */
+}
+
+/*
+ * Active Tab Styling
+ * -------------------
+ * Styling applied to the active tab for clear visual indication.
+ */
+
+/* Active Tab Styling */
+.arnabwp-tab-nav li.active {
+    background: #ffffff; /* White background for the active tab */
+    border-radius: 0 0 10px 10px; /* Rounded bottom corners */
+    border-bottom: 3px solid #db007c; /* Purple border for the active tab */
+    color: #db007c; /* Blue text for active tab */
+    font-weight: 500; /* Make the active tab bold */
+}
+
+/*
+ * Tab Content Styles
+ * ------------------
+ * The tab content area is styled for proper visibility and transition.
+ */
+
+/* Tab Content Style */
+.arnabwp-tab-content {
+    padding: 20px 0; /* Padding around tab content */
+    display: none; /* Hide inactive content by default */
+}
+
+/* Show active tab content */
+.arnabwp-tab-content.active-tab {
+    display: block; /* Show active tab content */
+    opacity: 0; /* Initially hidden content */
+    transition: opacity 0.3s ease-in-out; /* Smooth fade-in effect */
+}
+
+/* Smooth fade-in for active content */
+.arnabwp-tab-content.active-tab {
+    opacity: 1; /* Fully visible active tab content */
+}

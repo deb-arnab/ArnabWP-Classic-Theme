@@ -28,7 +28,8 @@ use ARNABWP_THEME\Inc\Shortcode;
  * 
  * The entry point of the theme which loads all essential components.
  */
-class ArnabWP {
+class ArnabWP
+{
 	use Singleton;
 
 	/**
@@ -36,7 +37,8 @@ class ArnabWP {
 	 * 
 	 * Initializes core theme classes and registers necessary hooks.
 	 */
-	protected function __construct() {
+	protected function __construct()
+	{
 		// Initialize theme components
 		Enqueue::get_instance();
 		Menus::get_instance();
@@ -58,11 +60,11 @@ class ArnabWP {
 	 * 
 	 * @return void
 	 */
-	protected function setup_hooks() {
-		add_action( 'after_setup_theme', [ $this, 'arnabwp_theme_support' ] );
-		add_filter( 'excerpt_more', [ $this, 'custom_excerpt_more' ] );
-		add_filter( 'excerpt_length', [ $this, 'custom_excerpt_length' ], 999 );
-
+	protected function setup_hooks()
+	{
+		add_action('after_setup_theme', [$this, 'arnabwp_theme_support']);
+		add_filter('excerpt_more', [$this, 'custom_excerpt_more']);
+		add_filter('excerpt_length', [$this, 'custom_excerpt_length'], 999);
 	}
 
 	/**
@@ -70,18 +72,19 @@ class ArnabWP {
 	 * 
 	 * @return void
 	 */
-	public function arnabwp_theme_support() {
+	public function arnabwp_theme_support()
+	{
 		// Add support for document title
-		add_theme_support( 'title-tag' );
+		add_theme_support('title-tag');
 
 		// Add support for custom logo
-		add_theme_support( 'custom-logo', [
-			'header-text' => [ 'site-title', 'site-description' ],
+		add_theme_support('custom-logo', [
+			'header-text' => ['site-title', 'site-description'],
 			'height'      => 100,
 			'width'       => 300,
 			'flex-height' => true,
 			'flex-width'  => true,
-		] );
+		]);
 
 		// Add support for custom background
 		// add_theme_support( 'custom-background', [
@@ -90,32 +93,32 @@ class ArnabWP {
 		// ] );
 
 		// Enable post thumbnails for various post types
-		add_theme_support( 'post-thumbnails', [
+		add_theme_support('post-thumbnails', [
 			'post',
 			'page',
 			'service',
 			'testimonial',
 			'employee',
 			'client',
-		] );
+		]);
 
 		// Register custom image size
-		add_image_size( 'post-thumbnails', 800, 400, true );
+		add_image_size('post-thumbnails', 800, 400, true);
 
 		// Add support for post formats
-		add_theme_support( 'post-formats', [
+		add_theme_support('post-formats', [
 			'aside',
 			'gallery',
 			'quote',
 			'image',
 			'video',
-		] );
+		]);
 
 		// Enable selective refresh for widgets in Customizer
-		add_theme_support( 'customize-selective-refresh-widgets' );
+		add_theme_support('customize-selective-refresh-widgets');
 
 		// Enable HTML5 markup support
-		add_theme_support( 'html5', [
+		add_theme_support('html5', [
 			'search-form',
 			'comment-form',
 			'comment-list',
@@ -123,19 +126,19 @@ class ArnabWP {
 			'caption',
 			'script',
 			'style',
-		] );
+		]);
 
 		// Add support for automatic feed links
-		add_theme_support( 'automatic-feed-links' );
+		add_theme_support('automatic-feed-links');
 
 		// Enable block editor enhancements
-		add_theme_support( 'wp_block_styles' );
-		add_theme_support( 'responsive-embeds' );
-		add_theme_support( 'align-wide' );
+		add_theme_support('wp_block_styles');
+		add_theme_support('responsive-embeds');
+		add_theme_support('align-wide');
 
 		// Set default content width if not already set
 		global $content_width;
-		if ( ! isset( $content_width ) ) {
+		if (! isset($content_width)) {
 			$content_width = 1240;
 		}
 	}
@@ -146,7 +149,8 @@ class ArnabWP {
 	 * @param string $more The existing excerpt string.
 	 * @return string Modified excerpt ending.
 	 */
-	public function custom_excerpt_more( $more ) {
+	public function custom_excerpt_more($more)
+	{
 		return '...'; // Replace default [read more] with ellipsis
 	}
 
@@ -155,7 +159,8 @@ class ArnabWP {
 	 * 
 	 * @return int Excerpt length.
 	 */
-	public function custom_excerpt_length() {
+	public function custom_excerpt_length()
+	{
 		return 40; // Default length can be changed to fit theme style
 	}
 }

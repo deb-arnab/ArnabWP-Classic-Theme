@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Client Section Template
+ * Template Part: Client Section
  *
  * Shows a modern Owl Carousel of client logos with hover names and external links.
  * 

@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Testimonial Section Template
+ * Template Part: Testimonial Section
  * 
  * Query and display testimonials with SEO schema markup.
  * 

@@ -18,77 +18,86 @@ Text Domain: arnabwp
    General Theme Styles
    ================================== */
 
-   :root {
-    --primary-color: #000000; /* Default value */
-    --secondary-color: #000000;
-    --background-color: #ffffff;
-    --text-color: #000000;
-    --heading-color: #000000;
-    --link-color: #0000ff;
-    --button-color: #007bff;
-    --button-text-color: #ffffff;
+:root {
+  --primary-color: #000000; /* Default primary color */
+  --secondary-color: #000000; /* Default secondary color */
+  --background-color: #ffffff; /* Default background color */
+  --text-color: #000000; /* Default text color */
+  --heading-color: #000000; /* Default heading color */
+  --link-color: #0000ff; /* Default link color */
+  --button-color: #007bff; /* Default button color */
+  --button-text-color: #ffffff; /* Default button text color */
 }
 
+/* Body and text color settings */
 body {
   color: var(--text-color);
   background-color: var(--background-color);
 }
 
+/* Heading color settings */
 h1, h2, h3, h4, h5, h6 {
   color: var(--heading-color);
 }
 
-
+/* Link color settings */
 a {
   color: var(--link-color);
 }
 
+/* Button styles */
 .btn,
 .arnabwp-button {
   background-color: var(--button-color);
   color: var(--button-text-color);
 }
 
+/* Button padding and border-radius */
 .btn,
 input[type="submit"],
 .arnabwp-button {
-    padding: var(--arnabwp-button-padding-top-bottom, 10px) var(--arnabwp-button-padding-left-right, 15px) !important;
-    border-radius: var(--arnabwp-button-radius, 5px) !important;
+  padding: var(--arnabwp-button-padding-top-bottom, 10px) var(--arnabwp-button-padding-left-right, 15px) !important;
+  border-radius: var(--arnabwp-button-radius, 5px) !important;
 }
 
 /* Reset or Global styles */
 *,
 *::before,
 *::after {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
+/* ==================================
+   Preloader Styles
+   ================================== */
 
-/* Preloader Styles */
+/* Preloader container styles */
 #preloader {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: #ffffff; /* Default to white */
+  background-color: #ffffff; /* Default white background */
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 9999;
+  z-index: 9999; /* Ensures it's on top */
   visibility: visible;
   opacity: 1;
   transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
+/* Preloader inner content */
 .preloader-inner {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
+/* Preloader spinner animation */
 .preloader-spinner {
   border: 4px solid transparent;
   border-top: 4px solid #007bff; /* Default blue */
@@ -98,189 +107,206 @@ input[type="submit"],
   animation: spin 1s linear infinite;
 }
 
-/* Spinner Animation */
+/* Spinner rotation animation */
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
 
-/* Hide Preloader once the page is loaded */
+/* Hide preloader once page is loaded */
 body.loaded #preloader {
   visibility: hidden;
   opacity: 0;
 }
 
-/* Body and Basic Styles */
+/* ==================================
+   Full Width for Topbar
+   ================================== */
 
-/* Parallax Background Effect */
+.topbar {
+  width: 100%; /* Full width */
+  background-color: #f8f9fa; /* Light background */
+  position: relative; /* Ensures it spans full width */
+}
+
+/* ==================================
+   Body and Basic Styles
+   ================================== */
+
+/* Parallax background effect */
 .parallax-bg {
-	background-attachment: fixed;
-	background-repeat: no-repeat;
-	background-size: cover;
-	background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
 }
 
+/* ==================================
+   Navigation styles
+   ================================== */
 
-/* Navigation styles */
+/* Dropdown menu hover effect */
 .nav-item.dropdown:hover .dropdown-menu {
-    display: block;
-    animation: fadeIn 0.2s ease-in-out; /* Smooth dropdown hover effect */
+  display: block;
+  animation: fadeIn 0.2s ease-in-out; /* Smooth dropdown */
 }
 
+/* Navigation link color change on hover */
 .nav-item.dropdown:hover .nav-link {
-    color: #f8f9fa; /* Change color when hovered */
+  color: #f8f9fa; /* Change color on hover */
 }
 
-
+/* Breadcrumb styling */
 .arnabwp-breadcrumb {
-	font-size: 14px;
-	color: #666;
+  font-size: 14px;
+  color: #666;
 }
+
+/* Breadcrumb links */
 .arnabwp-breadcrumb a {
-	color: inherit;
-	text-decoration: none;
+  color: inherit;
+  text-decoration: none;
 }
+
+/* Breadcrumb separator styling */
 .arnabwp-breadcrumb-separator {
-	margin: 0 8px;
-	color: #aaa;
+  margin: 0 8px;
+  color: #aaa;
 }
 
 /* ==================================
    Post Content Styles
    ================================== */
 
-/* Make sure images inside post content are responsive */
+/* Responsive images in post content */
 .entry-content img {
-    max-width: 100%;
-    height: auto;
-    display: block;
-    margin-bottom: 1.5rem;
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin-bottom: 1.5rem;
 }
 
-/* Make iframes and embeds responsive */
+/* Responsive iframe, embed, and video elements */
 .entry-content iframe,
 .entry-content embed,
 .entry-content video {
-    max-width: 100%;
-    height: auto;
-    display: block;
-    margin-bottom: 1.5rem;
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin-bottom: 1.5rem;
 }
 
-/* Ensure paragraphs inside posts have spacing */
+/* Paragraphs inside posts */
 .entry-content p {
-    line-height: 1.6;
-    margin-bottom: 1.5rem;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
 }
-
-
 
 /* ==================================
    Footer Styles
    ================================== */
 
+/* Footer styling */
 .site-footer {
+  padding-top: 60px;
+  font-size: 15px;
+}
 
-    padding-top: 60px;
-    font-size: 15px;
-  }
-  
-  .site-footer .footer-column {
-    margin-bottom: 40px;
-  }
+/* Footer column spacing */
+.site-footer .footer-column {
+  margin-bottom: 40px;
+}
 
-  .footer-widget .widget-title {
-    font-size: 18px;
-    font-weight: 600;
-    margin-bottom: 20px;
-    color: #fff;
-  }
-  
-  .footer-widget ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-  
-  .footer-widget ul li {
-    margin-bottom: 10px;
-  }
-  
-  .footer-widget ul li a {
-    text-decoration: none;
-    transition: color 0.3s ease;
-  }
-  
-  .footer-widget ul li a:hover {
-    color: #fff;
-  }
-  
-/* === Footer Block Search Widget Styling === */
+/* Footer widget title styling */
+.footer-widget .widget-title {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: #fff;
+}
+
+/* Footer widget list styling */
+.footer-widget ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-widget ul li {
+  margin-bottom: 10px;
+}
+
+/* Footer widget link styling */
+.footer-widget ul li a {
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-widget ul li a:hover {
+  color: #fff;
+}
+
+/* Footer search widget styling */
 .wp-block-search {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-  }
-  
- .wp-block-search__inside-wrapper {
-    display: flex;
-    align-items: center;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    overflow: hidden;
-    background-color: #fff;
-  }
-  
-  .wp-block-search__input {
-    flex: 1;
-    padding: 10px 14px;
-    border: none;
-    font-size: 1rem;
-    outline: none;
-    color: #333;
-    background-color: transparent;
-  }
-  
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+/* Search input styling */
+.wp-block-search__input {
+  flex: 1;
+  padding: 10px 14px;
+  border: none;
+  font-size: 1rem;
+  outline: none;
+  color: #333;
+  background-color: transparent;
+}
+
+/* Search button styling */
 .wp-block-search__button {
-    padding: 10px 18px;
-    border: none;
-    font-weight: 500;
-    font-size: 0.95rem;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    background-color: #187dbc;
-    color:#ffffff;
-  }
-  
-  .wp-block-search__button:hover {
-    background-color: #005bb5;
-  }
+  padding: 10px 18px;
+  border: none;
+  font-weight: 500;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  background-color: #187dbc;
+  color: #ffffff;
+}
 
-  /* Social Links */
-  .footer-social a {
-    margin-right: 12px;
-    text-decoration: none;
-    transition: color 0.3s ease;
-  }
-  
-  .footer-social a:hover {
-    color: #fff;
-  }
-  
-  /* Footer Bottom */
-  .footer-bottom {
-    padding: 20px 0;
-    color: #aaa;
-    font-size: 14px;
-    text-align: center;
-  }
+/* Search button hover effect */
+.wp-block-search__button:hover {
+  background-color: #005bb5;
+}
 
-  /* ==================================
- footer text alignment
- ================================== */
+/* Social link styling in footer */
+.footer-social a {
+  margin-right: 12px;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
 
+.footer-social a:hover {
+  color: #fff;
+}
+
+/* Footer bottom styling */
+.footer-bottom {
+  padding: 20px 0;
+  color: #aaa;
+  font-size: 14px;
+  text-align: center;
+}
+
+/* ==================================
+   Footer Text Alignment
+   ================================== */
+
+/* Footer text alignment options */
 .footer-bottom.align-left {
   text-align: left;
 }
@@ -297,34 +323,34 @@ body.loaded #preloader {
    Layout for Larger Screens
    ================================== */
 
-/* For large screens (992px and above), display content in flexbox */
+/* Large screen layout adjustments */
 @media (min-width: 992px) {
-    .site-main .container .row {
-        display: flex;
-        flex-wrap: nowrap; /* Prevent columns from wrapping */
-    }
+  .site-main .container .row {
+    display: flex;
+    flex-wrap: nowrap; /* Prevent columns from wrapping */
+  }
 
-    /* Adjust spacing between content and sidebar */
-    .site-main .container .row .col-lg-8 {
-        margin-right: 20px;
-    }
+  /* Adjust sidebar spacing */
+  .site-main .container .row .col-lg-8 {
+    margin-right: 20px;
+  }
 
-    .sidebar {
-        padding: 20px;
-        background-color: #f8f9fa;
-        border: 1px solid #ddd;
-    }
+  .sidebar {
+    padding: 20px;
+    background-color: #f8f9fa;
+    border: 1px solid #ddd;
+  }
 }
 
 /* ==================================
    Mobile Layout Adjustments
    ================================== */
 
-/* For mobile devices (991px and below), stack content and sidebar */
+/* Mobile layout adjustments */
 @media (max-width: 991px) {
-    .site-main .container .row {
-        display: block;
-    }
+  .site-main .container .row {
+    display: block; /* Stack content and sidebar */
+  }
 }
 
 /* Scroll to Top Button */
@@ -344,7 +370,7 @@ body.loaded #preloader {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Soft shadow for depth */
 }
 
-/* Hover Effect for a Modern Look */
+/* Scroll to Top button hover effect */
 .scroll-to-top:hover {
   background-color: #005f7f;
   transform: translateY(-5px); /* Slight lift effect */

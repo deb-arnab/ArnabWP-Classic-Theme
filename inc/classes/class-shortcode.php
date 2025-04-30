@@ -100,7 +100,7 @@ class Shortcode
             if (! in_array($email, $existing_emails, true)) {
                 $existing_emails[] = $email;
                 update_option('arnabwp_newsletter_emails', $existing_emails);
-            ?>
+        ?>
                 <div class="alert alert-success" role="alert">
                     <?php esc_html_e('Thank you for subscribing!', 'arnabwp'); ?>
                 </div>
@@ -116,10 +116,10 @@ class Shortcode
             }
         } else {
             ?>
-                <div class="alert alert-danger" role="alert">
-                    <?php esc_html_e('Please enter a valid email address.', 'arnabwp'); ?>
-                </div>
-            <?php
+            <div class="alert alert-danger" role="alert">
+                <?php esc_html_e('Please enter a valid email address.', 'arnabwp'); ?>
+            </div>
+<?php
 
         }
 

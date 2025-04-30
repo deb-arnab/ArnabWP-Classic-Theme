@@ -235,6 +235,7 @@ $wp_customize->add_control( new \ARNABWP_THEME\Inc\Controls\Tabs_Control(
     // === Font Size: Employee email === //
     $wp_customize->add_setting('employee_email_font_size', [
         'default'           => 14,
+        'transport'=>'refresh',
         'sanitize_callback' => 'absint',
     ]);
     $wp_customize->add_control(new \ARNABWP_THEME\Inc\Controls\Range_Control(

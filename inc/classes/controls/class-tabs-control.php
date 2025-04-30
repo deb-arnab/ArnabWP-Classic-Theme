@@ -32,8 +32,8 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
         {
             // Enqueue the custom JavaScript file for range control behavior
             wp_enqueue_script(
-                'customizer-tabs',
-                ARNABWP_TEMP_DIR_URI . '/assets/js/customizer-tabs.js',
+                'arnabwp-customizer-tabs',
+                ARNABWP_TEMP_DIR_URI . '/assets/js/customizer/customizer-tabs.js',
                 ['jquery', 'customize-controls'],
                 false,
                 true
@@ -41,8 +41,8 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 
             // Enqueue the custom CSS styles for the range control
             wp_enqueue_style(
-                'customizer-tabs-style',
-                ARNABWP_TEMP_DIR_URI . '/assets/css/customizer-tabs.css'
+                'arnabwp-customizer-tabs-style',
+                ARNABWP_TEMP_DIR_URI . '/assets/css/customizer/customizer-tabs.css'
             );
         }
 

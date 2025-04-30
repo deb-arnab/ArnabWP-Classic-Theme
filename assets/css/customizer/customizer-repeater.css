@@ -14,43 +14,31 @@
 /* Global panel styling */
 .wp-full-overlay-sidebar {
   font-family: 'Inter', 'Roboto', sans-serif;
-  background: #f8f9fa;
+  background: #f5f5f5;
 }
 
 /* Each section looks like a card */
 .accordion-section {
   background: #ffffff;
   margin: 12px 20px;
-  padding: 16px;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  padding: 5px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
   transition: all 0.3s ease;
-  border: 1px solid #e2e8f0;
+  border: 1px solid #db007c;
 }
 
 /* Hover effect for better interactivity */
 .accordion-section:hover {
-  background: #f0f4f8;
-  box-shadow: 0 6px 15px rgba(0,0,0,0.12);
-}
-
-/* Section titles */
-.accordion-section-title {
-  font-size: 17px;
-  font-weight: 600;
-  color: #1e293b;
-}
-
-/* Reduce the default divider lines */
-.customize-section-title {
-  border-bottom: none;
+  background: #f5f5f5;
+  box-shadow: 0 8px 12px rgba(0,0,0,0.10);
 }
 
 /* Improve back buttons and top nav */
 .customize-panel-back,
 .customize-section-back {
   background: none;
-  color: #475569;
+  color: #725164;
   font-weight: 500;
 }
 
@@ -62,14 +50,14 @@
 
 /* Publish button */
 .wp-core-ui .button-primary {
-  background: #3b82f6;
-  border-color: #3b82f6;
+  background: #db007c;
+  border-color: #db007c;
   box-shadow: none;
   transition: background 0.3s ease;
 }
 
 .wp-core-ui .button-primary:hover {
-  background: #2563eb;
+  background: #ca0173;
 }
 
 

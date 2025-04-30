@@ -31,8 +31,8 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
         {
             // Enqueue the custom JavaScript file for range control behavior
             wp_enqueue_script(
-                'customizer-range',
-                ARNABWP_TEMP_DIR_URI . '/assets/js/customizer-range.js',
+                'arnabwp-customizer-range',
+                ARNABWP_TEMP_DIR_URI . '/assets/js/customizer/customizer-range.js',
                 ['jquery', 'customize-controls'],
                 false,
                 true
@@ -40,8 +40,8 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 
             // Enqueue the custom CSS styles for the range control
             wp_enqueue_style(
-                'customizer-range-style',
-                ARNABWP_TEMP_DIR_URI . '/assets/css/customizer-range.css'
+                'arnabwp-customizer-range-style',
+                ARNABWP_TEMP_DIR_URI . '/assets/css/customizer/customizer-range.css'
             );
         }
 

@@ -18,7 +18,7 @@ class Toggle_Control extends \WP_Customize_Control {
 	public $type = 'toggle';
 
 	public function enqueue() {
-		wp_enqueue_style( 'arnabwp-toggle-control', ARNABWP_TEMP_DIR_URI . '/assets/css/customizer-toggle.css' );
+		wp_enqueue_style( 'arnabwp-toggle-control', ARNABWP_TEMP_DIR_URI . '/assets/css/customizer/customizer-toggle.css' );
 	}
 
 	public function render_content() {

@@ -21,15 +21,15 @@ class Repeater_Control extends \WP_Customize_Control
 	public function enqueue()
 	{
 		wp_enqueue_script(
-			'customizer-repeater',
-			ARNABWP_TEMP_DIR_URI . '/assets/js/customizer-repeater.js',
+			'arnabwp-customizer-repeater',
+			ARNABWP_TEMP_DIR_URI . '/assets/js/customizer/customizer-repeater.js',
 			['jquery', 'customize-controls','media-editor', 'media-views'],
 			false,
 			true
 		);
 		wp_enqueue_style(
-			'customizer-repeater-style',
-			ARNABWP_TEMP_DIR_URI . '/assets/css/customizer-repeater.css'
+			'arnabwp-customizer-repeater-style',
+			ARNABWP_TEMP_DIR_URI . '/assets/css/customizer/customizer-repeater.css'
 		);
 		wp_enqueue_media(); // For image upload
 		wp_enqueue_style('wp-mediaelement');
