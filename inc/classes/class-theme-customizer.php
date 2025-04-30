@@ -17,6 +17,8 @@ if ( is_customize_preview() || is_admin() ) {
 require_once ARNABWP_DIR_PATH . '/inc/classes/controls/class-toggle-control.php';
 require_once ARNABWP_DIR_PATH . '/inc/classes/controls/class-range-control.php';
 require_once ARNABWP_DIR_PATH . '/inc/classes/controls/class-repeater-control.php';
+require_once ARNABWP_DIR_PATH . '/inc/classes/controls/class-tabs-control.php';
+
 
 }
 
@@ -72,6 +74,8 @@ class Theme_Customizer {
      */
     public function arnabwp_output_customizer_styles() {
         
+
+// === Site Width Styles === //
         $container_width = get_theme_mod( 'arnabwp_container_width', 1200 );
 
         echo '<style type="text/css">';
@@ -83,6 +87,8 @@ class Theme_Customizer {
         }';
         echo '</style>';
       
+
+// === Button Styles === //
         $padding_top_bottom = get_theme_mod( 'arnabwp_button_padding_top_bottom', 10 ); // fallback 10px if not set
         $padding_left_right = get_theme_mod( 'arnabwp_button_padding_left_right', 15 ); // fallback 15px if not set
         $button_radius      = get_theme_mod( 'arnabwp_button_radius', 5);
@@ -105,7 +111,7 @@ class Theme_Customizer {
         <?php
         endif;
     
-      
+      // === Preloader Styles === //
             $preloader_bg_color = get_theme_mod('preloader_background_color', '#ffffff');
             $preloader_spinner_color = get_theme_mod('preloader_spinner_color', '#007bff');
             ?>
@@ -125,13 +131,16 @@ class Theme_Customizer {
         // === Typography Styles === //
         $body_font      = get_theme_mod( 'arnabwp_body_font_family', 'Arial, sans-serif' );
         $heading_font   = get_theme_mod( 'arnabwp_heading_font_family', 'Georgia, serif' );
+
         $body_font_size = get_theme_mod( 'arnabwp_body_font_size', 16 );
         $heading_size   = get_theme_mod( 'arnabwp_heading_font_size', 32 );
+        $content_title_font_size = get_theme_mod( 'arnabwp_content_title_font_size', 32 );
 
         echo '<style type="text/css">';
         echo "body { font-family: {$body_font}; font-size: {$body_font_size}px; }";
         echo "h1, h2, h3, h4, h5, h6 { font-family: {$heading_font}; font-size: {$heading_size}px; }";
-
+        echo ".entry-title, .post-title { font-size: {$content_title_font_size}px; }";
+   
 
                 // === Color Styles Refactored into a Loop === //
                 $color_settings = [
@@ -305,36 +314,35 @@ if ( $footer_heading_color || $footer_text_color || $footer_copyright_color )
 
 
 // === Hero Section Styles === //
+$hero_title_fontsize= get_theme_mod('arnabwp_hero_title_font_size', 40);
+$hero_subtitle_fontsize= get_theme_mod('arnabwp_hero_subtitle_font_size', 16);
+
 $hero_title_color= get_theme_mod('arnabwp_hero_title_color', '#ffffff');
 $hero_subtitle_color= get_theme_mod('arnabwp_hero_subtitle_color', '#ffffff');
 
 $hero_btn_bg_color= get_theme_mod('arnabwp_hero_btn_bg_color', '#0073e6');
-$hero_btn_hover_bg_color= get_theme_mod('arnabwp_hero_btn_hover_bg_color', '#0073e8');
-
 $hero_btn_text_color= get_theme_mod('arnabwp_hero_btn_text_color', '#ffffff');
-$hero_btn_hover_text_color= get_theme_mod('arnabwp_hero_btn_hover_text_color', '#ffffff');
+
 
 if ( $hero_title_color || $hero_subtitle_color )
-    
+
     echo '
     <style type="text/css">
-        .hero-content h1{
+        .hero-content h1
+        {
             color: '.esc_attr( $hero_title_color ).';
+            font-size: '.esc_attr($hero_title_fontsize).'px;
         }
 
          .hero-content p
         {
-            color: '.esc_attr( $hero_subtitle_color ). ';
+            color: '.esc_attr( $hero_subtitle_color ).';
+            font-size: '.esc_attr($hero_subtitle_fontsize).'px;
         }
          .hero-buttons .hero-btn
         {
             color: '.esc_attr( $hero_btn_text_color). ';
             background-color: '.esc_attr( $hero_btn_bg_color ). ';
-        }
-         .hero-buttons .hero-btn:hover
-        {
-            color: '.esc_attr( $hero_btn_hover_text_color ). ';
-           background-color: '.esc_attr( $hero_btn_hover_bg_color ). ';
         }
     </style>';
 

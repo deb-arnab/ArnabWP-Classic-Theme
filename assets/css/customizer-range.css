@@ -1,59 +1,65 @@
 /* Range Control Styling */
 .arnabwp-range-control {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-top: 10px;
-  }
-  
-  .arnabwp-range-control input[type="range"] {
-    flex: 1;
-    height: 4px;
-    border-radius: 5px;
-    background: linear-gradient(to right, #0073aa, #00a0d2);
-    appearance: none;
-    cursor: pointer;
-  }
-  
-  .arnabwp-range-control input[type="range"]::-webkit-slider-thumb {
-    appearance: none;
-    width: 16px;
-    height: 16px;
-    background: #ffffff;
-    border: 2px solid #0073aa;
-    border-radius: 50%;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 10px;
+}
 
-    transition: background 0.3s, border-color 0.3s;
-  }
-  
-  .arnabwp-range-control input[type="range"]::-moz-range-thumb {
-    width: 16px;
-    height: 16px;
-    background: #ffffff;
-    border: 2px solid #0073aa;
-    border-radius: 50%;
-    transition: background 0.3s, border-color 0.3s;
-  }
-  
-  .arnabwp-range-control input[type="text"] {
-    width: 60px;
-    text-align: center;
-    background: #f7f7f7;
-    border: 1px solid #dcdcdc;
-    padding: 4px 6px;
-    font-size: 14px;
-    border-radius: 4px;
-  }
+.arnabwp-range-control input[type="range"] {
+  flex: 1;
+  height: 4px;
+  border-radius: 5px;
+  background: linear-gradient(to right, #0073aa, #00a0d2);
+  appearance: none;
+  cursor: pointer;
+}
 
-  .arnabwp-range-value {
-    width: 60px;
-    text-align: center;
-    background: #f7f7f7;
-    border: 1px solid #ccc;
+.arnabwp-range-control input[type="range"]::-webkit-slider-thumb {
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  background: #db007c;
+  border: 2px solid #0073aa;
+  border-radius: 50%;
+
+  transition: background 0.3s, border-color 0.3s;
+}
+
+.arnabwp-range-control input[type="range"]::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  background: #ffffff;
+  border: 2px solid #0073aa;
+  border-radius: 50%;
+  transition: background 0.3s, border-color 0.3s;
+}
+
+.arnabwp-range-control input[type="text"] {
+  width: 60px;
+  text-align: center;
+  background: #f7f7f7;
+  border: 1px solid #dcdcdc;
+  padding: 4px 6px;
+  font-size: 14px;
+  border-radius: 4px;
+}
+
+.arnabwp-range-value {
+  width: 60px;
+  text-align: center;
+  background: #f7f7f7;
+  border: 1px solid #ccc;
 }
 
 .arnabwp-range-reset {
-    height: 30px;
-    line-height: 1;
-    padding: 0 8px;
+  height: 30px;
+  line-height: 1;
+  padding: 0 8px;
 }
+
+.arnabwp-range-control.responsive {
+  flex-direction: column;
+  gap: 10px;
+}
+

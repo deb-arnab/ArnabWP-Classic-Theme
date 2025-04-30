@@ -16,26 +16,30 @@
 
 
 
-<main class="py-5">
+<main class="py-5 bg-info">
 <div class="site-container">
 
 
 
 
 
-
-    <?php if ( is_home() && ! is_front_page() ) : ?>
+<?php if ( is_home() && ! is_front_page() ) : ?>
       <h1 class="mb-5 fw-bold text-center"><?php single_post_title(); ?></h1>
     <?php endif; ?>
 
+    </div>
+    </main>
+    <section>
+    <div class="site-container">
     <?php if ( have_posts() ) : ?>
 
       <div class="masonry-grid">
        
         <?php while ( have_posts() ) : the_post(); 
       
-      get_template_part('template_parts/blogs/content');
-      
+      if ( 'service' !== get_post_type() ) {
+        get_template_part('template_parts/blogs/content');
+    }
       
       endwhile; ?>
  
@@ -49,7 +53,7 @@
       <div class="mt-4">
                     <?php $pagination->arnabwp_page_nav(); ?>
                 </div>
-  </div>
-</main>
+    </div>
+                </section>
 
 <?php get_footer(); ?>

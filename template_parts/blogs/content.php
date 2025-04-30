@@ -10,7 +10,7 @@
 
 <article class="post-card">
 
-    <h3 class="mt-3">
+    <h3 class="mt-3 post-title">
         <a href="<?php the_permalink(); ?>" class="text-decoration-none">
             <?php the_title(); ?>
         </a>

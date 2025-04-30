@@ -18,9 +18,30 @@ function add_about_section($wp_customize)
         'priority' => 30,
     ));
 
+  // === Tabs for UI === //
+
+  $wp_customize->add_setting('arnabwp_current_about_tab', [
+    'default'           => 'general',
+    'transport'         => 'refresh',
+    'sanitize_callback' => 'sanitize_text_field',
+]);
+$wp_customize->add_control( new \ARNABWP_THEME\Inc\Controls\Tabs_Control( 
+    $wp_customize,
+    'arnabwp_current_about_tab', [
+
+    'section' => 'arnabwp_about_section', // Ensure this is your desired section.
+    'settings'=> 'arnabwp_current_about_tab',
+    'tabs' => [
+        'general' => __( 'General', 'arnabwp' ),
+        'content' => __( 'Contents', 'arnabwp' ),
+        'style' => __( 'Styles', 'arnabwp' ),
+    ],
+]
+));
+
     // Divider: Show/Hide Controls
     $wp_customize->add_setting('arnabwp_about_toggle_divider', [
-        'sanitize_callback' => '__return_null',
+        'sanitize_callback' => '__return_false',
     ]);
 
     $wp_customize->add_control(new WP_Customize_Control(
@@ -30,6 +51,7 @@ function add_about_section($wp_customize)
             'type'        => 'hidden',
             'section'     => 'arnabwp_about_section',
             'description' => '<hr><strong style="font-size:15px; color:#db007c">Show/Hide Section</strong><hr>',
+            'active_callback' => fn() => get_theme_mod('arnabwp_current_about_tab', 'general') === 'general',
         ]
     ));
     // Enable Toggle
@@ -44,12 +66,14 @@ function add_about_section($wp_customize)
         [
             'label'   => __('Enable About Section', 'arnabwp'),
             'section' => 'arnabwp_about_section',
+            'settings' => 'arnabwp_about_section_enable',
+            'active_callback' => fn() => get_theme_mod('arnabwp_current_about_tab', 'general') === 'general',
         ]
     ));
 
     // ========== Divider: Background Settings ==========
     $wp_customize->add_setting('arnabwp_about_divider_background', [
-        'sanitize_callback' => '__return_null',
+        'sanitize_callback' => '__return_false',
     ]);
     $wp_customize->add_control(new WP_Customize_Control(
         $wp_customize,
@@ -58,6 +82,7 @@ function add_about_section($wp_customize)
             'type'        => 'hidden',
             'section'     => 'arnabwp_about_section',
             'description' => '<hr><strong style="font-size:15px; color:#db007c">Background Settings</strong><hr>',
+            'active_callback' => fn() => get_theme_mod('arnabwp_current_about_tab', 'general') === 'general',
         ]
     ));
 
@@ -73,6 +98,7 @@ function add_about_section($wp_customize)
             'label'    => __('Background Image', 'arnabwp'),
             'section'  => 'arnabwp_about_section',
             'settings' => 'about_section_bg_image',
+            'active_callback' => fn() => get_theme_mod('arnabwp_current_about_tab', 'general') === 'general',
         ]
     ));
 
@@ -88,12 +114,14 @@ function add_about_section($wp_customize)
         [
             'label'    => __('Enable Scroll Effect', 'arnabwp'),
             'section'  => 'arnabwp_about_section',
+            'settings' => 'about_section_bg_scroll',
+            'active_callback' => fn() => get_theme_mod('arnabwp_current_about_tab', 'general') === 'general',
         ]
     ));
 
     // ========== Divider: Content Settings ==========
     $wp_customize->add_setting('arnabwp_about_divider_content', [
-        'sanitize_callback' => '__return_null',
+        'sanitize_callback' => '__return_false',
     ]);
     $wp_customize->add_control(new WP_Customize_Control(
         $wp_customize,
@@ -102,6 +130,7 @@ function add_about_section($wp_customize)
             'type'        => 'hidden',
             'section'     => 'arnabwp_about_section',
             'description' => '<hr><strong style="font-size:15px; color:#db007c">Content Settings</strong><hr>',
+            'active_callback' => fn() => get_theme_mod('arnabwp_current_about_tab', 'general') === 'content',
         ]
     ));
 
@@ -115,6 +144,8 @@ function add_about_section($wp_customize)
         'label'    => __('Title', 'arnabwp'),
         'section'  => 'arnabwp_about_section',
         'type'     => 'text',
+        'settings' => 'about_section_title',
+        'active_callback' => fn() => get_theme_mod('arnabwp_current_about_tab', 'general') === 'content',
     ]);
 
     // === Subtitle ===
@@ -127,6 +158,8 @@ function add_about_section($wp_customize)
         'label'    => __('Subtitle', 'arnabwp'),
         'section'  => 'arnabwp_about_section',
         'type'     => 'text',
+        'settings' => 'about_section_subtitle',
+        'active_callback' => fn() => get_theme_mod('arnabwp_current_about_tab', 'general') === 'content',
     ]);
 
     // === Description ===
@@ -139,12 +172,15 @@ function add_about_section($wp_customize)
         'label'    => __('Description', 'arnabwp'),
         'section'  => 'arnabwp_about_section',
         'type'     => 'textarea',
+        'settings' => 'about_section_description',
+        'active_callback' => fn() => get_theme_mod('arnabwp_current_about_tab', 'general') === 'content',
+
     ]);
 
 
     // ========== Divider: Image Settings ==========
     $wp_customize->add_setting('arnabwp_about_divider_image', [
-        'sanitize_callback' => '__return_null',
+        'sanitize_callback' => '__return_false',
     ]);
     $wp_customize->add_control(new WP_Customize_Control(
         $wp_customize,
@@ -153,6 +189,7 @@ function add_about_section($wp_customize)
             'type'        => 'hidden',
             'section'     => 'arnabwp_about_section',
             'description' => '<hr><strong style="font-size:15px; color:#db007c">Image Settings</strong><hr>',
+            'active_callback' => fn() => get_theme_mod('arnabwp_current_about_tab', 'general') === 'content',
         ]
     ));
 
@@ -168,13 +205,14 @@ function add_about_section($wp_customize)
             'label'    => __('About Image', 'arnabwp'),
             'section'  => 'arnabwp_about_section',
             'settings' => 'about_section_image',
+            'active_callback' => fn() => get_theme_mod('arnabwp_current_about_tab', 'general') === 'content',
         ]
     ));
 
 
     // ========== Divider: Button Settings ==========
     $wp_customize->add_setting('arnabwp_about_divider_button', [
-        'sanitize_callback' => '__return_null',
+        'sanitize_callback' => '__return_false',
     ]);
     $wp_customize->add_control(new WP_Customize_Control(
         $wp_customize,
@@ -183,6 +221,7 @@ function add_about_section($wp_customize)
             'type'        => 'hidden',
             'section'     => 'arnabwp_about_section',
             'description' => '<hr><strong style="font-size:15px; color:#db007c">Button Settings</strong><hr>',
+            'active_callback' => fn() => get_theme_mod('arnabwp_current_about_tab', 'general') === 'content',
         ]
     ));
 
@@ -196,6 +235,8 @@ function add_about_section($wp_customize)
         'label'    => __('Button Text', 'arnabwp'),
         'section'  => 'arnabwp_about_section',
         'type'     => 'text',
+        'settings' => 'about_section_button_text', 
+        'active_callback' => fn() => get_theme_mod('arnabwp_current_about_tab', 'general') === 'content',
     ]);
 
     // === Button URL ===
@@ -207,5 +248,7 @@ function add_about_section($wp_customize)
         'label'    => __('Button URL', 'arnabwp'),
         'section'  => 'arnabwp_about_section',
         'type'     => 'url',
+        'settings' => 'about_section_button_url', 
+        'active_callback' => fn() => get_theme_mod('arnabwp_current_about_tab', 'general') === 'content',
     ]);
 }

@@ -72,17 +72,31 @@
   background: #2563eb;
 }
 
-/* Sidebar scroll smooth */
+
+
+/* Enhanced Sidebar Scrollbar */
 .wp-full-overlay-sidebar-content {
   scrollbar-width: thin;
-  scrollbar-color: #cbd5e1 #f1f5f9;
+  scrollbar-color: #db007c #e2e8f0; /* thumb color, track color */
+  scroll-behavior: smooth;
 }
 
-/* For Webkit browsers */
+/* WebKit Scrollbar Support */
 .wp-full-overlay-sidebar-content::-webkit-scrollbar {
-  width: 6px;
+  width: 8px;
 }
-.wp-full-overlay-sidebar-content::-webkit-scrollbar-thumb {
-  background-color: #cbd5e1;
+
+.wp-full-overlay-sidebar-content::-webkit-scrollbar-track {
+  background: #f8fafc; /* very light gray-blue */
   border-radius: 10px;
+}
+
+.wp-full-overlay-sidebar-content::-webkit-scrollbar-thumb {
+  background-color: #db007c; /* slate-400 */
+  border-radius: 10px;
+  border: 2px solid #f8fafc; /* creates padding effect */
+}
+
+.wp-full-overlay-sidebar-content::-webkit-scrollbar-thumb:hover {
+  background-color: #64748b; /* slate-500 on hover */
 }

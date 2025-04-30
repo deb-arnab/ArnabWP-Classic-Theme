@@ -105,7 +105,7 @@ if ($testimonial_query->have_posts()) : ?>
                                 </div>
 
                                 <div class="testimonial-client-details">
-                                    <h5 class="testimonial-client-name mb-1" style="font-size: <?php echo esc_attr($name_font_size); ?>px; color: <?php echo esc_attr($name_color); ?>;"><?php echo $client_name; ?></h5>
+                                    <h5 class="testimonial-client-name mb-1 entry-title" style="font-size: <?php echo esc_attr($name_font_size); ?>px; color: <?php echo esc_attr($name_color); ?>;"><?php echo $client_name; ?></h5>
                                     <p class="testimonial-client-title text-muted mb-2" style="font-size: <?php echo esc_attr($job_font_size); ?>px; color: <?php echo esc_attr($job_color); ?>;"><?php echo $client_title; ?></p>
                                     <!-- Social Links (Below Subtitle) -->
                                     <?php if (!empty($social_links)) : ?>

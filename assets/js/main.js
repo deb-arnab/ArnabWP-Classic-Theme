@@ -3,21 +3,6 @@ window.addEventListener("load", function() {
   document.body.classList.add('loaded');
 });
 
-// Show or hide the scroll-to-top button based on scroll position
-window.onscroll = function() {
-  let scrollToTopBtn = document.getElementById("scrollToTop");
-  if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
-      scrollToTopBtn.style.display = "block"; // Show button when scroll position is > 100px
-  } else {
-      scrollToTopBtn.style.display = "none"; // Hide button when scroll position is <= 100px
-  }
-};
-
-// Scroll to top when the button is clicked
-document.getElementById("scrollToTop").addEventListener("click", function() {
-  window.scrollTo({ top: 0, behavior: "smooth" });
-});
-
 
 jQuery(document).ready(function($){
     $(".owl-carousel.hero-slider").owlCarousel({
@@ -44,8 +29,9 @@ jQuery(document).ready(function($){
      
         loop: true,
         margin: 20,
-        nav: true,
+        nav: false,
         dots: false, // Show pagination dots
+        autoplay: true,
         responsive: {
             0: { items: 1 },
             600: { items: 2 },
@@ -88,3 +74,19 @@ jQuery(document).ready(function($){
 });
 });
 
+
+
+// Show or hide the scroll-to-top button based on scroll position
+window.onscroll = function() {
+  let scrollToTopBtn = document.getElementById("scrollToTop");
+  if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+      scrollToTopBtn.style.display = "block"; // Show button when scroll position is > 100px
+  } else {
+      scrollToTopBtn.style.display = "none"; // Hide button when scroll position is <= 100px
+  }
+};
+
+// Scroll to top when the button is clicked
+document.getElementById("scrollToTop").addEventListener("click", function() {
+  window.scrollTo({ top: 0, behavior: "smooth" });
+});

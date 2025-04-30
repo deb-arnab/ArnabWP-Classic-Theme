@@ -27,7 +27,7 @@ function add_typography_section( $wp_customize ) {
 
     // Divider: Site Font Family
     $wp_customize->add_setting('arnabwp_typography_divider', [
-        'sanitize_callback' => '__return_null',
+        'sanitize_callback' => '__return_false',
     ]);
 
     $wp_customize->add_control(new WP_Customize_Control(
@@ -67,12 +67,12 @@ function add_typography_section( $wp_customize ) {
     ]);
 
     // =============================
-    // Site Font Size
+    // Page/Blog Font Size
     // =============================
 
-    // Divider: Site Font Size
+    // Divider: Page/Blog Font Size
     $wp_customize->add_setting('arnabwp_typography_divider1', [
-        'sanitize_callback' => '__return_null',
+        'sanitize_callback' => '__return_false',
     ]);
 
     $wp_customize->add_control(new WP_Customize_Control(
@@ -81,10 +81,12 @@ function add_typography_section( $wp_customize ) {
         [
             'type'        => 'hidden',
             'section'     => 'arnabwp_typography_section',
-            'description' => '<hr><strong style="font-size:15px; color:#db007c">Site Font Size</strong><hr>',
+            'description' => '<hr><strong style="font-size:15px; color:#db007c">Page/Blog Font Size</strong><hr>',
         ]
     ));
 
+
+    
     // Body Font Size
     $wp_customize->add_setting('arnabwp_body_font_size', [
         'default'           => 16,
@@ -95,7 +97,7 @@ function add_typography_section( $wp_customize ) {
         $wp_customize,
         'arnabwp_body_font_size',
         [
-            'label'       => __('Body Font Size (px)', 'arnabwp'),
+            'label'       => __('Content Font Size (px)', 'arnabwp'),
             'section'     => 'arnabwp_typography_section',
             'input_attrs' => [
                 'min'  => 10,
@@ -125,56 +127,17 @@ function add_typography_section( $wp_customize ) {
         ]
     ));
 
-    // =============================
-    // Blog Font Size
-    // =============================
-
-    // Divider: Blog Font Size
-    $wp_customize->add_setting('arnabwp_typography_divider2', [
-        'sanitize_callback' => '__return_null',
-    ]);
-
-    $wp_customize->add_control(new WP_Customize_Control(
-        $wp_customize,
-        'arnabwp_typography_divider2',
-        [
-            'type'        => 'hidden',
-            'section'     => 'arnabwp_typography_section',
-            'description' => '<hr><strong style="font-size:15px; color:#db007c">Blogs Font Size</strong><hr>',
-        ]
-    ));
-
-    // Blog Content Font Size
-    $wp_customize->add_setting('arnabwp_blog_body_font_size', [
-        'default'           => 16,
-        'sanitize_callback' => 'absint',
-    ]);
-
-    $wp_customize->add_control(new \ARNABWP_THEME\Inc\Controls\Range_Control(
-        $wp_customize,
-        'arnabwp_blog_body_font_size',
-        [
-            'label'       => __('Blog Content Font Size (px)', 'arnabwp'),
-            'section'     => 'arnabwp_typography_section',
-            'input_attrs' => [
-                'min'  => 10,
-                'max'  => 30,
-                'step' => 1,
-            ],
-        ]
-    ));
-
-    // Blog Title Font Size
-    $wp_customize->add_setting('arnabwp_blog_title_font_size', [
+    // Content Title Font Size
+    $wp_customize->add_setting('arnabwp_content_title_font_size', [
         'default'           => 32,
         'sanitize_callback' => 'absint',
     ]);
 
     $wp_customize->add_control(new \ARNABWP_THEME\Inc\Controls\Range_Control(
         $wp_customize,
-        'arnabwp_blog_title_font_size',
+        'arnabwp_content_title_font_size',
         [
-            'label'       => __('Blog Title Font Size (px)', 'arnabwp'),
+            'label'       => __('Content Title Font Size (px)', 'arnabwp'),
             'section'     => 'arnabwp_typography_section',
             'input_attrs' => [
                 'min'  => 25,
@@ -190,7 +153,7 @@ function add_typography_section( $wp_customize ) {
 
     // Divider: Front Page Font Size
     $wp_customize->add_setting('arnabwp_typography_divider3', [
-        'sanitize_callback' => '__return_null',
+        'sanitize_callback' => '__return_false',
     ]);
 
     $wp_customize->add_control(new WP_Customize_Control(
@@ -265,3 +228,4 @@ function get_font_choices() {
         'Montserrat, sans-serif'       => 'Montserrat',
     ];
 }
+

@@ -20,7 +20,7 @@ function add_client_section($wp_customize)
 
     // Divider: Show/Hide Controls
     $wp_customize->add_setting('arnabwp_client_toggle_divider', [
-        'sanitize_callback' => '__return_null',
+        'sanitize_callback' => '__return_false',
     ]);
 
     $wp_customize->add_control(new WP_Customize_Control(
@@ -49,7 +49,7 @@ function add_client_section($wp_customize)
 
     // ========== Divider: Background Settings ==========
     $wp_customize->add_setting('arnabwp_client_divider_background', [
-        'sanitize_callback' => '__return_null',
+        'sanitize_callback' => '__return_false',
     ]);
     $wp_customize->add_control(new WP_Customize_Control(
         $wp_customize,

@@ -16,7 +16,7 @@ if (! $section_enabled) {
 }
 
 // Get and sanitize the service count, limiting it to a maximum of 6
-$service_count = min(absint(get_theme_mod('feature_service_count', 3)), 6);
+$service_count = min(absint(get_theme_mod('arnabwp_feature_service_count', 3)), 6);
 
 // Query the latest service posts
 $service_query = new WP_Query([
@@ -27,21 +27,21 @@ $service_query = new WP_Query([
 ]);
 
 // Get Customizer settings for section title and styles
-$section_title       =  get_theme_mod('service_section_title', __('Our Services', 'arnabwp'));
-$section_description =  get_theme_mod('service_section_description', __('Explore the solutions we offer', 'arnabwp'));
+$section_title       =  get_theme_mod('arnabwp_service_section_title', __('Our Services', 'arnabwp'));
+$section_description =  get_theme_mod('arnabwp_service_section_description', __('Explore the solutions we offer', 'arnabwp'));
 
 $section_title_font_size =  absint(get_theme_mod('arnabwp_section_title_font_size', 32));
 $section_desc_font_size =  absint(get_theme_mod('arnabwp_section_description_font_size', 16));
 
 
-$name_font_size      = absint(get_theme_mod('service_name_font_size', 18));
-$name_color          = esc_attr(get_theme_mod('service_name_color', '#ffffff'));
+$name_font_size      = absint(get_theme_mod('arnabwp_service_name_font_size', 18));
+$name_color          = esc_attr(get_theme_mod('arnabwp_service_name_color', '#ffffff'));
 
-$desc_font_size      = absint(get_theme_mod('service_description_font_size', 14));
-$desc_color          = esc_attr(get_theme_mod('service_description_color', '#dddddd'));
+$desc_font_size      = absint(get_theme_mod('arnabwp_service_description_font_size', 14));
+$desc_color          = esc_attr(get_theme_mod('arnabwp_service_description_color', '#dddddd'));
 
-$icon_size           = absint(get_theme_mod('service_icon_size', 70));
-$icon_radius         = absint(get_theme_mod('service_icon_radius', 50));
+$icon_size           = absint(get_theme_mod('arnabwp_service_icon_size', 70));
+$icon_radius         = absint(get_theme_mod('arnabwp_service_icon_radius', 50));
 
 if ($service_query->have_posts()) : ?>
     <section class="services-section py-5" aria-label="Services">
@@ -82,7 +82,7 @@ if ($service_query->have_posts()) : ?>
                             <div class="card-body">
                                 <?php if (! empty($service_name)) : ?>
                                     <a href="<?php the_permalink(); ?>" class="text-decoration-none">
-                                        <h5 class="card-title"
+                                        <h5 class="card-title entry-title"
                                             style="font-size: <?php echo $name_font_size; ?>px; color: <?php echo $name_color; ?>;">
                                             <?php echo esc_html($service_name ?: get_the_title()); ?>
                                         </h5>

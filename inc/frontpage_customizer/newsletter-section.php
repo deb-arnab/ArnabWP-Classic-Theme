@@ -18,9 +18,29 @@ function add_newsletter_section($wp_customize)
         'priority' => 80,
     ]);
 
+
+
+    $wp_customize->add_setting('arnabwp_current_newsletter_tab', [
+        'default'           => 'general',
+        'transport'         => 'refresh',
+        'sanitize_callback' => 'sanitize_text_field',
+    ]);
+    $wp_customize->add_control( new \ARNABWP_THEME\Inc\Controls\Tabs_Control( 
+        $wp_customize,
+        'arnabwp_current_newsletter_tab', [
+    
+        'section' => 'arnabwp_newsletter_section', // Ensure this is your desired section.
+        'settings'=> 'arnabwp_current_newsletter_tab',
+        'tabs' => [
+            'general' => __( 'General', 'arnabwp' ),
+            'content' => __( 'Contents', 'arnabwp' ),
+        ],
+    ]
+    ));
+
     // Divider: Show/Hide Controls
     $wp_customize->add_setting('arnabwp_newsletter_toggle_divider', [
-        'sanitize_callback' => '__return_null',
+        'sanitize_callback' => '__return_false',
     ]);
 
     $wp_customize->add_control(new WP_Customize_Control(
@@ -30,6 +50,7 @@ function add_newsletter_section($wp_customize)
             'type'        => 'hidden',
             'section'     => 'arnabwp_newsletter_section',
             'description' => '<hr><strong style="font-size:15px; color:#db007c">Show/Hide Section</strong><hr>',
+            'active_callback' => fn() => get_theme_mod('arnabwp_current_newsletter_tab', 'general') === 'general',
         ]
     ));
 
@@ -44,20 +65,22 @@ function add_newsletter_section($wp_customize)
         'label'   => __( 'Show Newsletter Section', 'arnabwp' ),
         'section' => 'arnabwp_newsletter_section',
         'type'    => 'checkbox',
+        'active_callback' => fn() => get_theme_mod('arnabwp_current_newsletter_tab', 'general') === 'general',
     ] 
     ));
 
     // ========== Divider: Background Settings ==========
     $wp_customize->add_setting('arnabwp_newsletter_divider_background', [
-        'sanitize_callback' => '__return_null',
+        'sanitize_callback' => '__return_false',
     ]);
     $wp_customize->add_control(new WP_Customize_Control(
         $wp_customize,
-        'arnabwp_newslettert_divider_background',
+        'arnabwp_newsletter_divider_background',
         [
             'type'        => 'hidden',
             'section'     => 'arnabwp_newsletter_section',
             'description' => '<hr><strong style="font-size:15px; color:#db007c">Background Settings</strong><hr>',
+            'active_callback' => fn() => get_theme_mod('arnabwp_current_newsletter_tab', 'general') === 'general',
         ]
     ));
 
@@ -75,6 +98,7 @@ function add_newsletter_section($wp_customize)
             'color' => __('Color', 'arnabwp'),
             'image' => __('Image', 'arnabwp'),
         ],
+        'active_callback' => fn() => get_theme_mod('arnabwp_current_newsletter_tab', 'general') === 'general',
     ]);
 
     $wp_customize->add_setting('newsletter_section_bg_color', [
@@ -89,9 +113,7 @@ function add_newsletter_section($wp_customize)
             'label'    => __('Background Color', 'arnabwp'),
             'section'  => 'arnabwp_newsletter_section',
             'settings' => 'newsletter_section_bg_color',
-            'active_callback' => function () {
-                return get_theme_mod('newsletter_section_bg_type') === 'color';
-            },
+            'active_callback' => fn() => get_theme_mod('newsletter_section_bg_type') === 'color' && get_theme_mod('arnabwp_current_newsletter_tab', 'general') === 'general',
         ]
     ));
 
@@ -108,9 +130,7 @@ function add_newsletter_section($wp_customize)
             'label'    => __('Background Image', 'arnabwp'),
             'section'  => 'arnabwp_newsletter_section',
             'settings' => 'newsletter_section_bg_image',
-            'active_callback' => function () {
-                return get_theme_mod('newsletter_section_bg_type') === 'image';
-            },
+            'active_callback' => fn() => get_theme_mod('newsletter_section_bg_type') === 'image' && get_theme_mod('arnabwp_current_newsletter_tab', 'general') === 'general',
         ]
     ));
 
@@ -126,15 +146,13 @@ function add_newsletter_section($wp_customize)
         [
             'label'    => __('Enable Scroll Effect', 'arnabwp'),
             'section'  => 'arnabwp_newsletter_section',
-            'active_callback' => function () {
-                return get_theme_mod('newsletter_section_bg_type') === 'image';
-            },
+            'active_callback' => fn() => get_theme_mod('newsletter_section_bg_type') === 'image' && get_theme_mod('arnabwp_current_newsletter_tab', 'general') === 'general',
         ]
     ));
 
         // Divider: Section Content
         $wp_customize->add_setting('arnabwp_newsletter_content_divider', [
-            'sanitize_callback' => '__return_null',
+            'sanitize_callback' => '__return_false',
         ]);
     
         $wp_customize->add_control(new WP_Customize_Control(
@@ -144,6 +162,7 @@ function add_newsletter_section($wp_customize)
                 'type'        => 'hidden',
                 'section'     => 'arnabwp_newsletter_section',
                 'description' => '<hr><strong style="font-size:15px; color:#db007c">Newsletter Contents</strong><hr>',
+                'active_callback' => fn() => get_theme_mod('arnabwp_current_newsletter_tab', 'general') === 'content',
             ]
         ));
 
@@ -157,6 +176,7 @@ function add_newsletter_section($wp_customize)
         'label'   => __( 'Title', 'arnabwp' ),
         'section' => 'arnabwp_newsletter_section',
         'type'    => 'text',
+        'active_callback' => fn() => get_theme_mod('arnabwp_current_newsletter_tab', 'general') === 'content',
     ] );
 
     // Description setting
@@ -169,12 +189,14 @@ function add_newsletter_section($wp_customize)
         'label'   => __( 'Description', 'arnabwp' ),
         'section' => 'arnabwp_newsletter_section',
         'type'    => 'textarea',
+        'active_callback' => fn() => get_theme_mod('arnabwp_current_newsletter_tab', 'general') === 'content',
     ] );
 
      // Shortcode Textarea (User inserts the shortcode here)
      $wp_customize->add_setting( 'newsletter_shortcode', [
         'default'           => '[arnabwp_newsletter_form]',
         'sanitize_callback' => 'sanitize_textarea_field',
+        'active_callback' => fn() => get_theme_mod('arnabwp_current_newsletter_tab', 'general') === 'content',
     ] );
 
     $wp_customize->add_control( 'newsletter_shortcode', [
@@ -182,5 +204,9 @@ function add_newsletter_section($wp_customize)
         'section' => 'arnabwp_newsletter_section',
         'type'    => 'textarea',
         'description' => __( 'Insert the newsletter shortcode to display the form.', 'arnabwp' ),
+        'input_attrs' => [
+    'rows' => 3,
+        ],
+'active_callback' => fn() => get_theme_mod('arnabwp_current_newsletter_tab', 'general') === 'content',
     ] );
 }

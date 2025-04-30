@@ -15,7 +15,7 @@
   <?php endif; ?>
 
   <header class="mb-3">
-    <h1 class="display-5"><?php the_title(); ?></h1>
+    <h1 class="display-5 post-title"><?php the_title(); ?></h1>
 
     <?php get_template_part( 'template_parts/blogs/content', 'meta' ); ?>
 

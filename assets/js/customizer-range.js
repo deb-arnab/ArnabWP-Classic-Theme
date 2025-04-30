@@ -1,5 +1,3 @@
-
-
 jQuery(document).ready(function ($) {
     $('.arnabwp-range-slider').each(function () {
         var rangeInput = $(this);

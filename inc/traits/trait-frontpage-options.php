@@ -22,7 +22,7 @@ trait Frontpage_Options {
 
         // Add a main panel to the customizer for frontpage settings.
         $wp_customize->add_panel( 'arnabwp_frontpage_panel', [
-            'title'       => __( 'Theme Big Section', 'arnabwp' ),
+            'title'       => __( 'Frontpage Section', 'arnabwp' ),
             'description' => __( 'Customize the theme frontpage settings here.', 'arnabwp' ),
             'priority'    => 35,
         ]);

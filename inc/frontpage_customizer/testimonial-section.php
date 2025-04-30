@@ -20,7 +20,7 @@ function add_testimonial_section($wp_customize)
 
     // Divider: Show/Hide Controls
     $wp_customize->add_setting('arnabwp_testimonial_toggle_divider', [
-        'sanitize_callback' => '__return_null',
+        'sanitize_callback' => '__return_false',
     ]);
 
     $wp_customize->add_control(new WP_Customize_Control(
@@ -49,7 +49,7 @@ function add_testimonial_section($wp_customize)
 
     // ========== Divider: Section Basics ========== //
     $wp_customize->add_setting('divider_testimonial_basics', [
-        'sanitize_callback' => '__return_null',
+        'sanitize_callback' => '__return_false',
     ]);
     $wp_customize->add_control(new WP_Customize_Control(
         $wp_customize,
@@ -83,9 +83,9 @@ function add_testimonial_section($wp_customize)
         'type'    => 'text',
     ]);
 
-    // ========== Divider: Service Name Style ========== //
+    // ========== Divider: Testimonial Content Style ========== //
     $wp_customize->add_setting('divider_testimonial_content_style', [
-        'sanitize_callback' => '__return_null',
+        'sanitize_callback' => '__return_false',
     ]);
     $wp_customize->add_control(new WP_Customize_Control(
         $wp_customize,
@@ -114,23 +114,26 @@ function add_testimonial_section($wp_customize)
         ]
     ));
 
-    // === Font Size: Service Name === //
+    // === Font Size: Testimonial comment === //
     $wp_customize->add_setting('testimonial_comment_font_size', [
         'default'           => 12,
-        'sanitize_callback' => 'arnabwp_sanitize_testimonial_comment_font_size',
+        'sanitize_callback' => 'absint',
     ]);
-    $wp_customize->add_control('testimonial_comment_font_size', [
+    $wp_customize->add_control(new \ARNABWP_THEME\Inc\Controls\Range_Control(
+        $wp_customize,
+        'testimonial_comment_font_size', [
         'label'       => __('Client Comment Font Size', 'arnabwp'),
         'section'     => 'arnabwp_testimonial_section',
         'type'        => 'number',
         'input_attrs' => [
             'min'  => 10,
-            'max'  => 20,
+            'max'  => 30,
             'step' => 1,
         ],
-    ]);
+    ]
+    ));
 
-    // === Color: Service Name === //
+    // === Color: Testimonial comment === //
     $wp_customize->add_setting('testimonial_comment_color', [
         'default'           => '#ffffff',
         'sanitize_callback' => 'sanitize_hex_color',
@@ -140,23 +143,26 @@ function add_testimonial_section($wp_customize)
         'section' => 'arnabwp_testimonial_section',
     ]));
 
-    // === Font Size: Service Name === //
+    // === Font Size: Name === //
     $wp_customize->add_setting('testimonial_name_font_size', [
         'default'           => 18,
-        'sanitize_callback' => 'arnabwp_sanitize_testimonial_name_font_size',
+        'sanitize_callback' => 'absint',
     ]);
-    $wp_customize->add_control('testimonial_name_font_size', [
+    $wp_customize->add_control(new \ARNABWP_THEME\Inc\Controls\Range_Control(
+        $wp_customize,
+        'testimonial_name_font_size', [
         'label'       => __('Client Name Font Size', 'arnabwp'),
         'section'     => 'arnabwp_testimonial_section',
         'type'        => 'number',
         'input_attrs' => [
-            'min'  => 16,
-            'max'  => 26,
+            'min'  => 10,
+            'max'  => 30,
             'step' => 1,
         ],
-    ]);
+    ]
+    ));
 
-    // === Color: Service Name === //
+    // === Color: Name === //
     $wp_customize->add_setting('testimonial_name_color', [
         'default'           => '#ffffff',
         'sanitize_callback' => 'sanitize_hex_color',
@@ -168,23 +174,26 @@ function add_testimonial_section($wp_customize)
 
 
 
-    // === Font Size: Service Description === //
+    // === Font Size: Job position/Description === //
     $wp_customize->add_setting('testimonial_job_font_size', [
         'default'           => 14,
-        'sanitize_callback' => 'arnabwp_sanitize_testimonial_job_font_size',
+        'sanitize_callback' => 'absint',
     ]);
-    $wp_customize->add_control('testimonial_job_font_size', [
+    $wp_customize->add_control(new \ARNABWP_THEME\Inc\Controls\Range_Control(
+        $wp_customize,
+        'testimonial_job_font_size', [
         'label'       => __('Client Job Font Size', 'arnabwp'),
         'section'     => 'arnabwp_testimonial_section',
         'type'        => 'number',
         'input_attrs' => [
-            'min'  => 12,
-            'max'  => 20,
+            'min'  => 10,
+            'max'  => 30,
             'step' => 1,
         ],
-    ]);
+    ]
+    ));
 
-    // === Color: Service Description === //
+    // === Color: Job position/Description === //
     $wp_customize->add_setting('testimonial_job_color', [
         'default'           => '#dddddd',
         'sanitize_callback' => 'sanitize_hex_color',
@@ -196,11 +205,11 @@ function add_testimonial_section($wp_customize)
 
     // ========== Divider: Icon Style ========== //
     $wp_customize->add_setting('divider_testimonial_icon_style', [
-        'sanitize_callback' => '__return_null',
+        'sanitize_callback' => '__return_false',
     ]);
     $wp_customize->add_control(new WP_Customize_Control(
         $wp_customize,
-        'divider_service_icon_style',
+        'divider_testimonial_icon_style',
         [
             'type'        => 'hidden',
             'section'     => 'arnabwp_testimonial_section',
@@ -211,25 +220,30 @@ function add_testimonial_section($wp_customize)
     // === Icon Size === //
     $wp_customize->add_setting('testimonial_icon_size', [
         'default'           => 70,
-        'sanitize_callback' => 'arnabwp_sanitize_testimonial_icon_size',
+        'sanitize_callback' => 'absint',
     ]);
-    $wp_customize->add_control('testimonial_icon_size', [
+    $wp_customize->add_control(new \ARNABWP_THEME\Inc\Controls\Range_Control(
+        $wp_customize,
+        'testimonial_icon_size', [
         'label'       => __('Client Icon Size (px)', 'arnabwp'),
         'section'     => 'arnabwp_testimonial_section',
         'type'        => 'range',
         'input_attrs' => [
             'min'  => 50,
-            'max'  => 150,
+            'max'  => 200,
             'step' => 1,
         ],
-    ]);
+    ]
+    ));
 
     // === Icon Border Radius === //
     $wp_customize->add_setting('testimonial_icon_radius', [
         'default'           => 50,
-        'sanitize_callback' => 'arnabwp_sanitize_testimonial_icon_radius',
+        'sanitize_callback' => 'absint',
     ]);
-    $wp_customize->add_control('testimonial_icon_radius', [
+    $wp_customize->add_control(new \ARNABWP_THEME\Inc\Controls\Range_Control(
+        $wp_customize,
+        'testimonial_icon_radius', [
         'label'       => __('Client Icon Border Radius (%)', 'arnabwp'),
         'section'     => 'arnabwp_testimonial_section', // fixed typo: was 'feature_section'
         'type'        => 'range',
@@ -238,25 +252,29 @@ function add_testimonial_section($wp_customize)
             'max'  => 100,
             'step' => 1,
         ],
-    ]);
+    ]
+    ));
 
-    // === Font Size: Employee sicial icons === //
+    // === Font Size: social icons === //
     $wp_customize->add_setting('testimonial_social_icon_font_size', [
         'default'           => 12,
-        'sanitize_callback' => 'arnabwp_sanitize_testimonial_social_icon_font_size',
+        'sanitize_callback' => 'absint',
     ]);
-    $wp_customize->add_control('testimonial_social_icon_font_size', [
+    $wp_customize->add_control(new \ARNABWP_THEME\Inc\Controls\Range_Control(
+        $wp_customize,
+        'testimonial_social_icon_font_size', [
         'label'       => __('Client Social Icon Size', 'arnabwp'),
         'section'     => 'arnabwp_testimonial_section',
-        'type'        => 'number',
+        'type'        => 'range',
         'input_attrs' => [
             'min'  => 10,
             'max'  => 30,
             'step' => 1,
         ],
-    ]);
+    ]
+    ));
 
-    // === Color: Employee social icons === //
+    // === Color: social icons === //
     $wp_customize->add_setting('testimonial_social_icon_color', [
         'default'           => '#187dbc',
         'sanitize_callback' => 'sanitize_hex_color',
@@ -272,44 +290,4 @@ function add_testimonial_section($wp_customize)
 // === Sanitize Callbacks === //
 // ===================== //
 
-if (! function_exists('arnabwp_sanitize_testimonial_comment_font_size')) {
-    function arnabwp_sanitize_testimonial_comment_font_size($value)
-    {
-        return max(10, min(20, absint($value)));
-    }
-}
 
-if (! function_exists('arnabwp_sanitize_testimonial_name_font_size')) {
-    function arnabwp_sanitize_testimonial_name_font_size($value)
-    {
-        return max(16, min(26, absint($value)));
-    }
-}
-
-if (! function_exists('arnabwp_sanitize_testimonial_job_font_size')) {
-    function arnabwp_sanitize_testimonial_job_font_size($value)
-    {
-        return max(12, min(20, absint($value)));
-    }
-}
-
-if (! function_exists('arnabwp_sanitize_testimonial_icon_size')) {
-    function arnabwp_sanitize_testimonial_icon_size($value)
-    {
-        return max(50, min(150, absint($value)));
-    }
-}
-
-if (! function_exists('arnabwp_sanitize_testimonial_icon_radius')) {
-    function arnabwp_sanitize_testimonial_icon_radius($value)
-    {
-        return max(0, min(100, absint($value)));
-    }
-}
-
-if (! function_exists('arnabwp_sanitize_testimonial_social_icon_font_size')) {
-    function arnabwp_sanitize_testimonial_social_icon_font_size($value)
-    {
-        return max(10, min(30, absint($value)));
-    }
-}

@@ -42,7 +42,7 @@ function add_breadcrumb_section( $wp_customize ) {
      * Divider: Separator & Typography
      */
     $wp_customize->add_setting('arnabwp_breadcrumb_typo_divider', [
-        'sanitize_callback' => '__return_null',
+        'sanitize_callback' => '__return_false',
     ]);
 
     $wp_customize->add_control(new WP_Customize_Control(
@@ -107,7 +107,7 @@ function add_breadcrumb_section( $wp_customize ) {
      * Divider: Color Settings
      */
     $wp_customize->add_setting('arnabwp_breadcrumb_color_divider', [
-        'sanitize_callback' => '__return_null',
+        'sanitize_callback' => '__return_false',
     ]);
 
     $wp_customize->add_control(new WP_Customize_Control(

@@ -107,6 +107,8 @@ wp_enqueue_style( 'font-awesome' );
      );
      wp_enqueue_script('main-js');
 
+ 
+
 
 
 // Owl Carousel JS

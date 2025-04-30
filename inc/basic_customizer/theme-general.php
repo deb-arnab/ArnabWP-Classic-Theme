@@ -78,7 +78,7 @@ function add_general_section( $wp_customize ) {
 
         // Divider: Site Font Family
         $wp_customize->add_setting('arnabwp_site_button_divider', [
-            'sanitize_callback' => '__return_null',
+            'sanitize_callback' => '__return_false',
         ]);
     
         $wp_customize->add_control(new WP_Customize_Control(

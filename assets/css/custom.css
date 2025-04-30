@@ -8,7 +8,6 @@
 
 
 
-
 /* ===========================================
    HERO SECTION STYLES
 =========================================== */
@@ -52,6 +51,7 @@
   text-align: center;
   z-index: 10;
   padding: 20px;
+  max-width: 90%;
 }
 
 /* ===========================================
@@ -60,7 +60,7 @@
 
 .hero-buttons .hero-btn {
   display: inline-block;
-  margin: 10px;
+  
   padding: var(--arnabwp-button-padding-top-bottom, 10px) var(--arnabwp-button-padding-left-right, 15px);
   border-radius: var(--arnabwp-button-radius, 5px);
   text-decoration: none;
@@ -75,6 +75,28 @@
   color: var(--secondary-color); /* Change on hover using primary color */
 }
 
+.hero-content.align-left {
+  left: 0;
+  transform: translate(0, -50%);
+  text-align: left;
+  padding-left: 40px; /* Adjust padding as needed */
+  max-width: 60%;
+}
+
+.hero-content.align-center {
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.hero-content.align-right {
+  left: auto;
+  right: 40px; /* Moves it in from the right */
+  transform: translate(0, -50%);
+  text-align: right;
+  padding-right: 0; /* Already spaced using 'right' */
+  max-width: 60%;
+}
 /* ===========================================
    OWL CAROUSEL DOTS (Pagination)
 =========================================== */
@@ -118,7 +140,7 @@
   justify-content: space-between;
   transform: translateY(-50%);
   pointer-events: none; /* Prevent background interference */
-  padding: 0 30px; /* Distance from screen edge */
+  padding: 0 50px; /* Distance from screen edge */
 }
 
 /* Arrow button style */
@@ -130,7 +152,7 @@
 
 .owl-nav button span {
   color: #00c3ff;
-  font-size: 48px;
+  font-size: 100px;
   transition: color 0.3s ease, transform 0.2s ease;
   display: inline-block; /* smoother transform scaling */
 }

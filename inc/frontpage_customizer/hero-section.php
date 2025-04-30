@@ -1,257 +1,300 @@
 <?php
-
 /**
  * Register Hero Section Customizer Options
  *
- * This function adds customizer settings and controls for the Hero section.
- * It's hooked via the trait 'trait-frontpage-options.php' into 'class-theme-customizer.php'.
+ * Adds customizable settings for the Hero section on the front page.
  *
  * @param WP_Customize_Manager $wp_customize Theme Customizer object.
  * @package ArnabWP
  */
-function add_hero_section($wp_customize)
-{
 
-    /**
-     * Add Hero Section under Frontpage Panel
-     */
-    $wp_customize->add_section('hero_section', [
-        'title'    => __('Hero Section', 'arnabwp'),
-        'panel'    => 'arnabwp_frontpage_panel',
-        'priority' => 10,
-    ]);
+function add_hero_section($wp_customize) {
 
-    // ========== Divider: Hero Type ========== //
-    $wp_customize->add_setting('divider_hero_type', [
-        'sanitize_callback' => '__return_null',
-    ]);
-    $wp_customize->add_control(new WP_Customize_Control(
-        $wp_customize,
-        'divider_hero_type',
-        [
-            'type'        => 'hidden',
-            'section'     => 'hero_section',
-            'description' => '<hr><strong style="font-size:15px; color:#db007c">Hero Type</strong><hr>',
-        ]
-    ));
+// === Section: Hero === //
+$wp_customize->add_section('arnabwp_hero_section', [
+    'title'    => __('Hero Section', 'arnabwp'),
+    'panel'    => 'arnabwp_frontpage_panel',
+    'priority' => 10,
+]);
 
-    // === Hero Type: Static Image or Slider === //
-    $wp_customize->add_setting('hero_type', [
-        'default'           => 'image',
-        'transport'         => 'refresh',
-        'sanitize_callback' => 'arnabwp_sanitize_hero_type',
-    ]);
-    $wp_customize->add_control('hero_type', [
-        'label'   => __('Hero Type', 'arnabwp'),
-        'section' => 'hero_section',
-        'type'    => 'select',
-        'choices' => [
-            'image'  => __('Static Image', 'arnabwp'),
-            'slider' => __('Image Slider', 'arnabwp'),
+// === Tabs for UI Switching (Custom Control) === //
+$wp_customize->add_setting('arnabwp_current_hero_tab', [
+    'default'           => 'general',
+    'transport'         => 'refresh',
+    'sanitize_callback' => 'sanitize_text_field',
+]);
+$wp_customize->add_control(new \ARNABWP_THEME\Inc\Controls\Tabs_Control(
+    $wp_customize,
+    'arnabwp_current_hero_tab', [
+        'section'  => 'arnabwp_hero_section',
+        'settings' => 'arnabwp_current_hero_tab',
+        'tabs'     => [
+            'general' => __('General', 'arnabwp'),
+            'content' => __('Contents', 'arnabwp'),
+            'style'   => __('Styles', 'arnabwp'),
         ],
-    ]);
+    ]
+));
 
-    // === Static Image Control === //
-    $wp_customize->add_setting('hero_image', [
-        'default'           => '',
-        'transport'         => 'refresh',
-        'sanitize_callback' => 'esc_url_raw',
-    ]);
-    $wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, 'hero_image', [
-        'label'           => __('Background Image', 'arnabwp'),
-        'section'         => 'hero_section',
-        'settings'        => 'hero_image',
-        'active_callback' => function () {
-            return get_theme_mod('hero_type') === 'image';
-        },
-    ]));
+// === Divider: Hero Background Type === //
+$wp_customize->add_setting('arnabwp_divider_hero_type', [
+    'sanitize_callback' => '__return_false',
+]);
+$wp_customize->add_control(new WP_Customize_Control(
+    $wp_customize,
+    'arnabwp_divider_hero_type', [
+        'type'            => 'hidden',
+        'section'         => 'arnabwp_hero_section',
+        'description'     => '<hr><strong style="font-size:15px; color:#db007c">Hero Background</strong><hr>',
+        'active_callback' => fn() => get_theme_mod('arnabwp_current_hero_tab', 'general') === 'general',
+    ]
+));
 
-    // === Slider Images === //
-    $wp_customize->add_setting('hero_slider', [
-        'default'           => '',
-        'transport'         => 'refresh',
-        'sanitize_callback' => 'arnabwp_sanitize_repeater',
-    ]);
-    $wp_customize->add_control(new \ARNABWP_THEME\Inc\Controls\Repeater_Control($wp_customize, 'hero_slider', [
-        'label'        => __('Slider Images', 'arnabwp'),
-        'section'      => 'hero_section',
-        'fields'       => [
-            'image' => ['type' => 'image', 'label' => 'Slider Image'],
-        ],
-        'button_label' => __('Add Slide', 'arnabwp'),
-        'active_callback' => function () {
-            return get_theme_mod('hero_type') === 'slider';
-        },
-    ]));
+// === Hero Type: Static Image or Slider === //
+$wp_customize->add_setting('arnabwp_hero_type', [
+    'default'           => 'image',
+    'transport'         => 'refresh',
+    'sanitize_callback' => 'arnabwp_sanitize_hero_type',
+]);
+$wp_customize->add_control('arnabwp_hero_type', [
+    'label'           => __('Hero Type', 'arnabwp'),
+    'section'         => 'arnabwp_hero_section',
+    'type'            => 'select',
+    'choices'         => [
+        'image'  => __('Static Image', 'arnabwp'),
+        'slider' => __('Image Slider', 'arnabwp'),
+    ],
+    'active_callback' => fn() => get_theme_mod('arnabwp_current_hero_tab', 'general') === 'general',
+]);
 
-    // ========== Divider: Hero Content ========== //
-    $wp_customize->add_setting('divider_hero_content', [
-        'sanitize_callback' => '__return_null',
-    ]);
-    $wp_customize->add_control(new WP_Customize_Control(
-        $wp_customize,
-        'divider_hero_content',
-        [
-            'type'        => 'hidden',
-            'section'     => 'hero_section',
-            'description' => '<hr><strong style="font-size:15px; color:#db007c">Hero Content</strong><hr>',
-        ]
-    ));
+// === Static Background Image === //
+$wp_customize->add_setting('arnabwp_hero_image', [
+    'default'           => '',
+    'transport'         => 'refresh',
+    'sanitize_callback' => 'esc_url_raw',
+]);
+$wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, 'arnabwp_hero_image', [
+    'label'           => __('Background Image', 'arnabwp'),
+    'section'         => 'arnabwp_hero_section',
+    'input_attrs'     => ['data-tab' => 'general'],
+    'active_callback' => fn() => get_theme_mod('arnabwp_hero_type') === 'image' && get_theme_mod('arnabwp_current_hero_tab', 'general') === 'general',
+]));
 
-    // === Hero Title === //
-    $wp_customize->add_setting('hero_title', [
-        'default'           => '',
-        'sanitize_callback' => 'sanitize_text_field',
-    ]);
-    $wp_customize->add_control('hero_title', [
-        'label'   => __('Hero Title', 'arnabwp'),
-        'section' => 'hero_section',
-        'type'    => 'text',
-    ]);
+// === Slider Repeater Control === //
+$wp_customize->add_setting('arnabwp_hero_slider', [
+    'default'           => '',
+    'transport'         => 'refresh',
+    'sanitize_callback' => 'arnabwp_sanitize_repeater',
+]);
+$wp_customize->add_control(new \ARNABWP_THEME\Inc\Controls\Repeater_Control($wp_customize, 'arnabwp_hero_slider', [
+    'label'           => __('Slider Images', 'arnabwp'),
+    'section'         => 'arnabwp_hero_section',
+    'fields'          => [
+        'image' => ['type' => 'image', 'label' => 'Slider Image'],
+    ],
+    'button_label'    => __('Add Slide', 'arnabwp'),
+    'active_callback' => fn() => get_theme_mod('arnabwp_hero_type') === 'slider' && get_theme_mod('arnabwp_current_hero_tab', 'general') === 'general',
+]));
 
-    // === Hero Subtitle === //
-    $wp_customize->add_setting('hero_subtitle', [
-        'default'           => '',
-        'sanitize_callback' => 'sanitize_text_field',
-    ]);
-    $wp_customize->add_control('hero_subtitle', [
-        'label'   => __('Hero Subtitle', 'arnabwp'),
-        'section' => 'hero_section',
-        'type'    => 'text',
-    ]);
+// === Divider: Hero Layout === //
+$wp_customize->add_setting('arnabwp_divider_hero_layout', [
+    'sanitize_callback' => '__return_false',
+]);
+$wp_customize->add_control(new WP_Customize_Control(
+    $wp_customize,
+    'arnabwp_divider_hero_layout', [
+        'type'            => 'hidden',
+        'section'         => 'arnabwp_hero_section',
+        'description'     => '<hr><strong style="font-size:15px; color:#db007c">Layout Option</strong><hr>',
+        'active_callback' => fn() => get_theme_mod('arnabwp_current_hero_tab', 'general') === 'general',
+    ]
+));
 
-    // === CTA Buttons === //
-    $wp_customize->add_setting('hero_cta_buttons', [
-        'default'           => '',
-        'transport'         => 'refresh',
-        'sanitize_callback' => 'arnabwp_sanitize_cta_repeater',
-    ]);
-    $wp_customize->add_control(new \ARNABWP_THEME\Inc\Controls\Repeater_Control($wp_customize, 'hero_cta_buttons', [
-        'label'        => __('CTA Buttons', 'arnabwp'),
-        'section'      => 'hero_section',
-        'fields'       => [
-            'text'   => ['type' => 'text', 'label' => 'Button Text'],
-            'url'    => ['type' => 'text', 'label' => 'Button URL'],
-            'target' => ['type' => 'select', 'label' => 'Open In', 'choices' => [
-                '_self'  => __('Same Tab', 'arnabwp'),
-                '_blank' => __('New Tab', 'arnabwp'),
-            ]],
-        ],
-        'button_label' => __('Add Button', 'arnabwp'),
-    ]));
+// === Hero Content Alignment === //
+$wp_customize->add_setting('arnabwp_hero_content_alignment', [
+    'default'           => 'center',
+    'transport'         => 'refresh',
+    'sanitize_callback' => 'sanitize_hero_alignment',
+]);
+$wp_customize->add_control('arnabwp_hero_content_alignment', [
+    'label'           => __('Hero Content Layout', 'arnabwp'),
+    'section'         => 'arnabwp_hero_section',
+    'type'            => 'select',
+    'choices'         => ['left' => __('Left', 'arnabwp'), 'center' => __('Center', 'arnabwp'), 'right' => __('Right', 'arnabwp')],
+    'active_callback' => fn() => get_theme_mod('arnabwp_current_hero_tab', 'general') === 'general',
+]);
 
-    // ========== Divider: Style Options ========== //
-    $wp_customize->add_setting('divider_hero_styles', [
-        'sanitize_callback' => '__return_null',
-    ]);
-    $wp_customize->add_control(new WP_Customize_Control(
-        $wp_customize,
-        'divider_hero_styles',
-        [
-            'type'        => 'hidden',
-            'section'     => 'hero_section',
-            'description' => '<hr><strong style="font-size:15px; color:#db007c">Style Options</strong><hr>',
-        ]
-    ));
+// === Divider: Content === //
+$wp_customize->add_setting('arnabwp_divider_hero_content', [
+    'sanitize_callback' => '__return_false',
+]);
+$wp_customize->add_control(new WP_Customize_Control(
+    $wp_customize,
+    'arnabwp_divider_hero_content', [
+        'type'            => 'hidden',
+        'section'         => 'arnabwp_hero_section',
+        'description'     => '<hr><strong style="font-size:15px; color:#db007c">Hero Content</strong><hr>',
+        'input_attrs'     => ['data-tab' => 'content'],
+        'active_callback' => fn() => get_theme_mod('arnabwp_current_hero_tab', 'general') === 'content',
+    ]
+));
 
-    // === Title Color === //
-    $wp_customize->add_setting('hero_title_color', [
-        'default'           => '#ffffff',
-        'sanitize_callback' => 'sanitize_hex_color',
-    ]);
-    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'hero_title_color', [
-        'label'   => __('Hero Title Color', 'arnabwp'),
-        'section' => 'hero_section',
-    ]));
+// === Hero Title and Subtitle === //
+$wp_customize->add_setting('arnabwp_hero_title', [
+    'transport'         => 'refresh',
+    'sanitize_callback' => 'sanitize_text_field',
+]);
+$wp_customize->add_control('arnabwp_hero_title', [
+    'label'           => __('Hero Title', 'arnabwp'),
+    'section'         => 'arnabwp_hero_section',
+    'type'            => 'text',
+    'active_callback' => fn() => get_theme_mod('arnabwp_current_hero_tab', 'general') === 'content',
+]);
 
-    // === Subtitle Color === //
-    $wp_customize->add_setting('hero_subtitle_color', [
-        'default'           => '#cccccc',
-        'sanitize_callback' => 'sanitize_hex_color',
-    ]);
-    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'hero_subtitle_color', [
-        'label'   => __('Hero Subtitle Color', 'arnabwp'),
-        'section' => 'hero_section',
-    ]));
+$wp_customize->add_setting('arnabwp_hero_subtitle', [
+    'transport'         => 'refresh',
+    'sanitize_callback' => 'sanitize_text_field',
+]);
+$wp_customize->add_control('arnabwp_hero_subtitle', [
+    'label'           => __('Hero Subtitle', 'arnabwp'),
+    'section'         => 'arnabwp_hero_section',
+    'type'            => 'text',
+    'active_callback' => fn() => get_theme_mod('arnabwp_current_hero_tab', 'general') === 'content',
+]);
 
-    /**
-     * Button Background Color
-     */
-    $wp_customize->add_setting('arnabwp_hero_btn_bg_color', [
-        'default'           => '#0073e6',
-        'sanitize_callback' => 'sanitize_hex_color',
-    ]);
+// === CTA Buttons (Repeater Control) === //
+$wp_customize->add_setting('arnabwp_hero_cta_buttons', [
+    'default'           => '',
+    'transport'         => 'refresh',
+    'sanitize_callback' => 'arnabwp_sanitize_cta_repeater',
+]);
+$wp_customize->add_control(new \ARNABWP_THEME\Inc\Controls\Repeater_Control($wp_customize, 'arnabwp_hero_cta_buttons', [
+    'label'        => __('CTA Buttons', 'arnabwp'),
+    'section'      => 'arnabwp_hero_section',
+    'fields'       => [
+        'text'   => ['type' => 'text', 'label' => 'Button Text'],
+        'url'    => ['type' => 'text', 'label' => 'Button URL'],
+        'target' => ['type' => 'select', 'label' => 'Open In', 'choices' => ['_self' => __('Same Tab', 'arnabwp'), '_blank' => __('New Tab', 'arnabwp')]],
+    ],
+    'button_label'    => __('Add Button', 'arnabwp'),
+    'active_callback' => fn() => get_theme_mod('arnabwp_current_hero_tab', 'general') === 'content',
+]));
 
-    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'arnabwp_hero_btn_bg_color', [
-        'label'    => __('Button Background Color', 'arnabwp'),
-        'section'  => 'hero_section',
-        'settings' => 'arnabwp_hero_btn_bg_color',
-    ]));
+// === Divider: Style === //
+$wp_customize->add_setting('arnabwp_divider_hero_styles', ['sanitize_callback' => '__return_false']);
+$wp_customize->add_control(new WP_Customize_Control(
+    $wp_customize,
+    'arnabwp_divider_hero_styles', [
+        'type'            => 'hidden',
+        'section'         => 'arnabwp_hero_section',
+        'description'     => '<hr><strong style="font-size:15px; color:#db007c">Style Options</strong><hr>',
+        'active_callback' => fn() => get_theme_mod('arnabwp_current_hero_tab', 'general') === 'style',
+    ]
+));
 
-    /**
-     * Button Hover Background Color
-     */
-    $wp_customize->add_setting('arnabwp_hero_btn_hover_bg_color', [
-        'default'           => get_theme_mod( 'primary_color', '#000000' ),
-        'sanitize_callback' => 'sanitize_hex_color',
-    ]);
+// === Font Sizes (Custom Range Control) === //
+$wp_customize->add_setting('arnabwp_hero_title_font_size', [
+    'default'           => 40,
+    'transport'         => 'refresh',
+    'sanitize_callback' => 'absint',
+]);
+$wp_customize->add_control(new \ARNABWP_THEME\Inc\Controls\Range_Control($wp_customize, 'arnabwp_hero_title_font_size', [
+    'label'           => __('Hero Title Font Size', 'arnabwp'),
+    'section'         => 'arnabwp_hero_section',
+    'type'            => 'range',
+    'input_attrs'     => ['min' => 10, 'max' => 70, 'step' => 1],
+    'class'           => 'arnabwp-range-control',
+    'active_callback' => fn() => get_theme_mod('arnabwp_current_hero_tab', 'general') === 'style',
+]));
 
-    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'arnabwp_hero_btn_hover_bg_color', [
-        'label'    => __('Button Hover Background Color', 'arnabwp'),
-        'section'  => 'hero_section',
-        'settings' => 'arnabwp_hero_btn_hover_bg_color',
-    ]));
+$wp_customize->add_setting('arnabwp_hero_subtitle_font_size', [
+    'default'           => 16,
+    'transport'         => 'refresh',
+    'sanitize_callback' => 'absint',
+]);
+$wp_customize->add_control(new \ARNABWP_THEME\Inc\Controls\Range_Control($wp_customize, 'arnabwp_hero_subtitle_font_size', [
+    'label'           => __('Hero Subtitle Font Size', 'arnabwp'),
+    'section'         => 'arnabwp_hero_section',
+    'type'            => 'range',
+    'input_attrs'     => ['min' => 10, 'max' => 40, 'step' => 1],
+    'class'           => 'arnabwp-range-control',
+    'active_callback' => fn() => get_theme_mod('arnabwp_current_hero_tab', 'general') === 'style',
+]));
 
-    /**
-     * Button Text Color
-     */
-    $wp_customize->add_setting('arnabwp_hero_btn_text_color', [
-        'default'           => '#ffffff',
-        'sanitize_callback' => 'sanitize_hex_color',
-    ]);
+// === Colors === //
+$wp_customize->add_setting('arnabwp_hero_title_color', [
+    'default'           => '#ffffff',
+    'transport'         => 'refresh',
+    'sanitize_callback' => 'sanitize_hex_color',
+]);
+$wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'hero_title_color', [
+    'label'           => __('Hero Title Color', 'arnabwp'),
+    'section'         => 'arnabwp_hero_section',
+    'settings'        => 'arnabwp_hero_title_color',
+    'active_callback' => fn() => get_theme_mod('arnabwp_current_hero_tab', 'general') === 'style',
+]));
 
-    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'arnabwp_hero_btn_text_color', [
-        'label'    => __('Button Text Color', 'arnabwp'),
-        'section'  => 'hero_section',
-        'settings' => 'arnabwp_hero_btn_text_color',
-    ]));
+$wp_customize->add_setting('arnabwp_hero_subtitle_color', [
+    'default'           => '#cccccc',
+    'transport'         => 'refresh',
+    'sanitize_callback' => 'sanitize_hex_color',
+]);
+$wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'hero_subtitle_color', [
+    'label'           => __('Hero Subtitle Color', 'arnabwp'),
+    'section'         => 'arnabwp_hero_section',
+    'settings'        => 'arnabwp_hero_subtitle_color',
+    'active_callback' => fn() => get_theme_mod('arnabwp_current_hero_tab', 'general') === 'style',
+]));
 
-    /**
-     * Button Hover Text Color
-     */
-    $wp_customize->add_setting('arnabwp_hero_btn_hover_text_color', [
-        'default'           => get_theme_mod( 'secondary_color', '#000000' ),  // Default to primary_color or fallback to black,
-        'sanitize_callback' => 'sanitize_hex_color',
-    ]);
+// === CTA Button Colors === //
+$wp_customize->add_setting('arnabwp_hero_btn_bg_color', [
+    'default'           => '#0073e6',
+    'transport'         => 'refresh',
+    'sanitize_callback' => 'sanitize_hex_color',
+]);
+$wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'arnabwp_hero_btn_bg_color', [
+    'label'           => __('Button Background Color', 'arnabwp'),
+    'section'         => 'arnabwp_hero_section',
+    'settings'        => 'arnabwp_hero_btn_bg_color',
+    'active_callback' => fn() => get_theme_mod('arnabwp_current_hero_tab', 'general') === 'style',
+]));
 
-    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'arnabwp_hero_btn_hover_text_color', [
-        'label'    => __('Button Hover Text Color', 'arnabwp'),
-        'section'  => 'hero_section',
-        'settings' => 'arnabwp_hero_btn_hover_text_color',
-    ]));
+$wp_customize->add_setting('arnabwp_hero_btn_text_color', [
+    'default'           => '#ffffff',
+    'transport'         => 'refresh',
+    'sanitize_callback' => 'sanitize_hex_color',
+]);
+$wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'arnabwp_hero_btn_text_color', [
+    'label'           => __('Button Text Color', 'arnabwp'),
+    'section'         => 'arnabwp_hero_section',
+    'settings'        => 'arnabwp_hero_btn_text_color',
+    'active_callback' => fn() => get_theme_mod('arnabwp_current_hero_tab', 'general') === 'style',
+]));
+}
 
-    function arnabwp_sanitize_hero_type($input)
-    {
-        $valid_types = ['image', 'slider'];
-        return in_array($input, $valid_types, true) ? $input : 'image';
+// === Sanitization Helpers === //
+
+function arnabwp_sanitize_hero_type($input) {
+    $valid = ['image', 'slider'];
+    return in_array($input, $valid, true) ? $input : 'image';
+}
+
+function sanitize_hero_alignment($value) {
+    return in_array($value, ['left', 'center', 'right'], true) ? $value : 'center';
+}
+
+function arnabwp_sanitize_cta_repeater($input) {
+    $items = json_decode($input, true);
+    if (!is_array($items)) return json_encode([]);
+
+    $clean = [];
+    foreach ($items as $item) {
+        $clean[] = [
+            'text'   => sanitize_text_field($item['text'] ?? ''),
+            'url'    => esc_url_raw($item['url'] ?? ''),
+            'target' => in_array($item['target'] ?? '_self', ['_self', '_blank'], true) ? $item['target'] : '_self'
+        ];
     }
 
-    function arnabwp_sanitize_cta_repeater($input)
-    {
-        $input_decoded = json_decode($input, true);
-        if (!is_array($input_decoded)) {
-            return json_encode([]);
-        }
-
-        $clean = [];
-        foreach ($input_decoded as $item) {
-            $clean[] = [
-                'text'   => sanitize_text_field($item['text'] ?? ''),
-                'url'    => esc_url_raw($item['url'] ?? ''),
-                'target' => in_array($item['target'] ?? '_self', ['_self', '_blank'], true) ? $item['target'] : '_self'
-            ];
-        }
-
-        return json_encode($clean);
-    }
+    return json_encode($clean);
 }

@@ -115,7 +115,7 @@ $social_icon_color    = esc_attr(get_theme_mod('employee_social_icon_color', '#1
                         <?php endif; ?>
 
                         <!-- Employee Name and Position -->
-                        <div class="p-4 text-center">
+                        <div class="entry-title p-4 text-center">
                             <h5 class="fw-bold mb-1" style="font-size: <?php echo esc_attr($name_font_size); ?>px; color: <?php echo esc_attr($name_color); ?>">
                                 <strong><?php echo esc_html($name ? $name : get_the_title()); ?></strong>
                             </h5>
