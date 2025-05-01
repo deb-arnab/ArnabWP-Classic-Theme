@@ -85,28 +85,6 @@ function add_typography_section( $wp_customize ) {
         ]
     ));
 
-
-    
-    // Body Font Size
-    $wp_customize->add_setting('arnabwp_body_font_size', [
-        'default'           => 16,
-        'sanitize_callback' => 'absint',
-    ]);
-
-    $wp_customize->add_control(new \ARNABWP_THEME\Inc\Controls\Range_Control(
-        $wp_customize,
-        'arnabwp_body_font_size',
-        [
-            'label'       => __('Content Font Size (px)', 'arnabwp'),
-            'section'     => 'arnabwp_typography_section',
-            'input_attrs' => [
-                'min'  => 10,
-                'max'  => 30,
-                'step' => 1,
-            ],
-        ]
-    ));
-
     // Heading Font Size
     $wp_customize->add_setting('arnabwp_heading_font_size', [
         'default'           => 32,
@@ -117,7 +95,7 @@ function add_typography_section( $wp_customize ) {
         $wp_customize,
         'arnabwp_heading_font_size',
         [
-            'label'       => __('Heading Font Size (px)', 'arnabwp'),
+            'label'       => __('Page Heading Font Size (px)', 'arnabwp'),
             'section'     => 'arnabwp_typography_section',
             'input_attrs' => [
                 'min'  => 25,
@@ -137,11 +115,31 @@ function add_typography_section( $wp_customize ) {
         $wp_customize,
         'arnabwp_content_title_font_size',
         [
-            'label'       => __('Content Title Font Size (px)', 'arnabwp'),
+            'label'       => __('Blog Content Title Font Size (px)', 'arnabwp'),
             'section'     => 'arnabwp_typography_section',
             'input_attrs' => [
-                'min'  => 25,
-                'max'  => 60,
+                'min'  => 14,
+                'max'  => 40,
+                'step' => 1,
+            ],
+        ]
+    ));
+
+     // Body Font Size
+     $wp_customize->add_setting('arnabwp_body_font_size', [
+        'default'           => 16,
+        'sanitize_callback' => 'absint',
+    ]);
+
+    $wp_customize->add_control(new \ARNABWP_THEME\Inc\Controls\Range_Control(
+        $wp_customize,
+        'arnabwp_body_font_size',
+        [
+            'label'       => __('Blog Content Font Size (px)', 'arnabwp'),
+            'section'     => 'arnabwp_typography_section',
+            'input_attrs' => [
+                'min'  => 10,
+                'max'  => 30,
                 'step' => 1,
             ],
         ]
@@ -166,26 +164,6 @@ function add_typography_section( $wp_customize ) {
         ]
     ));
 
-    // Section Description Font Size
-    $wp_customize->add_setting('arnabwp_section_description_font_size', [
-        'default'           => 16,
-        'sanitize_callback' => 'absint',
-    ]);
-
-    $wp_customize->add_control(new \ARNABWP_THEME\Inc\Controls\Range_Control(
-        $wp_customize,
-        'arnabwp_section_description_font_size',
-        [
-            'label'       => __('Section Description Font Size (px)', 'arnabwp'),
-            'section'     => 'arnabwp_typography_section',
-            'input_attrs' => [
-                'min'  => 10,
-                'max'  => 30,
-                'step' => 1,
-            ],
-        ]
-    ));
-
     // Section Title Font Size
     $wp_customize->add_setting('arnabwp_section_title_font_size', [
         'default'           => 32,
@@ -205,6 +183,27 @@ function add_typography_section( $wp_customize ) {
             ],
         ]
     ));
+
+        // Section Description/subtitle Font Size
+        $wp_customize->add_setting('arnabwp_section_description_font_size', [
+            'default'           => 16,
+            'sanitize_callback' => 'absint',
+        ]);
+    
+        $wp_customize->add_control(new \ARNABWP_THEME\Inc\Controls\Range_Control(
+            $wp_customize,
+            'arnabwp_section_description_font_size',
+            [
+                'label'       => __('Section Subtitle Font Size (px)', 'arnabwp'),
+                'section'     => 'arnabwp_typography_section',
+                'input_attrs' => [
+                    'min'  => 10,
+                    'max'  => 30,
+                    'step' => 1,
+                ],
+            ]
+        ));
+        
 }
 
 /**

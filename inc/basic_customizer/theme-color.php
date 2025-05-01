@@ -25,9 +25,10 @@ function add_color_section( $wp_customize ) {
         'secondary_color' => __( 'Secondary Color', 'arnabwp' ),
         'custom_background_color'=> __( 'Background Color', 'arnabwp' ),
         'text_color'           => __( 'Text Color', 'arnabwp' ),
-        'heading_color'   => __( 'Heading Color', 'arnabwp' ),
+        'heading_color'   => __( 'Page Heading Color', 'arnabwp' ),
         'link_color'      => __( 'Link Color', 'arnabwp' ),
-        'button_color'    => __( 'Button Background Color', 'arnabwp' ),
+        'nav_bg_color'      => __( 'Nab Background Color', 'arnabwp' ),
+        'menu_color'    => __( 'Nav Menu Color', 'arnabwp' ),
         'button_text_color'=> __( 'Button Text Color', 'arnabwp' ),
     ];
 

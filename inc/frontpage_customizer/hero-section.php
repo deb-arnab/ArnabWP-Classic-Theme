@@ -246,30 +246,7 @@ $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'hero_s
     'active_callback' => fn() => get_theme_mod('arnabwp_current_hero_tab', 'general') === 'style',
 ]));
 
-// === CTA Button Colors === //
-$wp_customize->add_setting('arnabwp_hero_btn_bg_color', [
-    'default'           => '#0073e6',
-    'transport'         => 'refresh',
-    'sanitize_callback' => 'sanitize_hex_color',
-]);
-$wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'arnabwp_hero_btn_bg_color', [
-    'label'           => __('Button Background Color', 'arnabwp'),
-    'section'         => 'arnabwp_hero_section',
-    'settings'        => 'arnabwp_hero_btn_bg_color',
-    'active_callback' => fn() => get_theme_mod('arnabwp_current_hero_tab', 'general') === 'style',
-]));
 
-$wp_customize->add_setting('arnabwp_hero_btn_text_color', [
-    'default'           => '#ffffff',
-    'transport'         => 'refresh',
-    'sanitize_callback' => 'sanitize_hex_color',
-]);
-$wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'arnabwp_hero_btn_text_color', [
-    'label'           => __('Button Text Color', 'arnabwp'),
-    'section'         => 'arnabwp_hero_section',
-    'settings'        => 'arnabwp_hero_btn_text_color',
-    'active_callback' => fn() => get_theme_mod('arnabwp_current_hero_tab', 'general') === 'style',
-]));
 }
 
 // === Sanitization Helpers === //

@@ -65,7 +65,7 @@ if ($bg_image) {
                 <?php endif; ?>
 
                 <?php if ($button_text && $button_url) : ?>
-                    <a href="<?php echo esc_url($button_url); ?>" class="btn btn-primary arnabwp-button" role="button" <?php echo strpos($button_url, home_url()) === false ? 'rel="noopener noreferrer"' : ''; ?> aria-label="<?php echo esc_attr($button_text . ' about section'); ?>">
+                    <a href="<?php echo esc_url($button_url); ?>" class="btn" role="button" <?php echo strpos($button_url, home_url()) === false ? 'rel="noopener noreferrer"' : ''; ?> aria-label="<?php echo esc_attr($button_text . ' about section'); ?>">
                         <?php echo esc_html($button_text); ?>
                     </a>
                 <?php endif; ?>

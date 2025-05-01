@@ -35,7 +35,7 @@ $blog_class  = ($blog_layout === 'list') ? 'list-layout' : 'masonry-grid';
   <div class="site-container">
 
     <?php if (is_home() && ! is_front_page()) : ?>
-      <h1 class="mb-5 fw-bold text-center"><?php single_post_title(); ?></h1>
+      <h1 class="fw-bold text-center"><?php single_post_title(); ?></h1>
     <?php endif; ?>
 
   </div>

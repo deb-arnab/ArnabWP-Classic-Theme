@@ -18,7 +18,7 @@ get_header();
         <?php 
         // Check if the current page is a single page and display the title
         if ( is_page() ) : ?>
-            <h1 class="mb-5 fw-bold text-center"><?php the_title(); ?></h1>
+            <h1 class="fw-bold text-center"><?php the_title(); ?></h1>
         <?php 
         endif; ?>
 

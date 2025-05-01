@@ -5,7 +5,23 @@ window.addEventListener("load", function() {
   document.body.classList.add('loaded');
 });
 
+document.addEventListener("DOMContentLoaded", function () {
+  const dropdowns = document.querySelectorAll(".navbar .dropdown");
 
+  if (window.innerWidth >= 992) {
+    dropdowns.forEach((dropdown) => {
+      dropdown.addEventListener("mouseenter", function () {
+        const menu = this.querySelector(".dropdown-menu");
+        menu.classList.add("show");
+      });
+
+      dropdown.addEventListener("mouseleave", function () {
+        const menu = this.querySelector(".dropdown-menu");
+        menu.classList.remove("show");
+      });
+    });
+  }
+});
 /**
  * Initializes the hero slider using Owl Carousel.
  * 

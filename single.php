@@ -20,7 +20,25 @@ if ($sidebar_layout === 'left') {
 }
 ?>
 
-<main id="primary" class="site-main py-5 <?php echo esc_attr($layout_class); ?>">
+
+<main class="py-5 bg-info">
+  <div class="site-container">
+
+   
+    <?php
+    if  (is_single()) : ?>
+
+        <h1 class="fw-bold text-center">
+         <?php the_title(); ?>
+        </h1>
+        <p class="text-small text-center">Posted on <?php echo get_the_date(); ?> </p>
+    <?php 
+  endif
+    ?>
+  </div>
+</main>
+
+<section id="primary" class="site-main py-5 <?php echo esc_attr($layout_class); ?>">
     <div class="site-container arnabwp-blog-content d-flex flex-lg-row">
 
 
@@ -52,13 +70,13 @@ if ($sidebar_layout === 'left') {
 
                     <div class="post-navigation">
                         <div class="previous-post">
-                            <?php previous_post_link('<div class="btn">%link</div>', 'Previous Post'); ?>
+                        <?php previous_post_link('<span>%link</span>', '← Previous Post'); ?>
                         </div>
                         <div class="next-post">
-                            <?php next_post_link('<div class="btn">%link</div>', 'Next Post'); ?>
+                        <?php next_post_link('<span>%link</span>', 'Next Post →'); ?>
                         </div>
                     </div>
-
+                  
                 <?php endwhile; ?>
             </div>
         <?php endif; ?>
@@ -68,7 +86,7 @@ if ($sidebar_layout === 'left') {
         <?php endif; ?>
     </div>
     </div>
-</main>
+        </section>
 
 <?php get_footer(); // Includes the footer part 
 ?>

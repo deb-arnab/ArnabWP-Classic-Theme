@@ -189,44 +189,6 @@ trait Header_Options
 			]
 		));
 
-
-		// Divider: Color Settings
-		$wp_customize->add_setting('arnabwp_header_color_divider', [
-			'sanitize_callback' => '__return_null',
-		]);
-
-		$wp_customize->add_control(new WP_Customize_Control(
-			$wp_customize,
-			'arnabwp_header_color_divider',
-			[
-				'type'        => 'hidden',
-				'section'     => 'arnabwp_header_options',
-				'description' => '<hr><strong style="font-size:15px; color:#db007c">Color Settings</strong><hr>',
-			]
-		));
-
-		// Header Background Color
-		$wp_customize->add_setting('arnabwp_header_bg_color', [
-			'default'           => '#000',
-			'sanitize_callback' => 'sanitize_hex_color',
-		]);
-
-		$wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'arnabwp_header_bg_color', [
-			'label'   => __('Header Background Color', 'arnabwp'),
-			'section' => 'arnabwp_header_options',
-		]));
-
-		// Header Text Color
-		$wp_customize->add_setting('arnabwp_header_text_color', [
-			'default'           => '#fff',
-			'sanitize_callback' => 'sanitize_hex_color',
-		]);
-
-		$wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'arnabwp_header_text_color', [
-			'label'   => __('Header Text Color', 'arnabwp'),
-			'section' => 'arnabwp_header_options',
-		]));
-
 		// Divider: Font Settings
 		$wp_customize->add_setting('arnabwp_header_font_divider', [
 			'sanitize_callback' => '__return_null',

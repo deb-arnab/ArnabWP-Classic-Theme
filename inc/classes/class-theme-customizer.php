@@ -151,6 +151,7 @@ class Theme_Customizer {
                     'text_color'             => '--text-color',
                     'heading_color'          => '--heading-color',
                     'link_color'             => '--link-color',
+                    'nav_bg_color'             => '--nav-bg-color',
                     'button_color'           => '--button-color',
                     'button_text_color'      => '--button-text-color',
                 ];
@@ -169,7 +170,8 @@ class Theme_Customizer {
             'text_color'             => get_theme_mod( 'text_color' ),
             'heading_color'          => get_theme_mod( 'heading_color' ),
             'link_color'             => get_theme_mod( 'link_color' ),
-            'button_color'           => get_theme_mod( 'button_color' ),
+            'nav_bg_color'             => get_theme_mod( 'nav_bg_color' ),
+            'menu_color'           => get_theme_mod( 'menu_color' ),
             'button_text_color'      => get_theme_mod( 'button_text_color' ),
         ];
 
@@ -191,8 +193,11 @@ class Theme_Customizer {
         if ( $colors['link_color'] ) {
             echo "a { color: {$colors['link_color']}; }";
         }
-        if ( $colors['button_color'] ) {
-            echo "button, .btn { background-color: {$colors['button_color']}; }";
+        if ( $colors['nav_bg_color'] ) {
+            echo "header.site-header { background-color: {$colors['nav_bg_color']}; }";
+        }
+        if ( $colors['menu_color'] ) {
+            echo ":root { --menu-color: {$colors['menu_color']}; }";
         }
         if ( $colors['button_text_color'] ) {
             echo "button, .btn { color: {$colors['button_text_color']}; }";
@@ -201,16 +206,9 @@ class Theme_Customizer {
         // === Header Styles === //
         $layout     = get_theme_mod( 'arnabwp_header_layout', 'logo-left' );
         $sticky     = get_theme_mod( 'arnabwp_sticky_header', false );
-        $bg_color   = get_theme_mod( 'arnabwp_header_bg_color', '#000' );
-        $text_color = get_theme_mod( 'arnabwp_header_text_color', '#fff' );
         $font       = get_theme_mod( 'arnabwp_menu_font_size', 16 );
 
-        if ( $bg_color ) {
-            echo "header.site-header { background-color: {$bg_color}; }";
-        }
-        if ( $text_color ) {
-            echo "header.site-header .navbar-nav .nav-link { color: {$text_color}; }";
-        }
+        
         if ( $font ) {
             echo "header.site-header .navbar-nav a { font-size: {$font}px; }";
         }
@@ -283,10 +281,7 @@ echo '<style type="text/css">
 		color: ' . esc_attr( $bc_font_color ) . ';
 		text-decoration: none;
 	}
-	.arnabwp-breadcrumb-separator {
-		margin: 0 8px;
-		color: ' . esc_attr( $bc_font_color ) . ';
-	}
+	
 </style>';
 
 // === Footer Styles === //
@@ -321,9 +316,6 @@ $hero_subtitle_fontsize= get_theme_mod('arnabwp_hero_subtitle_font_size', 16);
 $hero_title_color= get_theme_mod('arnabwp_hero_title_color', '#ffffff');
 $hero_subtitle_color= get_theme_mod('arnabwp_hero_subtitle_color', '#ffffff');
 
-$hero_btn_bg_color= get_theme_mod('arnabwp_hero_btn_bg_color', '#0073e6');
-$hero_btn_text_color= get_theme_mod('arnabwp_hero_btn_text_color', '#ffffff');
-
 
 if ( $hero_title_color || $hero_subtitle_color )
 
@@ -340,11 +332,7 @@ if ( $hero_title_color || $hero_subtitle_color )
             color: '.esc_attr( $hero_subtitle_color ).';
             font-size: '.esc_attr($hero_subtitle_fontsize).'px;
         }
-         .hero-buttons .hero-btn
-        {
-            color: '.esc_attr( $hero_btn_text_color). ';
-            background-color: '.esc_attr( $hero_btn_bg_color ). ';
-        }
+      
     </style>';
 
 }

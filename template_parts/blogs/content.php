@@ -33,7 +33,7 @@ $reverse_layout = (has_post_thumbnail() && $is_list && $post_index % 2 === 0) ? 
         </h3>
         <?php get_template_part( 'template_parts/blogs/content', 'meta' ); ?>
 
-        <a href="<?php the_permalink(); ?>" class="btn btn-sm btn-outline-dark">Read More</a>
+        <a href="<?php the_permalink(); ?>" class="btn btn-sm">Read More</a>
 
     </div>
   
@@ -53,7 +53,7 @@ $reverse_layout = (has_post_thumbnail() && $is_list && $post_index % 2 === 0) ? 
             <?php the_excerpt(); ?>
         </div>
 
-        <a href="<?php the_permalink(); ?>" class="btn btn-sm btn-outline-dark">Read More</a>
+        <a href="<?php the_permalink(); ?>" class="btn btn-sm">Read More</a>
 
     </div>
     <?php endif; ?>

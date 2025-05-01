@@ -60,16 +60,22 @@ class Breadcrumbs
 		// Home
 		$breadcrumb_items[] = '<a href="' . esc_url(home_url()) . '">' . esc_html__('Home', 'arnabwp') . '</a>';
 
-		if (is_category() || is_single()) {
-			$category = get_the_category();
-			if (! empty($category) && isset($category[0])) {
-				$breadcrumb_items[] = '<a href="' . esc_url(get_category_link($category[0]->term_id)) . '">' . esc_html($category[0]->name) . '</a>';
+		if (is_home()) {
+			// Blog page
+			$posts_page_id = get_option('page_for_posts');
+			if ($posts_page_id) {
+				$breadcrumb_items[] = esc_html(get_the_title($posts_page_id));
 			}
-			if (is_single()) {
-				$breadcrumb_items[] = esc_html(get_the_title());
+		} elseif (is_single()) {
+			$categories = get_the_category();
+			if (!empty($categories)) {
+				$breadcrumb_items[] = '<a href="' . esc_url(get_category_link($categories[0]->term_id)) . '">' . esc_html($categories[0]->name) . '</a>';
 			}
+			$breadcrumb_items[] = esc_html(get_the_title());
 		} elseif (is_page()) {
 			$breadcrumb_items[] = esc_html(get_the_title());
+		} elseif (is_category()) {
+			$breadcrumb_items[] = single_cat_title('', false);
 		} elseif (is_search()) {
 			$breadcrumb_items[] = esc_html__('Search Results for:', 'arnabwp') . ' ' . esc_html(get_search_query());
 		} elseif (is_archive()) {
