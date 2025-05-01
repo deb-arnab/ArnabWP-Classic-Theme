@@ -1,12 +1,7 @@
 <?php
-
 /**
  * Theme Customizer Class.
  * 
- * This class manages all theme customizer settings, including custom sections
- * and controls for various theme options like header, footer, typography, and colors.
- * It also handles the output of customizer settings as inline styles in the head.
- *
  * @package ArnabWP
  */
 
@@ -18,22 +13,23 @@ use ARNABWP_THEME\Inc\Traits\Header_Options;
 use ARNABWP_THEME\Inc\Traits\Frontpage_Options;
 use ARNABWP_THEME\Inc\Traits\Basic_Options;
 
-// Load custom controls if in preview or admin
 if ( is_customize_preview() || is_admin() ) {
-    require_once ARNABWP_DIR_PATH . '/inc/classes/controls/class-toggle-control.php';
-    require_once ARNABWP_DIR_PATH . '/inc/classes/controls/class-range-control.php';
-    require_once ARNABWP_DIR_PATH . '/inc/classes/controls/class-repeater-control.php';
-    require_once ARNABWP_DIR_PATH . '/inc/classes/controls/class-tabs-control.php';
+require_once ARNABWP_DIR_PATH . '/inc/classes/controls/class-toggle-control.php';
+require_once ARNABWP_DIR_PATH . '/inc/classes/controls/class-range-control.php';
+require_once ARNABWP_DIR_PATH . '/inc/classes/controls/class-repeater-control.php';
+require_once ARNABWP_DIR_PATH . '/inc/classes/controls/class-tabs-control.php';
+require_once ARNABWP_DIR_PATH . '/inc/classes/controls/class-radio-control.php';
+
+
 }
 
 /**
  * Class Theme_Customizer
  * 
- * Handles all customizer settings using modular traits for footer, header, frontpage, and basic theme options.
+ * Handles all customizer settings using modular traits.
  */
 class Theme_Customizer {
 
-    // Use Singleton trait to ensure a single instance of this class
     use Singleton;
     use Footer_Options;
     use Header_Options;
@@ -48,14 +44,9 @@ class Theme_Customizer {
     }
 
     /**
-     * Register necessary action hooks for customizing theme settings.
-     *
-     * - 'customize_register' to register the customizer settings
-     * - 'wp_head' to output the customizer styles in the head
-     * - 'body_class' filter to add header layout class to the body
+     * Register necessary action hooks.
      */
     protected function setup_hooks() {
-        // Add action hooks for customizer settings and styles
         add_action( 'customize_register', [ $this, 'arnabwp_register_customizer_settings' ] );
         add_action( 'wp_head', [ $this, 'arnabwp_output_customizer_styles' ] );
 
@@ -68,7 +59,7 @@ class Theme_Customizer {
     }
 
     /**
-     * Register customizer settings for various sections (footer, header, frontpage, and basic theme options).
+     * Register customizer settings.
      *
      * @param \WP_Customize_Manager $wp_customize Customizer object.
      */
@@ -80,14 +71,12 @@ class Theme_Customizer {
     }
 
     /**
-     * Output custom styles based on customizer settings into the head.
-     * 
-     * This includes custom styles for site width, buttons, typography, colors, 
-     * preloader, header, breadcrumbs, footer, and hero section.
+     * Output custom styles from customizer settings into the head.
      */
     public function arnabwp_output_customizer_styles() {
+        
 
-        // === Site Width Styles === //
+// === Site Width Styles === //
         $container_width = get_theme_mod( 'arnabwp_container_width', 1200 );
 
         echo '<style type="text/css">';
@@ -99,16 +88,17 @@ class Theme_Customizer {
         }';
         echo '</style>';
       
-        // === Button Styles === //
-        $padding_top_bottom = get_theme_mod( 'arnabwp_button_padding_top_bottom', 10 );
-        $padding_left_right = get_theme_mod( 'arnabwp_button_padding_left_right', 15 );
-        $button_radius      = get_theme_mod( 'arnabwp_button_radius', 5);
 
+// === Button Styles === //
+        $padding_top_bottom = get_theme_mod( 'arnabwp_button_padding_top_bottom', 10 ); // fallback 10px if not set
+        $padding_left_right = get_theme_mod( 'arnabwp_button_padding_left_right', 15 ); // fallback 15px if not set
+        $button_radius      = get_theme_mod( 'arnabwp_button_radius', 5);
+    
         // Ensure values are integers
         $padding_top_bottom = absint( $padding_top_bottom );
         $padding_left_right = absint( $padding_left_right );
         $button_radius      = absint( $button_radius );
-
+    
         // Only output if values exist
         if ( $padding_top_bottom || $padding_left_right ) :
         ?>
@@ -121,20 +111,23 @@ class Theme_Customizer {
         </style>
         <?php
         endif;
-
-        // === Preloader Styles === //
-        $preloader_bg_color = get_theme_mod('preloader_background_color', '#ffffff');
-        $preloader_spinner_color = get_theme_mod('preloader_spinner_color', '#007bff');
-        ?>
-        <style type="text/css">
-            #preloader {
-                background-color: <?php echo esc_attr($preloader_bg_color); ?>;
-            }
-            #preloader .preloader-spinner {
-                border-top-color: <?php echo esc_attr($preloader_spinner_color); ?>;
-            }
-        </style>
-        <?php
+    
+      // === Preloader Styles === //
+            $preloader_bg_color = get_theme_mod('preloader_background_color', '#ffffff');
+            $preloader_spinner_color = get_theme_mod('preloader_spinner_color', '#007bff');
+            ?>
+            <style type="text/css">
+                /* Preloader Customization */
+                #preloader {
+                    background-color: <?php echo esc_attr($preloader_bg_color); ?>;
+                }
+        
+                #preloader .preloader-spinner {
+                    border-top-color: <?php echo esc_attr($preloader_spinner_color); ?>;
+                }
+            </style>
+            <?php
+        
 
         // === Typography Styles === //
         $body_font      = get_theme_mod( 'arnabwp_body_font_family', 'Arial, sans-serif' );
@@ -147,81 +140,212 @@ class Theme_Customizer {
         echo '<style type="text/css">';
         echo "body { font-family: {$body_font}; font-size: {$body_font_size}px; }";
         echo "h1, h2, h3, h4, h5, h6 { font-family: {$heading_font}; font-size: {$heading_size}px; }";
-        echo ".entry-title, .post-title { font-size: {$content_title_font_size}px; }";
+        echo ".entry-title, .post-card-content .post-title, .post-title { font-size: {$content_title_font_size}px;}";
+   
+
+                // === Color Styles Refactored into a Loop === //
+                $color_settings = [
+                    'primary_color'          => '--primary-color',
+                    'secondary_color'        => '--secondary-color',
+                    'custom_background_color'=> '--background-color',
+                    'text_color'             => '--text-color',
+                    'heading_color'          => '--heading-color',
+                    'link_color'             => '--link-color',
+                    'button_color'           => '--button-color',
+                    'button_text_color'      => '--button-text-color',
+                ];
         
-        // === Color Styles Refactored into a Loop === //
-        $color_settings = [
-            'primary_color'          => '--primary-color',
-            'secondary_color'        => '--secondary-color',
-            'custom_background_color'=> '--background-color',
-            'text_color'             => '--text-color',
-            'heading_color'          => '--heading-color',
-            'link_color'             => '--link-color',
-            'button_color'           => '--button-color',
-            'button_text_color'      => '--button-text-color',
+                foreach ( $color_settings as $setting => $css_var ) {
+                    $color = get_theme_mod( $setting );
+                    if ( $color ) {
+                        echo ":root { {$css_var}: {$color}; }";
+                    }
+                }
+        
+        $colors = [
+            'primary_color'          => get_theme_mod( 'primary_color' ),
+            'secondary_color'        => get_theme_mod( 'secondary_color' ),
+            'custom_background_color'=> get_theme_mod( 'custom_background_color' ),
+            'text_color'             => get_theme_mod( 'text_color' ),
+            'heading_color'          => get_theme_mod( 'heading_color' ),
+            'link_color'             => get_theme_mod( 'link_color' ),
+            'button_color'           => get_theme_mod( 'button_color' ),
+            'button_text_color'      => get_theme_mod( 'button_text_color' ),
         ];
 
-        foreach ( $color_settings as $setting => $css_var ) {
-            $color = get_theme_mod( $setting );
-            if ( $color ) {
-                echo ":root { {$css_var}: {$color}; }";
-            }
+        if ( $colors['primary_color'] ) {
+            echo ":root { --primary-color: {$colors['primary_color']}; }";
+        }
+        if ( $colors['secondary_color'] ) {
+            echo ":root { --secondary-color: {$colors['secondary_color']}; }";
+        }
+        if ( $colors['custom_background_color'] ) {
+            echo "body { background-color: {$colors['custom_background_color']}; }";
+        }
+        if ( $colors['text_color'] ) {
+            echo "body, p, span, li, .text { color: {$colors['text_color']}; }";
+        }
+        if ( $colors['heading_color'] ) {
+            echo "h1, h2, h3, h4, h5, h6 { color: {$colors['heading_color']}; }";
+        }
+        if ( $colors['link_color'] ) {
+            echo "a { color: {$colors['link_color']}; }";
+        }
+        if ( $colors['button_color'] ) {
+            echo "button, .btn { background-color: {$colors['button_color']}; }";
+        }
+        if ( $colors['button_text_color'] ) {
+            echo "button, .btn { color: {$colors['button_text_color']}; }";
+        }
+
+        // === Header Styles === //
+        $layout     = get_theme_mod( 'arnabwp_header_layout', 'logo-left' );
+        $sticky     = get_theme_mod( 'arnabwp_sticky_header', false );
+        $bg_color   = get_theme_mod( 'arnabwp_header_bg_color', '#000' );
+        $text_color = get_theme_mod( 'arnabwp_header_text_color', '#fff' );
+        $font       = get_theme_mod( 'arnabwp_menu_font_size', 16 );
+
+        if ( $bg_color ) {
+            echo "header.site-header { background-color: {$bg_color}; }";
+        }
+        if ( $text_color ) {
+            echo "header.site-header .navbar-nav .nav-link { color: {$text_color}; }";
+        }
+        if ( $font ) {
+            echo "header.site-header .navbar-nav a { font-size: {$font}px; }";
+        }
+        if ( $sticky ) {
+            echo "header.site-header { position: sticky; top: 0; z-index: 999; }";
+        }
+
+        // === Layout-Specific Header Styles === //
+        if ( $layout === 'logo-center' ) {
+            echo '.header-layout-logo-center header.site-header .navbar .container {
+                    flex-direction: column;
+                    align-items: center;
+                }
+                .header-layout-logo-center header.site-header .navbar-brand {
+                    margin-bottom: 1rem;
+                    text-align: center;
+                }
+                .header-layout-logo-center header.site-header .navbar-collapse {
+                    justify-content: center !important;
+                    text-align: center;
+                }
+                .header-layout-logo-center header.site-header .navbar-nav {
+                    flex-direction: row;
+                    gap: 1.5rem;
+                    justify-content: center;
+                }
+                @media (max-width: 991px) {
+                    .header-layout-logo-center header.site-header .navbar-nav {
+                        flex-direction: column;
+                    }
+                }';
+        }
+
+        if ( $layout === 'logo-right' ) {
+            echo '.header-layout-logo-right .navbar .container {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                }
+                .header-layout-logo-right .navbar-collapse {
+                    order: 1;
+                    flex: 1;
+                }
+                .header-layout-logo-right .navbar-nav {
+                    display: flex;
+                    justify-content: flex-start;
+                    margin-left: 0 !important;
+                    margin-right: auto !important;
+                }
+                .header-layout-logo-right .navbar-brand {
+                    order: 2;
+                    margin-left: auto;
+                }';
         }
 
         echo '</style>';
+ 
 
-        // === Footer Styles === //
-        $footer_heading_color= get_theme_mod('arnabwp_footer_widget_heading_color', '#ffffff');
-        $footer_text_color= get_theme_mod('arnabwp_footer_widget_text_color', '#bbbbbb');
-        $footer_copyright_color= get_theme_mod('arnabwp_footer_copyright_text_color', '#999999');
 
-        if ( $footer_heading_color || $footer_text_color || $footer_copyright_color )
-            echo '
-            <style type="text/css">
-                .site-footer .footer-widget .wp-block-heading{
-                    color: '.esc_attr( $footer_heading_color ).'!important;
-                }
+// === Breadcrumb Styles === //
+$bc_font_size  = get_theme_mod( 'arnabwp_breadcrumb_font_size', 14 );
+$bc_font_color = get_theme_mod( 'arnabwp_breadcrumb_color', '#666666' );
 
-                .site-footer .footer-widget ul li,
-                .site-footer .footer-widget p
-                {
-                    color: '.esc_attr( $footer_text_color ). '!important;
-                }
+echo '<style type="text/css">
+	.arnabwp-breadcrumb {
+		font-size: ' . intval( $bc_font_size ) . 'px;
+		color: ' . esc_attr( $bc_font_color ) . ';
+	}
+	.arnabwp-breadcrumb a {
+		color: ' . esc_attr( $bc_font_color ) . ';
+		text-decoration: none;
+	}
+	.arnabwp-breadcrumb-separator {
+		margin: 0 8px;
+		color: ' . esc_attr( $bc_font_color ) . ';
+	}
+</style>';
 
-                .site-footer .footer-copy {
-                    color:'.esc_attr( $footer_copyright_color).';
-                }
-            </style>';
+// === Footer Styles === //
+$footer_heading_color= get_theme_mod('arnabwp_footer_widget_heading_color', '#ffffff');
+$footer_text_color= get_theme_mod('arnabwp_footer_widget_text_color', '#bbbbbb');
+$footer_copyright_color= get_theme_mod('arnabwp_footer_copyright_text_color', '#999999');
 
-        // === Hero Section Styles === //
-        $hero_title_fontsize= get_theme_mod('arnabwp_hero_title_font_size', 40);
-        $hero_subtitle_fontsize= get_theme_mod('arnabwp_hero_subtitle_font_size', 16);
+if ( $footer_heading_color || $footer_text_color || $footer_copyright_color )
+    
+    echo '
+    <style type="text/css">
+        .site-footer .footer-widget .wp-block-heading{
+            color: '.esc_attr( $footer_heading_color ).'!important;
+        }
 
-        $hero_title_color= get_theme_mod('arnabwp_hero_title_color', '#ffffff');
-        $hero_subtitle_color= get_theme_mod('arnabwp_hero_subtitle_color', '#ffffff');
+        .site-footer .footer-widget ul li,
+        .site-footer .footer-widget p
+        {
+            color: '.esc_attr( $footer_text_color ). '!important;
+        }
 
-        $hero_btn_bg_color= get_theme_mod('arnabwp_hero_btn_bg_color', '#0073e6');
-        $hero_btn_text_color= get_theme_mod('arnabwp_hero_btn_text_color', '#ffffff');
+        .site-footer .footer-copy {
+            color:'.esc_attr( $footer_copyright_color).';
+        }
+    </style>';
 
-        if ( $hero_title_color || $hero_subtitle_color )
-            echo '
-            <style type="text/css">
-                .hero-content h1
-                {
-                    color: '.esc_attr( $hero_title_color ).';
-                    font-size: '.esc_attr($hero_title_fontsize).'px;
-                }
 
-                .hero-content p
-                {
-                    color: '.esc_attr( $hero_subtitle_color ).';
-                    font-size: '.esc_attr($hero_subtitle_fontsize).'px;
-                }
-                .hero-buttons .hero-btn
-                {
-                    color: '.esc_attr( $hero_btn_text_color). ';
-                    background-color: '.esc_attr( $hero_btn_bg_color ). ';
-                }
-            </style>';
-    }
+// === Hero Section Styles === //
+$hero_title_fontsize= get_theme_mod('arnabwp_hero_title_font_size', 40);
+$hero_subtitle_fontsize= get_theme_mod('arnabwp_hero_subtitle_font_size', 16);
+
+$hero_title_color= get_theme_mod('arnabwp_hero_title_color', '#ffffff');
+$hero_subtitle_color= get_theme_mod('arnabwp_hero_subtitle_color', '#ffffff');
+
+$hero_btn_bg_color= get_theme_mod('arnabwp_hero_btn_bg_color', '#0073e6');
+$hero_btn_text_color= get_theme_mod('arnabwp_hero_btn_text_color', '#ffffff');
+
+
+if ( $hero_title_color || $hero_subtitle_color )
+
+    echo '
+    <style type="text/css">
+        .hero-content h1
+        {
+            color: '.esc_attr( $hero_title_color ).';
+            font-size: '.esc_attr($hero_title_fontsize).'px;
+        }
+
+         .hero-content p
+        {
+            color: '.esc_attr( $hero_subtitle_color ).';
+            font-size: '.esc_attr($hero_subtitle_fontsize).'px;
+        }
+         .hero-buttons .hero-btn
+        {
+            color: '.esc_attr( $hero_btn_text_color). ';
+            background-color: '.esc_attr( $hero_btn_bg_color ). ';
+        }
+    </style>';
+
+}
 }

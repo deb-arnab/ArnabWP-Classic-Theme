@@ -5,6 +5,7 @@ window.addEventListener("load", function() {
   document.body.classList.add('loaded');
 });
 
+
 /**
  * Initializes the hero slider using Owl Carousel.
  * 

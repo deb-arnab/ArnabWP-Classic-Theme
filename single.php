@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Single Post template file
  * 
@@ -7,17 +8,33 @@
 
 get_header(); // Includes the header part
 
+
+
+$sidebar_layout = get_theme_mod('arnabwp_sidebar_layout', 'right');
+$layout_class = 'has-sidebar-right';
+
+if ($sidebar_layout === 'left') {
+    $layout_class = 'has-sidebar-left';
+} elseif ($sidebar_layout === 'no') {
+    $layout_class = 'no-sidebar';
+}
 ?>
 
-<main id="primary" class="site-main py-5">
-<div class="site-container">
-        <div class="row">
-            <!-- Main Content Area -->
-            <div class="col-lg-8">
-                <?php
-                while ( have_posts() ) :
+<main id="primary" class="site-main py-5 <?php echo esc_attr($layout_class); ?>">
+    <div class="site-container arnabwp-blog-content d-flex flex-lg-row">
+
+
+        <?php if ($sidebar_layout === 'left') : ?>
+            <?php get_sidebar(); ?>
+        <?php endif; ?>
+        <!-- Main Content Area -->
+
+        <?php if (have_posts()) : ?>
+
+            <div class="content-area flex-grow-1">
+                <?php while (have_posts()) :
                     the_post();
-                    get_template_part( 'template_parts/blogs/content', 'single' );?>
+                    get_template_part('template_parts/blogs/content', 'single'); ?>
 
                     <?php
                     // If comments are open or there are comments, load comment template
@@ -27,30 +44,31 @@ get_header(); // Includes the header part
                             <i class="fa-solid fa-comments"></i>
                             <span class="screen-reader-text">Comments:</span>
                             <?php comments_template(); ?>
-                           
+
                         </span>
-                        
+
                     <?php endif; ?>
-            
-                   
+
+
                     <div class="post-navigation">
                         <div class="previous-post">
-                            <?php previous_post_link( '<div class="btn btn-light">%link</div>', 'Previous Post' ); ?>
+                            <?php previous_post_link('<div class="btn">%link</div>', 'Previous Post'); ?>
                         </div>
                         <div class="next-post">
-                            <?php next_post_link( '<div class="btn btn-light">%link</div>', 'Next Post' ); ?>
+                            <?php next_post_link('<div class="btn">%link</div>', 'Next Post'); ?>
                         </div>
                     </div>
 
                 <?php endwhile; ?>
             </div>
-
-            <!-- Sidebar Area (Right Side) -->
-            <div class="col-lg-4">
-                <?php get_sidebar(); // Loads the sidebar.php ?>
-            </div>
-        </div>
+        <?php endif; ?>
+        <!-- Sidebar Area (Right Side) -->
+        <?php if ($sidebar_layout === 'right') : ?>
+            <?php get_sidebar(); ?>
+        <?php endif; ?>
+    </div>
     </div>
 </main>
 
-<?php get_footer(); // Includes the footer part ?>
+<?php get_footer(); // Includes the footer part 
+?>

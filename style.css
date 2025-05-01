@@ -18,367 +18,689 @@ Text Domain: arnabwp
    General Theme Styles
    ================================== */
 
-:root {
-  --primary-color: #000000; /* Default primary color */
-  --secondary-color: #000000; /* Default secondary color */
-  --background-color: #ffffff; /* Default background color */
-  --text-color: #000000; /* Default text color */
-  --heading-color: #000000; /* Default heading color */
-  --link-color: #0000ff; /* Default link color */
-  --button-color: #007bff; /* Default button color */
-  --button-text-color: #ffffff; /* Default button text color */
+   :root {
+    --primary-color: #000000; /* Default primary color */
+    --secondary-color: #000000; /* Default secondary color */
+    --background-color: #ffffff; /* Default background color */
+    --text-color: #000000; /* Default text color */
+    --heading-color: #000000; /* Default heading color */
+    --link-color: #0000ff; /* Default link color */
+    --button-color: #007bff; /* Default button color */
+    --button-text-color: #ffffff; /* Default button text color */
+  }
+  
+  /* Body and text color settings */
+  body {
+    color: var(--text-color);
+    background-color: var(--background-color);
+  }
+  
+  /* Heading color settings */
+  h1, h2, h3, h4, h5, h6 {
+    color: var(--heading-color);
+  }
+  
+  /* Link color settings */
+  a {
+    color: var(--link-color);
+  }
+  
+  /* Button styles */
+  .btn,
+  .arnabwp-button {
+    background-color: var(--button-color);
+    color: var(--button-text-color);
+  }
+  
+  /* Button padding and border-radius */
+  .btn,
+  input[type="submit"],
+  .arnabwp-button {
+    padding: var(--arnabwp-button-padding-top-bottom, 10px) var(--arnabwp-button-padding-left-right, 15px) !important;
+    border-radius: var(--arnabwp-button-radius, 5px) !important;
+  }
+  
+  /* Reset or Global styles */
+  *,
+  *::before,
+  *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* ==================================
+     Preloader Styles
+     ================================== */
+  
+  /* Preloader container styles */
+  #preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #ffffff; /* Default white background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999; /* Ensures it's on top */
+    visibility: visible;
+    opacity: 1;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+  }
+  
+  /* Preloader inner content */
+  .preloader-inner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  /* Preloader spinner animation */
+  .preloader-spinner {
+    border: 4px solid transparent;
+    border-top: 4px solid #007bff; /* Default blue */
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+  }
+  
+  /* Spinner rotation animation */
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  
+  /* Hide preloader once page is loaded */
+  body.loaded #preloader {
+    visibility: hidden;
+    opacity: 0;
+  }
+  
+  /* ==================================
+     Full Width for Topbar
+     ================================== */
+  
+  .topbar {
+    width: 100%; /* Full width */
+    background-color: #f8f9fa; /* Light background */
+    position: relative; /* Ensures it spans full width */
+  }
+  
+  /* ==================================
+     Body and Basic Styles
+     ================================== */
+  
+  /* Parallax background effect */
+  .parallax-bg {
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+  }
+  
+  /* ==================================
+     Navigation styles
+     ================================== */
+  
+  /* Dropdown menu hover effect */
+  .nav-item.dropdown:hover .dropdown-menu {
+    display: block;
+    animation: fadeIn 0.2s ease-in-out; /* Smooth dropdown */
+  }
+  
+  /* Navigation link color change on hover */
+  .nav-item.dropdown:hover .nav-link {
+    color: #f8f9fa; /* Change color on hover */
+  }
+  
+  /* Breadcrumb styling */
+  .arnabwp-breadcrumb {
+    font-size: 14px;
+    color: #666;
+  }
+  
+  /* Breadcrumb links */
+  .arnabwp-breadcrumb a {
+    color: inherit;
+    text-decoration: none;
+  }
+  
+  /* Breadcrumb separator styling */
+  .arnabwp-breadcrumb-separator {
+    margin: 0 8px;
+    color: #aaa;
+  }
+  
+  /* ==================================
+     Post Content Styles
+     ================================== */
+  
+  /* Responsive images in post content */
+  .entry-content img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin-bottom: 1.5rem;
+  }
+  
+  /* Responsive iframe, embed, and video elements */
+  .entry-content iframe,
+  .entry-content embed,
+  .entry-content video {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin-bottom: 1.5rem;
+  }
+  
+  /* Paragraphs inside posts */
+  .entry-content p {
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+  }
+  
+  /* ==================================
+     Footer Styles
+     ================================== */
+  
+  /* Footer styling */
+  .site-footer {
+    padding-top: 60px;
+    font-size: 15px;
+  }
+  
+  /* Footer column spacing */
+  .site-footer .footer-column {
+    margin-bottom: 40px;
+  }
+  
+  /* Footer widget title styling */
+  .footer-widget .widget-title {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: #fff;
+  }
+  
+  /* Footer widget list styling */
+  .footer-widget ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .footer-widget ul li {
+    margin-bottom: 10px;
+  }
+  
+  /* Footer widget link styling */
+  .footer-widget ul li a {
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  
+  .footer-widget ul li a:hover {
+    color: #fff;
+  }
+  
+  /* Footer search widget styling */
+  .wp-block-search {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  /* Search input styling */
+  .wp-block-search__input {
+    flex: 1;
+    padding: 10px 14px;
+    border: none;
+    font-size: 1rem;
+    outline: none;
+    color: #333;
+    background-color: transparent;
+  }
+  
+  /* Search button styling */
+  .wp-block-search__button {
+    padding: 10px 18px;
+    border: none;
+    font-weight: 500;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    background-color: #187dbc;
+    color: #ffffff;
+  }
+  
+  /* Search button hover effect */
+  .wp-block-search__button:hover {
+    background-color: #005bb5;
+  }
+  
+  /* Social link styling in footer */
+  .footer-social a {
+    margin-right: 12px;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  
+  .footer-social a:hover {
+    color: #fff;
+  }
+  
+  /* Footer bottom styling */
+  .footer-bottom {
+    padding: 20px 0;
+    color: #aaa;
+    font-size: 14px;
+    text-align: center;
+  }
+  
+  /* ==================================
+     Footer Text Alignment
+     ================================== */
+  
+  /* Footer text alignment options */
+  .footer-bottom.align-left {
+    text-align: left;
+  }
+  
+  .footer-bottom.align-center {
+    text-align: center;
+  }
+  
+  .footer-bottom.align-right {
+    text-align: right;
+  }
+  
+
+  /* ==================================
+     Mobile Layout Adjustments
+     ================================== */
+  
+  /* Mobile layout adjustments */
+  @media (max-width: 991px) {
+    .site-main .container .row {
+      display: block; /* Stack content and sidebar */
+    }
+  }
+  
+  /* Scroll to Top Button */
+  .scroll-to-top {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    background-color: #0073aa;
+    color: #ffffff;
+    border: none;
+    padding: 5px 15px;
+    font-size: 20px;
+    cursor: pointer;
+    display: none; /* Hidden by default */
+    transition: all 0.3s ease;
+    z-index: 9999; /* Ensure it's above other content */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Soft shadow for depth */
+  }
+  
+  /* Scroll to Top button hover effect */
+  .scroll-to-top:hover {
+    background-color: #005f7f;
+    transform: translateY(-5px); /* Slight lift effect */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover */
+  }
+  
+  /* Focus Effect for Accessibility */
+  .scroll-to-top:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.6); /* Blue focus outline */
+  }
+  
+
+
+.pagination-wrapper {
+  margin-top: 30px;
 }
 
-/* Body and text color settings */
-body {
-  color: var(--text-color);
-  background-color: var(--background-color);
-}
-
-/* Heading color settings */
-h1, h2, h3, h4, h5, h6 {
-  color: var(--heading-color);
-}
-
-/* Link color settings */
-a {
-  color: var(--link-color);
-}
-
-/* Button styles */
-.btn,
-.arnabwp-button {
-  background-color: var(--button-color);
-  color: var(--button-text-color);
-}
-
-/* Button padding and border-radius */
-.btn,
-input[type="submit"],
-.arnabwp-button {
-  padding: var(--arnabwp-button-padding-top-bottom, 10px) var(--arnabwp-button-padding-left-right, 15px) !important;
-  border-radius: var(--arnabwp-button-radius, 5px) !important;
-}
-
-/* Reset or Global styles */
-*,
-*::before,
-*::after {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-/* ==================================
-   Preloader Styles
-   ================================== */
-
-/* Preloader container styles */
-#preloader {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: #ffffff; /* Default white background */
+.pagination {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 9999; /* Ensures it's on top */
-  visibility: visible;
-  opacity: 1;
-  transition: opacity 0.3s ease, visibility 0.3s ease;
-}
-
-/* Preloader inner content */
-.preloader-inner {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-/* Preloader spinner animation */
-.preloader-spinner {
-  border: 4px solid transparent;
-  border-top: 4px solid #007bff; /* Default blue */
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
-  animation: spin 1s linear infinite;
-}
-
-/* Spinner rotation animation */
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-
-/* Hide preloader once page is loaded */
-body.loaded #preloader {
-  visibility: hidden;
-  opacity: 0;
-}
-
-/* ==================================
-   Full Width for Topbar
-   ================================== */
-
-.topbar {
-  width: 100%; /* Full width */
-  background-color: #f8f9fa; /* Light background */
-  position: relative; /* Ensures it spans full width */
-}
-
-/* ==================================
-   Body and Basic Styles
-   ================================== */
-
-/* Parallax background effect */
-.parallax-bg {
-  background-attachment: fixed;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-}
-
-/* ==================================
-   Navigation styles
-   ================================== */
-
-/* Dropdown menu hover effect */
-.nav-item.dropdown:hover .dropdown-menu {
-  display: block;
-  animation: fadeIn 0.2s ease-in-out; /* Smooth dropdown */
-}
-
-/* Navigation link color change on hover */
-.nav-item.dropdown:hover .nav-link {
-  color: #f8f9fa; /* Change color on hover */
-}
-
-/* Breadcrumb styling */
-.arnabwp-breadcrumb {
-  font-size: 14px;
-  color: #666;
-}
-
-/* Breadcrumb links */
-.arnabwp-breadcrumb a {
-  color: inherit;
-  text-decoration: none;
-}
-
-/* Breadcrumb separator styling */
-.arnabwp-breadcrumb-separator {
-  margin: 0 8px;
-  color: #aaa;
-}
-
-/* ==================================
-   Post Content Styles
-   ================================== */
-
-/* Responsive images in post content */
-.entry-content img {
-  max-width: 100%;
-  height: auto;
-  display: block;
-  margin-bottom: 1.5rem;
-}
-
-/* Responsive iframe, embed, and video elements */
-.entry-content iframe,
-.entry-content embed,
-.entry-content video {
-  max-width: 100%;
-  height: auto;
-  display: block;
-  margin-bottom: 1.5rem;
-}
-
-/* Paragraphs inside posts */
-.entry-content p {
-  line-height: 1.6;
-  margin-bottom: 1.5rem;
-}
-
-/* ==================================
-   Footer Styles
-   ================================== */
-
-/* Footer styling */
-.site-footer {
-  padding-top: 60px;
-  font-size: 15px;
-}
-
-/* Footer column spacing */
-.site-footer .footer-column {
-  margin-bottom: 40px;
-}
-
-/* Footer widget title styling */
-.footer-widget .widget-title {
-  font-size: 18px;
-  font-weight: 600;
-  margin-bottom: 20px;
-  color: #fff;
-}
-
-/* Footer widget list styling */
-.footer-widget ul {
   list-style: none;
-  padding: 0;
+  padding-left: 0;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.pagination .page-item {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Unified button style for both links and spans (including prev/next) */
+.pagination .page-link,
+.pagination .page-numbers {
+  position: relative;
+  display: inline-block;
+  padding: 5px 15px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+  background-color: #f0f2f5;
+  border: none;
+  border-radius: 50px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Active and hover styles */
+.pagination .page-item.active .page-link,
+.pagination .page-numbers.current,
+.pagination .page-link:hover,
+.pagination .page-numbers:hover {
+  background: linear-gradient(145deg, #0056b3, #007bff);
+  color: #fff;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Focus outline for accessibility */
+.pagination .page-link:focus,
+.pagination .page-numbers:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.4);
+}
+
+/* Subtle underline hover effect */
+.pagination .page-link::after,
+.pagination .page-numbers::after {
+  content: "";
+  position: absolute;
+  bottom: 6px;
+  left: 50%;
+  width: 0;
+  height: 3px;
+  background-color: #007bff;
+  transition: width 0.3s ease, left 0.3s ease;
+  transform: translateX(-50%);
+}
+
+.pagination .page-link:hover::after,
+.pagination .page-numbers:hover::after {
+  width: 60%;
+}
+
+
+
+/* ================================
+   Layout Containers
+================================ */
+
+.arnabwp-blog-content {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 2rem;
+}
+
+.content-area {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+/* ================================
+   Sidebar Layout (Left / Right)
+================================ */
+
+.has-sidebar-left .content-area {
+  order: 2;
+}
+
+.has-sidebar-left aside,
+.has-sidebar-right aside {
+  width: 280px;
+  flex-shrink: 0;
+}
+
+.arnabwp-blog-content.d-flex.has-sidebar-left,
+.arnabwp-blog-content.d-flex.has-sidebar-right {
+  display: flex;
+  gap: 2rem;
+}
+
+.no-sidebar aside {
+  display: none;
+}
+
+/* ================================
+   Sidebar Styles (Matching Posts)
+================================ */
+
+.sidebar {
+  max-width: 400px;
+  flex-shrink: 0;
+
+}
+
+.sidebar-widget-area {
+  background: #fff;
+  border: 1px solid #eaeaea;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 3px 15px rgba(0, 0, 0, 0.03);
+  transition: box-shadow 0.3s ease, transform 0.15s ease;
+}
+
+.sidebar-widget-area:hover {
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  transform: translateY(-3px);
+}
+
+.sidebar .widget {
+  margin-bottom: 2rem;
+}
+
+.sidebar .widget-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid #e0e0e0;
+  padding-bottom: 0.5rem;
+}
+
+.sidebar .widget ul {
+  list-style: none;
+  padding-left: 0;
   margin: 0;
 }
 
-.footer-widget ul li {
-  margin-bottom: 10px;
+.sidebar .widget ul li {
+  margin-bottom: 0.75rem;
 }
 
-/* Footer widget link styling */
-.footer-widget ul li a {
+.sidebar .widget ul li a {
+  color: #333;
   text-decoration: none;
   transition: color 0.3s ease;
 }
 
-.footer-widget ul li a:hover {
-  color: #fff;
+.sidebar .widget ul li a:hover {
+  color: #007bff;
 }
 
-/* Footer search widget styling */
-.wp-block-search {
+/* ================================
+   Post Card (Shared Styles)
+================================ */
+
+.post-card {
+  display: inline-block;
+  width: 100%;
+  margin-bottom: 2rem;
+  background: #fff;
+  border: 1px solid #eaeaea;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 3px 15px rgba(0, 0, 0, 0.03);
+  transition: box-shadow 0.3s ease, transform 0.15s ease;
+}
+
+.post-card:hover {
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  transform: translateY(-5px);
+}
+
+/* ================================
+   Masonry Layout
+================================ */
+
+.masonry-grid {
+  column-count: 3;
+  column-gap: 2rem;
+}
+
+.masonry-grid .post-card img {
+  width: 100%;
+  height: auto;
+  max-height: 250px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+/* ================================
+   List Layout
+================================ */
+
+.list-layout .post-card {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  gap: 1.5rem;
+  padding: 0;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+}
+
+.list-layout .post-card > a {
+  flex-shrink: 0;
+  width: 350px;
+  height: 100%;
+  overflow: hidden;
+}
+
+.list-layout .post-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.list-layout .post-card-content {
+  padding: 20px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  margin-top: 1rem;
+  justify-content: center;
+  width: 100%;
+}
+
+.list-layout .post-title {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.list-layout .post-card .small {
+  color: #888;
   margin-bottom: 1rem;
 }
 
-/* Search input styling */
-.wp-block-search__input {
-  flex: 1;
-  padding: 10px 14px;
-  border: none;
-  font-size: 1rem;
-  outline: none;
-  color: #333;
-  background-color: transparent;
+.list-layout .post-card .btn {
+  align-self: flex-start;
 }
 
-/* Search button styling */
-.wp-block-search__button {
-  padding: 10px 18px;
-  border: none;
-  font-weight: 500;
-  font-size: 0.95rem;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  background-color: #187dbc;
-  color: #ffffff;
+.list-layout .post-card.list-item.reverse-layout {
+  flex-direction: row-reverse !important;
 }
 
-/* Search button hover effect */
-.wp-block-search__button:hover {
-  background-color: #005bb5;
-}
+/* ================================
+   Responsive Adjustments
+================================ */
 
-/* Social link styling in footer */
-.footer-social a {
-  margin-right: 12px;
-  text-decoration: none;
-  transition: color 0.3s ease;
-}
-
-.footer-social a:hover {
-  color: #fff;
-}
-
-/* Footer bottom styling */
-.footer-bottom {
-  padding: 20px 0;
-  color: #aaa;
-  font-size: 14px;
-  text-align: center;
-}
-
-/* ==================================
-   Footer Text Alignment
-   ================================== */
-
-/* Footer text alignment options */
-.footer-bottom.align-left {
-  text-align: left;
-}
-
-.footer-bottom.align-center {
-  text-align: center;
-}
-
-.footer-bottom.align-right {
-  text-align: right;
-}
-
-/* ==================================
-   Layout for Larger Screens
-   ================================== */
-
-/* Large screen layout adjustments */
-@media (min-width: 992px) {
-  .site-main .container .row {
-    display: flex;
-    flex-wrap: nowrap; /* Prevent columns from wrapping */
-  }
-
-  /* Adjust sidebar spacing */
-  .site-main .container .row .col-lg-8 {
-    margin-right: 20px;
+@media (max-width: 991.98px) {
+  .arnabwp-blog-content {
+    flex-direction: column;
   }
 
   .sidebar {
-    padding: 20px;
-    background-color: #f8f9fa;
-    border: 1px solid #ddd;
+    width: 100% !important;
+    padding-left: 0 !important;
+    margin-top: 2rem;
+  }
+
+  .has-sidebar-right .content-area,
+  .has-sidebar-left .content-area {
+    margin: 0;
+    order: 0;
+  }
+
+  .list-layout .post-card {
+    flex-direction: column;
+  }
+
+  .list-layout .post-card > a {
+    width: 100%;
+    height: auto;
+  }
+
+  .list-layout .post-card img {
+    height: auto;
+  }
+
+  .list-layout .post-card-content {
+    padding: 16px;
+  }
+
+  .masonry-grid {
+    column-count: 2;
   }
 }
 
-/* ==================================
-   Mobile Layout Adjustments
-   ================================== */
+@media (max-width: 768px) {
+  .masonry-grid {
+    column-count: 1 !important;
+  }
 
-/* Mobile layout adjustments */
-@media (max-width: 991px) {
-  .site-main .container .row {
-    display: block; /* Stack content and sidebar */
+  .post-card,
+  .sidebar-widget-area {
+    padding: 16px;
+  }
+
+  .sidebar .widget-title {
+    font-size: 1.1rem;
+  }
+
+  .list-layout .post-card .post-title {
+    font-size: 1.25rem;
   }
 }
 
-/* Scroll to Top Button */
-.scroll-to-top {
-  position: fixed;
-  bottom: 25px;
-  right: 25px;
-  background-color: #0073aa;
-  color: #ffffff;
-  border: none;
-  padding: 5px 15px;
-  font-size: 20px;
-  cursor: pointer;
-  display: none; /* Hidden by default */
-  transition: all 0.3s ease;
-  z-index: 9999; /* Ensure it's above other content */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Soft shadow for depth */
-}
+@media (max-width: 480px) {
+  .list-layout .post-card {
+    gap: 1rem;
+  }
 
-/* Scroll to Top button hover effect */
-.scroll-to-top:hover {
-  background-color: #005f7f;
-  transform: translateY(-5px); /* Slight lift effect */
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover */
-}
+  .list-layout .post-card-content {
+    padding: 12px;
+  }
 
-/* Focus Effect for Accessibility */
-.scroll-to-top:focus {
-  outline: none;
-  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.6); /* Blue focus outline */
+  .sidebar .widget ul li {
+    font-size: 0.95rem;
+  }
+
+  .sidebar .widget-title {
+    font-size: 1rem;
+  }
 }

@@ -103,7 +103,7 @@ class ArnabWP
 		]);
 
 		// Register custom image size
-		add_image_size('post-thumbnails', 800, 400, true);
+		add_image_size('post-thumbnails', 800, 500, true);
 
 		// Add support for post formats
 		add_theme_support('post-formats', [
