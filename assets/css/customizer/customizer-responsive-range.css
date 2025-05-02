@@ -1,0 +1,38 @@
+.arnabwp-responsive-range-control {
+    margin-top: 10px;
+  }
+  
+  .device-tabs {
+    display: flex;
+    margin-bottom: 10px;
+    list-style: none;
+    padding-left: 0;
+  }
+  
+  .device-tab {
+    cursor: pointer;
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    margin-right: 5px;
+    border-radius: 3px;
+  }
+  
+  .device-tab.active {
+    background: #0073aa;
+    color: #fff;
+  }
+  
+  .device-range-group {
+    display: none;
+    margin-bottom: 10px;
+  }
+  
+  .range-slider {
+    width: 70%;
+  }
+  
+  .range-value {
+    width: 50px;
+    margin-left: 10px;
+  }
+  

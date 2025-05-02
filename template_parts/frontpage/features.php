@@ -101,8 +101,11 @@ if ($service_query->have_posts()) : ?>
             </div>
         </div>
     </section>
+
 <?php
-    // Reset global post data
-    wp_reset_postdata();
+else :
+    echo do_blocks('<!-- wp:pattern {"slug":"arnabwp/features-static"} /-->');
 endif;
+
+wp_reset_postdata();
 ?>

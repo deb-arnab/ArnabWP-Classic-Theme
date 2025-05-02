@@ -1,17 +1,12 @@
-  
-    /* INDIVIDUAL WIDGETS */
-    .widget {
-        margin-bottom: 2.5rem;
-      }
-      
-      .wp-block-heading{
-        font-size: 25px;
-        font-weight: 700;
-        margin-bottom: 1rem;
-        border-left: 5px solid var(--secondary-color);
-        padding-left: 0.75rem;
-        color: var(--primary-color);
-      }
+  /* INDIVIDUAL WIDGETS */
+  .widget {
+    margin-bottom: 2.5rem;
+  }
+
+  .wp-block-heading {
+    color: var(--primary-color);
+  }
+
   /* SEARCH BLOCK */
   .wp-block-search {
     display: flex;
@@ -19,7 +14,7 @@
     gap: 12px;
     margin: 1.5rem 0;
   }
-  
+
   /* SEARCH INPUT */
   .wp-block-search__input {
     padding: 12px 16px;
@@ -31,12 +26,12 @@
     outline: none;
     transition: border 0.3s, box-shadow 0.3s;
   }
-  
+
   .wp-block-search__input:focus {
     border-color: var(--primary-color);
     box-shadow: 0 0 0 3px rgba(232, 53, 130, 0.15);
   }
-  
+
   /* SEARCH BUTTON */
   .wp-block-search__button {
     padding: var(--arnabwp-button-padding-top-bottom, 12px) var(--arnabwp-button-padding-left-right, 18px);
@@ -49,7 +44,7 @@
     border-radius: var(--arnabwp-button-radius, 6px);
     transition: background-color 0.3s ease, transform 0.2s ease;
   }
-  
+
   .wp-block-search__button:hover {
     background-color: var(--secondary-color);
     transform: translateY(-1px);

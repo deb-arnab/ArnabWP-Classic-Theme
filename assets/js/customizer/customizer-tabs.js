@@ -7,7 +7,6 @@
  * @requires jQuery
  */
 jQuery(document).ready(function($) {
-	console.log("Tabs JS loaded");
   
 	/**
 	 * On click of a tab item inside .arnabwp-tab-nav:

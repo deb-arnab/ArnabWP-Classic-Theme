@@ -1,32 +1,53 @@
-  /* Footer widget list styling */
-  .footer-widget ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-  
-  .footer-widget ul li {
-    margin-bottom: 10px;
-  }
-  
-  /* Footer widget link styling */
-  .footer-widget ul li a {
-    text-decoration: none;
-    transition: color 0.3s ease;
-  }
-  
-  .footer-widget ul li a:hover {
-    color: var(--link-color);
-  }
-  
-  /* Social link styling in footer */
-  .footer-social a {
-    margin-right: 12px;
-    text-decoration: none;
-    transition: color 0.3s ease;
-  }
-  
-  .footer-social a:hover {
-    color: var(--link-color);
-  }
-  
+/* ==================================
+   Footer Widget Area Styles
+================================== */
+
+/* Reset list styles for widget lists */
+.footer-widget .widget ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-widget .widget ul li {
+  margin-bottom: 10px;
+}
+
+/* Footer widget links */
+.footer-widget .widget ul li a {
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-widget .widget ul li a:hover {
+  color: var(--link-color);
+}
+
+
+/* ==================================
+   Footer Social Icons
+================================== */
+
+.footer-widget .widget .wp-social-link svg {
+  margin-right: 12px;
+  transition: color 0.3s ease;
+  text-decoration: none;
+}
+
+.footer-widget .widget .wp-social-link svg:hover {
+  color: var(--primary-color);
+}
+
+
+/* ==================================
+   Footer Headings
+================================== */
+
+.footer-widget .widget .wp-block-heading {
+  font-size: 25px;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  padding-left: 0.75rem;
+  border-left: 5px solid var(--secondary-color);
+  color: var(--primary-color);
+}

@@ -36,7 +36,9 @@ function arnabwp_setup_homepage_content() {
             'post_content' => 
                 '<!-- wp:pattern {"slug":"arnabwp/testimonials-static"} /-->'.
                 "\n" .
-                '<!-- wp:pattern {"slug":"arnabwp/team-static"} /-->',
+                '<!-- wp:pattern {"slug":"arnabwp/team-static"} /-->'.
+                "\n" .
+                '<!-- wp:pattern {"slug":"arnabwp/features-static"} /-->',
         );
 
         $home_id = wp_insert_post( $homepage );

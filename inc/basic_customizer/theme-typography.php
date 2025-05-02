@@ -85,6 +85,53 @@ function add_typography_section( $wp_customize ) {
         ]
     ));
 
+    // $wp_customize->add_setting( 'arnabwp_body_font_size', [
+    //     'default'           => json_encode([
+    //         'desktop' => '18px',
+    //         'tablet'  => '16px',
+    //         'mobile'  => '14px',
+    //     ]),
+    //     'transport'         => 'refresh',
+    //     'sanitize_callback' => 'sanitize_text_field', 
+    // ] );
+    
+    // $wp_customize->add_control( new \ARNABWP_THEME\Inc\Controls\Dimensions_Control(
+    //     $wp_customize,
+    //     'arnabwp_body_font_size',
+    //     [
+    //         'label'    => __( 'Body Font Size', 'arnabwp' ),
+    //         'section'  => 'arnabwp_typography_section',
+    //         'settings' => 'arnabwp_body_font_size',  
+    //     ]
+    // ) );
+
+    $wp_customize->add_setting( 'arnabwp_body_font_size', [
+        'default' => json_encode([
+            'desktop' => '18',
+            'tablet'  => '16',
+            'mobile'  => '14'
+        ]),
+        'transport' => 'refresh',
+        'sanitize_callback' => function( $value ) {
+            $decoded = json_decode( $value, true );
+            return is_array( $decoded ) ? json_encode( array_map( 'sanitize_text_field', $decoded ) ) : '';
+        },
+    ]);
+    
+    $wp_customize->add_control( new \ARNABWP_THEME\Inc\Controls\Responsive_Range_Control(
+        $wp_customize,
+        'arnabwp_body_font_size',
+        [
+            'label' => __( 'Responsive Font Size', 'arnabwp' ),
+            'section' => 'arnabwp_typography_section',
+            'input_attrs' => [
+                'min' => 10,
+                'max' => 100,
+                'step' => 1
+            ]
+        ]
+    ) );
+
     // Heading Font Size
     $wp_customize->add_setting('arnabwp_heading_font_size', [
         'default'           => 32,
@@ -126,24 +173,24 @@ function add_typography_section( $wp_customize ) {
     ));
 
      // Body Font Size
-     $wp_customize->add_setting('arnabwp_body_font_size', [
-        'default'           => 16,
-        'sanitize_callback' => 'absint',
-    ]);
+    //  $wp_customize->add_setting('arnabwp_body_font_size', [
+    //     'default'           => 16,
+    //     'sanitize_callback' => 'absint',
+    // ]);
 
-    $wp_customize->add_control(new \ARNABWP_THEME\Inc\Controls\Range_Control(
-        $wp_customize,
-        'arnabwp_body_font_size',
-        [
-            'label'       => __('Blog Content Font Size (px)', 'arnabwp'),
-            'section'     => 'arnabwp_typography_section',
-            'input_attrs' => [
-                'min'  => 10,
-                'max'  => 30,
-                'step' => 1,
-            ],
-        ]
-    ));
+    // $wp_customize->add_control(new \ARNABWP_THEME\Inc\Controls\Range_Control(
+    //     $wp_customize,
+    //     'arnabwp_body_font_size',
+    //     [
+    //         'label'       => __('Blog Content Font Size (px)', 'arnabwp'),
+    //         'section'     => 'arnabwp_typography_section',
+    //         'input_attrs' => [
+    //             'min'  => 10,
+    //             'max'  => 30,
+    //             'step' => 1,
+    //         ],
+    //     ]
+    // ));
 
     // =============================
     // Front Page Font Size

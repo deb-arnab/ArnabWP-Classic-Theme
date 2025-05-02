@@ -21,7 +21,14 @@
     transform: translateY(-4px);
   }
   
-
+  .sidebar .widget .wp-block-heading{
+    font-size: 25px;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    border-left: 5px solid var(--secondary-color);
+    padding-left: 0.75rem;
+    color: var(--primary-color);
+  }
   
   /* LIST STYLING */
   .sidebar .widget ul {
@@ -45,9 +52,33 @@
   }
   
   .sidebar .widget ul li a:hover {
-    color: var(--primary-color);
+    color: var(--secondary-color);
     border-bottom: 1px dashed var(--primary-color);
   }
   
 
+  .sidebar .widget .wp-block-tag-cloud {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    border-radius: 12px;
+  }
   
+  .sidebar .widget .wp-block-tag-cloud a {
+    display: inline-block;
+    background-color: var(--secondary-color);
+    color: var(--button-text-color);
+    font-size: 14px;
+    padding: 8px 14px;
+    border-radius: 50px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  }
+  
+  .sidebar .widget .wp-block-tag-cloud a:hover {
+    background-color: var(--primary-color);
+    color: var(--button-text-color);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  }

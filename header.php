@@ -44,7 +44,7 @@
     <?php wp_head(); ?>
 </head>
 
-<body <?php body_class(); ?>>
+<body <?php body_class( get_theme_mod( 'arnabwp_show_topbar', true ) ? 'has-topbar' : '' ); ?>>
   <!-- Preloader -->
   <?php 
     $section_enabled = get_theme_mod('arnabwp_preloader_enable', true);

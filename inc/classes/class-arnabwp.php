@@ -130,6 +130,9 @@ class ArnabWP
 			'style',
 		]);
 
+		add_theme_support( 'editor-styles' );
+add_editor_style( 'assets/css/editor-style.css' );
+
 		// Add support for automatic feed links
 		add_theme_support('automatic-feed-links');
 
@@ -155,7 +158,7 @@ public function register_block_patterns() {
 	if ( function_exists( 'register_block_pattern_category' ) ) {
 		register_block_pattern_category(
 			'arnabwp-sections',
-			[ 'label' => __( 'ArnabWP Sections', 'arnabwp' ) ]
+			[ 'label' => __( 'ArnabWP Patterns', 'arnabwp' ) ]
 		);
 	}
 
@@ -168,6 +171,14 @@ public function register_block_patterns() {
 		register_block_pattern(
 			'arnabwp/team-static',
 			require get_template_directory() . '/patterns/team-static.php'
+		);
+		register_block_pattern(
+			'arnabwp/features-static',
+			require get_template_directory() . '/patterns/features-static.php'
+		);
+		register_block_pattern(
+			'arnabwp/features-modern',
+			require get_template_directory() . '/patterns/features-modern.php'
 		);
 	}
 }

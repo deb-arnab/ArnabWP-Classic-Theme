@@ -19,6 +19,8 @@ require_once ARNABWP_DIR_PATH . '/inc/classes/controls/class-range-control.php';
 require_once ARNABWP_DIR_PATH . '/inc/classes/controls/class-repeater-control.php';
 require_once ARNABWP_DIR_PATH . '/inc/classes/controls/class-tabs-control.php';
 require_once ARNABWP_DIR_PATH . '/inc/classes/controls/class-radio-control.php';
+require_once ARNABWP_DIR_PATH . '/inc/classes/controls/class-dimensions-control.php';
+require_once ARNABWP_DIR_PATH . '/inc/classes/controls/class-responsive-range-control.php';
 
 
 }
@@ -133,12 +135,12 @@ class Theme_Customizer {
         $body_font      = get_theme_mod( 'arnabwp_body_font_family', 'Arial, sans-serif' );
         $heading_font   = get_theme_mod( 'arnabwp_heading_font_family', 'Georgia, serif' );
 
-        $body_font_size = get_theme_mod( 'arnabwp_body_font_size', 16 );
+        // $body_font_size = get_theme_mod( 'arnabwp_body_font_size', 16 );
         $heading_size   = get_theme_mod( 'arnabwp_heading_font_size', 32 );
         $content_title_font_size = get_theme_mod( 'arnabwp_content_title_font_size', 32 );
 
         echo '<style type="text/css">';
-        echo "body { font-family: {$body_font}; font-size: {$body_font_size}px; }";
+        // echo "body { font-family: {$body_font}; font-size: {$body_font_size}px; }";
         echo "h1, h2, h3, h4, h5, h6 { font-family: {$heading_font}; font-size: {$heading_size}px; }";
         echo ".entry-title, .post-card-content .post-title, .post-title { font-size: {$content_title_font_size}px;}";
    
@@ -331,6 +333,38 @@ if ( $hero_title_color || $hero_subtitle_color )
         }
       
     </style>';
+
+
+
+
+
+    $font_sizes = json_decode( get_theme_mod( 'arnabwp_body_font_size', json_encode([
+        'desktop' => '18',
+        'tablet'  => '16',
+        'mobile'  => '14'
+    ]) ), true );
+
+    ?>
+<style>
+    body {
+        font-size: <?php echo esc_attr( $font_sizes['desktop'] ); ?>px;
+    }
+
+    @media (max-width: 1024px) and (min-width: 768px) {
+        body {
+            font-size: <?php echo esc_attr( $font_sizes['tablet'] ); ?>px;
+        }
+    }
+
+    @media (max-width: 767px) {
+        body {
+            font-size: <?php echo esc_attr( $font_sizes['mobile'] ); ?>px;
+        }
+    }
+</style>
+    <?php
+
+
 
 }
 }
