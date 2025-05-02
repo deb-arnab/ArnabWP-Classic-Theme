@@ -30,6 +30,7 @@ Text Domain: arnabwp
     --button-text-color: #ffffff; /* Default button text color */
   }
   
+  
   /* Body and text color settings */
   body {
     color: var(--text-color);
@@ -75,55 +76,6 @@ Text Domain: arnabwp
     box-sizing: border-box;
   }
   
-  /* ==================================
-     Preloader Styles
-     ================================== */
-  
-  /* Preloader container styles */
-  #preloader {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #ffffff; /* Default white background */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 9999; /* Ensures it's on top */
-    visibility: visible;
-    opacity: 1;
-    transition: opacity 0.3s ease, visibility 0.3s ease;
-  }
-  
-  /* Preloader inner content */
-  .preloader-inner {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  /* Preloader spinner animation */
-  .preloader-spinner {
-    border: 4px solid transparent;
-    border-top: 4px solid var(--primary-color); /* Default blue */
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
-    animation: spin 1s linear infinite;
-  }
-  
-  /* Spinner rotation animation */
-  @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-  }
-  
-  /* Hide preloader once page is loaded */
-  body.loaded #preloader {
-    visibility: hidden;
-    opacity: 0;
-  }
   
   /* ==================================
      Full Width for Topbar
@@ -139,13 +91,7 @@ Text Domain: arnabwp
      Body and Basic Styles
      ================================== */
   
-  /* Parallax background effect */
-  .parallax-bg {
-    background-attachment: fixed;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-  }
+
   
   /* ==================================
      Navigation styles
@@ -154,7 +100,26 @@ Text Domain: arnabwp
    Navbar Base Styling
 ---------------------------- */
 
+/* Front page sticky transparent navbar */
 
+/* Transparent navbar on front page, sticky or not */
+body.home .arnabwp-navbar {
+  background-color: transparent;
+  transition: background-color 0.3s ease;
+  position: relative; /* Ensure navbar is relative by default when not sticky */
+}
+
+body.home .arnabwp-navbar.sticky-navbar {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 999;
+}
+
+/* When scrolled or menu toggled */
+body.home .arnabwp-navbar.sticky-navbar.scrolled {
+  background-color: var(--nav-bg-color) !important; /* Use custom color when scrolled */
+}
 /* ---------------------------
    Menu Item Base Styles
 ---------------------------- */
@@ -237,24 +202,9 @@ gap: 10px;
   color: var(--menu-color);
 }
   
-  /* Breadcrumb styling */
-  .arnabwp-breadcrumb {
-    font-size: 14px;
-    color: #666;
-  }
+
   
-  /* Breadcrumb links */
-  .arnabwp-breadcrumb a {
-    color: inherit;
-    text-decoration: none;
-  }
-  
-  /* Breadcrumb separator styling */
-  .arnabwp-breadcrumb-separator {
-    margin: 0 8px;
-    color: var(--primary-color);
-  }
-  
+
   /* ==================================
      Post Content Styles
      ================================== */
@@ -295,49 +245,10 @@ gap: 10px;
   
   /* Footer column spacing */
   .site-footer .footer-column {
-    margin-bottom: 40px;
+    border-bottom:2px solid var(--primary-color);
   }
-  
-  /* Footer widget title styling */
-  .footer-widget .widget-title {
-    font-size: 18px;
-    font-weight: 600;
-    margin-bottom: 20px;
-    color: var(--primary-color);
-  }
-  
-  /* Footer widget list styling */
-  .footer-widget ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-  
-  .footer-widget ul li {
-    margin-bottom: 10px;
-  }
-  
-  /* Footer widget link styling */
-  .footer-widget ul li a {
-    text-decoration: none;
-    transition: color 0.3s ease;
-  }
-  
-  .footer-widget ul li a:hover {
-    color: var(--link-color);
-  }
-  
-  /* Social link styling in footer */
-  .footer-social a {
-    margin-right: 12px;
-    text-decoration: none;
-    transition: color 0.3s ease;
-  }
-  
-  .footer-social a:hover {
-    color: var(--link-color);
-  }
-  
+
+
   /* Footer bottom styling */
   .footer-bottom {
     padding: 20px 0;
@@ -364,344 +275,15 @@ gap: 10px;
   }
   
 
-  /* ==================================
-     Mobile Layout Adjustments
-     ================================== */
-  
-  /* Mobile layout adjustments */
-  @media (max-width: 991px) {
-    .site-main .container .row {
-      display: block; /* Stack content and sidebar */
-    }
-  }
-  
-  /* Scroll to Top Button */
-  .scroll-to-top {
-    position: fixed;
-    bottom: 25px;
-    right: 25px;
-    background-color: var(--primary-color);
-    color: var(--button-text-color);
-    border: none;
-    padding: 5px 15px;
-    font-size: 20px;
-    cursor: pointer;
-    display: none; /* Hidden by default */
-    transition: all 0.3s ease;
-    z-index: 9999; /* Ensure it's above other content */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Soft shadow for depth */
-  }
-  
-  /* Scroll to Top button hover effect */
-  .scroll-to-top:hover {
-    background-color: var(--secondary-color);
-    transform: translateY(-5px); /* Slight lift effect */
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover */
-  }
-  
-  /* Focus Effect for Accessibility */
-  .scroll-to-top:focus {
-    outline: none;
-    box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.6); /* Blue focus outline */
-  }
-  
-
-
-.pagination-wrapper {
-  margin-top: 30px;
-}
-
-.pagination {
-  display: flex;
-  list-style: none;
-  padding-left: 0;
-  gap: 15px;
-  flex-wrap: wrap;
-}
-
-.pagination .page-item {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-/* Unified button style for both links and spans (including prev/next) */
-.pagination .page-link,
-.pagination .page-numbers {
-  position: relative;
-  display: inline-block;
-  padding: 10px 15px;
-  font-size: 14px;
-  font-weight: 600;
-  color: var(--button-text-color);
-  background-color: var(--primary-color);
-  border: none;
-  border-radius: 50px;
-  text-decoration: none;
-  transition: all 0.3s ease;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-}
-
-/* Active and hover styles */
-.pagination .page-item.active .page-link,
-.pagination .page-numbers.current,
-.pagination .page-link:hover,
-.pagination .page-numbers:hover {
-  background: var(--secondary-color);
-  color: var(--button-text-color);
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-}
-
-/* Focus outline for accessibility */
-.pagination .page-link:focus,
-.pagination .page-numbers:focus {
-  outline: none;
-  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.4);
-}
 
 
 
 
-/* ================================
-   Layout Containers
-================================ */
-
-.arnabwp-blog-content {
-  display: flex;
-  flex-wrap: nowrap;
-  gap: 2rem;
-}
-
-.content-area {
-  flex: 1 1 auto;
-  min-width: 0;
-}
-
-/* ================================
-   Sidebar Layout (Left / Right)
-================================ */
-
-.has-sidebar-left .content-area {
-  order: 2;
-}
-
-.has-sidebar-left aside,
-.has-sidebar-right aside {
-  width: 280px;
-  flex-shrink: 0;
-}
-
-.arnabwp-blog-content.d-flex.has-sidebar-left,
-.arnabwp-blog-content.d-flex.has-sidebar-right {
-  display: flex;
-  gap: 2rem;
-}
-
-.no-sidebar aside {
-  display: none;
-}
-
-/* ================================
-   Sidebar Styles 
-================================ */
-
-/* SIDEBAR */
-.sidebar {
-  flex-shrink: 0;
-}
-
-.sidebar-widget-area {
-  background: #fff;
-  border-radius: 10px;
-  padding: 30px;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
-  transition: box-shadow 0.3s ease, transform 0.2s ease;
-  margin-bottom: 30px;
-}
-
-.sidebar-widget-area:hover {
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
-  transform: translateY(-4px);
-}
-
-/* INDIVIDUAL WIDGETS */
-.widget {
-  margin-bottom: 2.5rem;
-}
-
-.wp-block-heading{
-  font-size: 25px;
-  font-weight: 700;
-  margin-bottom: 1rem;
-  border-left: 5px solid var(--primary-color);
-  padding-left: 0.75rem;
-  color: #111;
-}
-
-/* LIST STYLING */
-.sidebar .widget ul {
-  list-style: none;
-  padding-left: 0;
-  margin: 0;
-}
-
-.sidebar .widget ul li {
-  margin-bottom: 0.75rem;
-}
-
-.sidebar .widget ul li a {
-  color: #444;
-  text-decoration: none;
-  font-weight: 500;
-  display: inline-block;
-  padding: 6px 0;
-  border-bottom: 1px dashed transparent;
-  transition: all 0.3s ease;
-}
-
-.sidebar .widget ul li a:hover {
-  color: var(--primary-color);
-  border-bottom: 1px dashed var(--primary-color);
-}
-
-/* SEARCH BLOCK */
-.wp-block-search {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  margin: 1.5rem 0;
-}
-
-/* SEARCH INPUT */
-.wp-block-search__input {
-  padding: 12px 16px;
-  border: 2px solid #ddd;
-  border-radius: 8px;
-  font-size: 1rem;
-  background-color: #fff;
-  color: #333;
-  outline: none;
-  transition: border 0.3s, box-shadow 0.3s;
-}
-
-.wp-block-search__input:focus {
-  border-color: var(--primary-color);
-  box-shadow: 0 0 0 3px rgba(232, 53, 130, 0.15);
-}
-
-/* SEARCH BUTTON */
-.wp-block-search__button {
-  padding: var(--arnabwp-button-padding-top-bottom, 12px) var(--arnabwp-button-padding-left-right, 18px);
-  border: none;
-  font-weight: 600;
-  font-size: 1rem;
-  cursor: pointer;
-  background-color: var(--primary-color);
-  color: var(--button-text-color);
-  border-radius: var(--arnabwp-button-radius, 6px);
-  transition: background-color 0.3s ease, transform 0.2s ease;
-}
-
-.wp-block-search__button:hover {
-  background-color: var(--secondary-color);
-  transform: translateY(-1px);
-}
 
 
 
-/* ================================
-   Post Card (Shared Styles)
-================================ */
 
-.post-card {
-  display: inline-block;
-  width: 100%;
-  margin-bottom: 2rem;
-  background: #fff;
-  border: 1px solid #eaeaea;
-  border-radius: 12px;
-  padding: 20px;
-  box-shadow: 0 3px 15px rgba(0, 0, 0, 0.03);
-  transition: box-shadow 0.3s ease, transform 0.15s ease;
-}
 
-.post-card:hover {
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
-  transform: translateY(-5px);
-}
-
-/* ================================
-   Masonry Layout
-================================ */
-
-.masonry-grid {
-  column-count: 3;
-  column-gap: 2rem;
-}
-
-.masonry-grid .post-card img {
-  width: 100%;
-  height: auto;
-  max-height: 250px;
-  object-fit: cover;
-  border-radius: 8px;
-}
-
-/* ================================
-   List Layout
-================================ */
-
-.list-layout .post-card {
-  display: flex;
-  flex-direction: row;
-  align-items: stretch;
-  gap: 1.5rem;
-  padding: 0;
-  border-radius: 12px;
-  overflow: hidden;
-  background: #fff;
-  border: 1px solid #eaeaea;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
-}
-
-.list-layout .post-card > a {
-  flex-shrink: 0;
-  width: 350px;
-  height: 100%;
-  overflow: hidden;
-}
-
-.list-layout .post-card img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
-.list-layout .post-card-content {
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  width: 100%;
-}
-
-.list-layout .post-title {
-  font-size: 1.5rem;
-  margin-bottom: 0.5rem;
-}
-
-.list-layout .post-card .small {
-  color: #888;
-  margin-bottom: 1rem;
-}
-
-.list-layout .post-card .btn {
-  align-self: flex-start;
-}
-
-.list-layout .post-card.list-item.reverse-layout {
-  flex-direction: row-reverse !important;
-}
 /* ================================
    Responsive Adjustments
 ================================ */
@@ -792,3 +374,4 @@ gap: 10px;
     font-size: 1rem;
   }
 }
+

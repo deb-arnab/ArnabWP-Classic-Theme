@@ -1,0 +1,53 @@
+/* ================================
+   Sidebar Styles 
+================================ */
+
+/* SIDEBAR */
+.sidebar {
+    flex-shrink: 0;
+  }
+  
+  .sidebar-widget-area {
+    background: #fff;
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+    transition: box-shadow 0.3s ease, transform 0.2s ease;
+    margin-bottom: 30px;
+  }
+  
+  .sidebar-widget-area:hover {
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+    transform: translateY(-4px);
+  }
+  
+
+  
+  /* LIST STYLING */
+  .sidebar .widget ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+  }
+  
+  .sidebar .widget ul li {
+    margin-bottom: 0.75rem;
+  }
+  
+  .sidebar .widget ul li a {
+    color: #444;
+    text-decoration: none;
+    font-weight: 500;
+    display: inline-block;
+    padding: 6px 0;
+    border-bottom: 1px dashed transparent;
+    transition: all 0.3s ease;
+  }
+  
+  .sidebar .widget ul li a:hover {
+    color: var(--primary-color);
+    border-bottom: 1px dashed var(--primary-color);
+  }
+  
+
+  

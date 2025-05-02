@@ -8,7 +8,7 @@
  * @package ArnabWP
  */
 
-// Query testimonials custom post type
+
 
 $section_enabled = get_theme_mod('arnabwp_testimonial_section_enable', true);
 if (!$section_enabled) return;
@@ -145,8 +145,11 @@ if ($testimonial_query->have_posts()) : ?>
         </div> <!-- Close container -->
     </section> <!-- Close testimonial-section -->
 
-<?php else : ?>
-    <p class="text-center">No testimonials found.</p>
+    <?php else : ?>
+    <?php
+    // Fallback: Show the static block pattern
+    echo do_blocks('<!-- wp:pattern {"slug":"arnabwp/testimonials-static"} /-->');
+    ?>
 <?php endif; ?>
 
 <?php

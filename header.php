@@ -83,12 +83,18 @@ if ( function_exists( 'wp_body_open' ) ) {
     </header>
 
     <div id="content" class="site-content">
-
-        <?php if ( get_theme_mod( 'arnabwp_enable_breadcrumbs', true ) ) : ?>
+<?php
+    $show_breadcrumb     = get_theme_mod( 'arnabwp_enable_breadcrumbs', true );
+    $text_align     = get_theme_mod('arnabwp_breadcrumbs_text_alignment', 'right');
+    $align_class    = 'breadcrumb-align-' . esc_attr($text_align);
+?>
+         <?php if ($show_breadcrumb) : ?>
             <nav aria-label="Breadcrumb" class="site-breadcrumb">
+                <div class="site-container <?php echo esc_attr($align_class); ?>">
                 <?php
                 $breadcrumbs = \ARNABWP_THEME\Inc\Breadcrumbs::get_instance();
                 $breadcrumbs->arnabwp_breadcrumb();
                 ?>
+                </div>
             </nav>
         <?php endif; ?>

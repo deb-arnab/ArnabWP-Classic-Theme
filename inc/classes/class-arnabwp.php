@@ -65,6 +65,8 @@ class ArnabWP
 		add_action('after_setup_theme', [$this, 'arnabwp_theme_support']);
 		add_filter('excerpt_more', [$this, 'custom_excerpt_more']);
 		add_filter('excerpt_length', [$this, 'custom_excerpt_length'], 999);
+		// Register patterns after WordPress has initialized
+	add_action('init', [$this, 'register_block_patterns']);
 	}
 
 	/**
@@ -141,7 +143,36 @@ class ArnabWP
 		if (! isset($content_width)) {
 			$content_width = 1240;
 		}
+
+	
 	}
+
+/**
+ * Register custom block patterns and categories.
+ */
+public function register_block_patterns() {
+	// Register a custom category
+	if ( function_exists( 'register_block_pattern_category' ) ) {
+		register_block_pattern_category(
+			'arnabwp-sections',
+			[ 'label' => __( 'ArnabWP Sections', 'arnabwp' ) ]
+		);
+	}
+
+	// Register the testimonial static pattern
+	if ( function_exists( 'register_block_pattern' ) ) {
+		register_block_pattern(
+			'arnabwp/testimonials-static',
+			require get_template_directory() . '/patterns/testimonials-static.php'
+		);
+		register_block_pattern(
+			'arnabwp/team-static',
+			require get_template_directory() . '/patterns/team-static.php'
+		);
+	}
+}
+
+
 
 	/**
 	 * Customize the string displayed at the end of excerpts.

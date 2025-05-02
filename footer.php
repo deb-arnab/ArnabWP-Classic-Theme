@@ -13,11 +13,11 @@ $text_align     = get_theme_mod('arnabwp_footer_text_alignment', 'center');
 $align_class    = 'align-' . esc_attr($text_align);
 ?>
 
-<footer class="site-footer py-4" style="background-color: <?php echo esc_attr($footer_bg_color); ?>;">
+<footer class="site-footer" style="background-color: <?php echo esc_attr($footer_bg_color); ?>;">
   <div class="site-container">
   
   <?php if ($show_widgets) : ?>
-      <div class="row mb-4">
+      <div class="row">
         <?php for ($i = 1; $i <= 4; $i++) : ?>
           <div class="col-md-6 col-lg-3 footer-column">
             <?php if (is_active_sidebar('footer-' . $i)) : ?>

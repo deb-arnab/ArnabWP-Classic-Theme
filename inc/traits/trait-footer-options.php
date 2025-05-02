@@ -164,25 +164,6 @@ trait Footer_Options
 			]
 		));
 
-		// Footer widget heading color
-		$wp_customize->add_setting('arnabwp_footer_widget_heading_color', [
-			'default'           => '#ffffff',
-			'sanitize_callback' => 'sanitize_hex_color',
-		]);
-
-		$wp_customize->add_control(new WP_Customize_Color_Control(
-			$wp_customize,
-			'arnabwp_footer_widget_heading_color',
-			[
-				'label'    => __('Footer Widget Heading Color', 'arnabwp'),
-				'section'  => 'arnabwp_footer_section',
-				'settings' => 'arnabwp_footer_widget_heading_color',
-				'active_callback' => function() {
-					return get_theme_mod('arnabwp_footer_show_widgets') === true;
-				},
-			]
-		));
-
 		// Footer widget text color
 		$wp_customize->add_setting('arnabwp_footer_widget_text_color', [
 			'default'           => '#bbbbbb',

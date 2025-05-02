@@ -1,0 +1,405 @@
+/* ===========================================
+   HERO SECTION STYLES
+=========================================== */
+
+.hero-section {
+    position: relative;
+    width: 100%;
+    height: 100vh; /* Full viewport height */
+    overflow: hidden;
+  }
+  
+  /* Background image or slider styles */
+  .hero-image,
+  .hero-slider .hero-slide {
+    background-size: cover; /* Cover entire area */
+    background-position: center; /* Center image */
+    height: 100vh;
+    width: 100%;
+    position: relative;
+  }
+  
+  /* Overlay for darkening the background */
+  .hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Adjustable darkness */
+    z-index: 5; /* Below content but above background */
+  }
+  
+  /* Centralized content within the hero section */
+  .hero-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    z-index: 10;
+    padding: 20px;
+    max-width: 90%;
+  }
+  
+  /* ===========================================
+     HERO CTA BUTTON STYLES
+  =========================================== */
+  
+  .hero-buttons .hero-btn {
+    display: inline-block;
+    
+    padding: var(--arnabwp-button-padding-top-bottom, 10px) var(--arnabwp-button-padding-left-right, 15px);
+    border-radius: var(--arnabwp-button-radius, 5px);
+    text-decoration: none;
+    font-weight: 600;
+    background-color: var(--primary-color); /* Button background from root variable */
+    color: var(--button-text-color); /* Button text color from root variable */
+    transition: background 0.3s ease;
+  }
+  
+  .hero-buttons .hero-btn:hover {
+    background-color: var(--secondary-color);
+    color: var(--button-text-color); /* Change on hover using primary color */
+  }
+  
+  .hero-content.align-left {
+    left: 0;
+    transform: translate(0, -50%);
+    text-align: left;
+    padding-left: 40px; /* Adjust padding as needed */
+    max-width: 60%;
+  }
+  
+  .hero-content.align-center {
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+  }
+  
+  .hero-content.align-right {
+    left: auto;
+    right: 40px; /* Moves it in from the right */
+    transform: translate(0, -50%);
+    text-align: right;
+    padding-right: 0; /* Already spaced using 'right' */
+    max-width: 60%;
+  }
+  /* ===========================================
+     OWL CAROUSEL DOTS (Pagination)
+  =========================================== */
+  
+  .hero-slider .owl-dots {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 11;
+    display: flex;
+    gap: 10px;
+  }
+  
+  /* Dot appearance */
+  .hero-slider .owl-dots .owl-dot {
+    width: 14px;
+    height: 14px;
+    background-color: var(--secondary-color) !important; 
+    border-radius: 50%;
+    opacity: 1;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  
+  /* Active dot */
+  .hero-slider .owl-dots .owl-dot.active {
+    background-color: var(--primary-color) !important; /* Highlighted active dot */
+    transform: scale(1.2); /* Slightly larger */
+  }
+  
+  /* ===========================================
+     OWL NAVIGATION ARROWS (Left/Right Controls)
+  =========================================== */
+  
+  .owl-nav {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    z-index: 12;
+    display: flex;
+    justify-content: space-between;
+    transform: translateY(-50%);
+    pointer-events: none; /* Prevent background interference */
+    padding: 0 50px; /* Distance from screen edge */
+  }
+  
+  /* Arrow button style */
+  .owl-nav button {
+    background: none !important;
+    border: none;
+    pointer-events: auto;
+  }
+  
+  .owl-nav button span {
+    color: var(--primary-color);
+    font-size: 100px;
+    transition: color 0.3s ease, transform 0.2s ease;
+    display: inline-block; /* smoother transform scaling */
+  }
+  
+  /* Hover effect for arrows */
+  .owl-nav button span:hover {
+    transform: scale(1.2); /* Zoom on hover */
+  }
+  
+  /* ===========================================
+     SERVICE SECTION CARD STYLES
+  =========================================== */
+  
+  .service-card {
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    background-color: #fff;
+  }
+  
+  .service-card:hover {
+    transform: translateY(-5px); /* Slight lift on hover */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Soft white glow */
+  }
+  
+  /* Wrapper for service icons */
+  .icon-wrapper {
+    background: rgba(255, 255, 255, 0.1); /* Light transparent background */
+    padding: 15px;
+    border-radius: 50%; /* Circular icon background */
+    display: inline-block;
+  }
+
+  /* ===========================================
+   Employee Section Styles
+=========================================== */
+
+/* ---------- Image Wrapper ---------- */
+.employee-img-wrapper {
+    position: relative;
+    height: 250px;
+    overflow: hidden;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+  }
+  
+  /* ---------- Employee Image ---------- */
+  .employee-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease-in-out;
+  }
+  
+  /* ---------- Image Zoom on Card Hover ---------- */
+  .team-card:hover .employee-img {
+    transform: scale(1.05);
+  }
+  
+  /* ---------- Team Card (Container) ---------- */
+  .team-card {
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+  }
+  
+  .team-card:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* ===========================================
+     Overlays (Email & Social Icons)
+  =========================================== */
+  
+  /* ---------- Common Overlay Base ---------- */
+  .social-overlay,
+  .email-overlay {
+    position: absolute;
+    left: 0;
+    right: 0;
+    padding: 0.6rem;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.4);
+    color: #fff;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  /* ---------- Show overlays on image hover ---------- */
+  .employee-img-wrapper:hover .social-overlay,
+  .employee-img-wrapper:hover .email-overlay {
+    opacity: 1;
+    visibility: visible;
+  }
+  
+  /* ---------- Social Icons Overlay ---------- */
+  .social-overlay {
+    bottom: 10px;
+  }
+  
+  .social-overlay a {
+    color: #fff;
+    margin: 0 6px;
+    display: inline-block;
+    transition: transform 0.2s ease;
+  }
+  
+  .social-overlay a:hover {
+    transform: scale(1.2);
+  }
+  
+  /* ---------- Email Text Overlay ---------- */
+  .email-overlay {
+    bottom: 50px; /* stacked above the social icons */
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+  }
+  
+  /* ===========================================
+     Owl Carousel Layout Adjustments
+  =========================================== */
+  
+  /* ---------- Add spacing between items ---------- */
+  .owl-carousel .team-card {
+    margin: 15px;
+  }
+  
+  
+  .client-carousel .item {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    height: 150px;
+  }
+  
+  .client-logo-wrapper {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    padding: 30px;
+  }
+  
+  .client-logo-inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+  }
+  
+  .client-logo {
+    max-height: 100px;
+    max-width: 100%;
+    object-fit: contain;
+    display: block;
+    transition: transform 0.3s ease;
+  }
+  
+  .client-logo-wrapper:hover .client-logo {
+    transform: scale(1.2);
+  }
+  
+  .client-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0,0,0,0.5);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 2;
+  }
+  
+  .client-logo-wrapper:hover .client-overlay {
+    opacity: 1;
+  }
+  
+  .client-name {
+    font-size: 14px;
+    text-transform: uppercase;
+    color: white;
+    text-align: center;
+    opacity: 1;
+    z-index: 3;
+  }
+  
+  
+  #about {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  #about .bg-overlay {
+    position: absolute;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.5); /* Adjust transparency as needed */
+    z-index: 1;
+  }
+  
+  #about .about-img,
+  #about .about-content
+   {
+    z-index: 10;
+  }
+  
+  
+  /* Testimonial Section */
+  
+  
+  .testimonial-client-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  /* Testimonial Rating */
+  .testimonial-rating {
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .testimonial-rating .star-rating {
+    font-size: 25px;
+    color: #f7c301; /* Gold color for filled stars */
+    transition: color 0.3s ease;
+  }
+  
+  .testimonial-rating .star-rating.filled {
+    color: #f7c301; /* Gold for filled stars */
+  }
+  
+  .testimonial-rating .star-rating {
+    color: #ddd; /* Light grey for empty stars */
+  }
+  
+  
+  /* Testimonial Card */
+  .testimonial-item {
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 30px 50px;
+    transition: all 0.3s ease;
+    margin: 10px;
+  }
+  
+  .testimonial-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  }
+  
+  .testimonial-client-social-links a i{
+    padding-right: 10px;
+  }

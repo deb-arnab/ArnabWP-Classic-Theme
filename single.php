@@ -21,8 +21,8 @@ if ($sidebar_layout === 'left') {
 ?>
 
 
-<main class="py-5 bg-info">
-  <div class="site-container">
+<main id="primary" class="site-main">
+<header class='py-5 bg-info'>
 
    
     <?php
@@ -35,11 +35,10 @@ if ($sidebar_layout === 'left') {
     <?php 
   endif
     ?>
-  </div>
-</main>
+</header>
 
-<section id="primary" class="site-main py-5 <?php echo esc_attr($layout_class); ?>">
-    <div class="site-container arnabwp-blog-content d-flex flex-lg-row">
+<section class="site-container py-5 <?php echo esc_attr($layout_class); ?>">
+    <div class="arnabwp-blog-content d-flex flex-lg-row">
 
 
         <?php if ($sidebar_layout === 'left') : ?>
@@ -87,6 +86,6 @@ if ($sidebar_layout === 'left') {
     </div>
     </div>
         </section>
-
+</main>
 <?php get_footer(); // Includes the footer part 
 ?>

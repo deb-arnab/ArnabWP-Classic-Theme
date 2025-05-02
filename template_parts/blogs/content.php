@@ -26,14 +26,15 @@ $reverse_layout = (has_post_thumbnail() && $is_list && $post_index % 2 === 0) ? 
 
     <div class="<?php echo $is_list ? 'post-card-content' : ''; ?>">
 
-        <h3 class="mt-2 post-title">
-            <a href="<?php the_permalink(); ?>" class="text-decoration-none">
+        <h2 class="mt-2 post-title">
+            <a href="<?php the_permalink(); ?>" class="text-decoration-none text-dark">
                 <?php the_title(); ?>
             </a>
-        </h3>
+        </h2>
+        <small class="text-muted">
         <?php get_template_part( 'template_parts/blogs/content', 'meta' ); ?>
-
-        <a href="<?php the_permalink(); ?>" class="btn btn-sm">Read More</a>
+        </small>
+        <a href="<?php the_permalink(); ?>" class="btn btn-sm mt-3">Read More</a>
 
     </div>
   
@@ -42,18 +43,19 @@ $reverse_layout = (has_post_thumbnail() && $is_list && $post_index % 2 === 0) ? 
     <div class="<?php echo $is_list ? 'post-card-content' : ''; ?>">
 
         <h3 class="mt-2 post-title">
-            <a href="<?php the_permalink(); ?>" class="text-decoration-none">
+            <a href="<?php the_permalink(); ?>" class="text-decoration-none text-dark">
                 <?php the_title(); ?>
             </a>
         </h3>
+        <small class="text-muted">
         <?php get_template_part( 'template_parts/blogs/content', 'meta' ); ?>
-       
+        </small>
 
-        <div class="mt-2 mb-2">
+        <div class="mt-5">
             <?php the_excerpt(); ?>
         </div>
 
-        <a href="<?php the_permalink(); ?>" class="btn btn-sm">Read More</a>
+        <a href="<?php the_permalink(); ?>" class="btn btn-sm mt-5">Read More</a>
 
     </div>
     <?php endif; ?>

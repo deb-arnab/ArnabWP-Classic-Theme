@@ -36,34 +36,54 @@ class Enqueue
     {
 
         // Register and Enqueue Theme Stylesheet
-        wp_register_style(
-            'style-css',
-            get_stylesheet_uri(),
-            [],
-            filemtime(ARNABWP_DIR_PATH . '/style.css'),
-            'all'
-        );
+        wp_register_style('style-css', get_stylesheet_uri(), [], filemtime(ARNABWP_DIR_PATH . '/style.css'), 'all');
         wp_enqueue_style('style-css');
 
         // Register and Enqueue Bootstrap CSS
-        wp_register_style(
-            'bootstrap-css',
-            ARNABWP_TEMP_DIR_URI . '/assets/css/bootstrap.min.css',
-            [],
-            filemtime(ARNABWP_DIR_PATH . '/assets/css/bootstrap.min.css'),
-            'all'
-        );
+        wp_register_style('bootstrap-css', ARNABWP_TEMP_DIR_URI . '/assets/css/bootstrap.min.css', [], filemtime(ARNABWP_DIR_PATH . '/assets/css/bootstrap.min.css'), 'all');
         wp_enqueue_style('bootstrap-css');
 
         // Register and Enqueue Custom CSS
-        wp_register_style(
-            'custom-css',
-            ARNABWP_TEMP_DIR_URI . '/assets/css/custom.css',
-            [],
-            filemtime(ARNABWP_DIR_PATH . '/assets/css/custom.css'),
-            'all'
-        );
+        wp_register_style('custom-css', ARNABWP_TEMP_DIR_URI . '/assets/css/custom.css', [], filemtime(ARNABWP_DIR_PATH . '/assets/css/custom.css'), 'all');
         wp_enqueue_style('custom-css');
+
+
+        wp_register_style('arnabwp-preloader-css', ARNABWP_TEMP_DIR_URI . '/assets/css/basics/preloader.css', [], filemtime(ARNABWP_DIR_PATH . '/assets/css/basics/preloader.css'), 'all');
+        wp_enqueue_style('arnabwp-preloader-css');
+
+        // Register and Enqueue Frontpage CSS
+        wp_register_style('arnabwp-frontpage-css', ARNABWP_TEMP_DIR_URI . '/assets/css/frontpage.css', [], filemtime(ARNABWP_DIR_PATH . '/assets/css/frontpage.css'), 'all');
+        wp_enqueue_style('arnabwp-frontpage-css');
+
+        // Register and Enqueue Blog comment CSS
+        wp_register_style('arnabwp-comments-css', ARNABWP_TEMP_DIR_URI . '/assets/css/blog/comments.css', [], filemtime(ARNABWP_DIR_PATH . '/assets/css/blog/comments.css'), 'all');
+        wp_enqueue_style('arnabwp-comments-css');
+
+        // Register and Enqueue Blog pagination CSS
+        wp_register_style('arnabwp-pagination-css', ARNABWP_TEMP_DIR_URI . '/assets/css/blog/pagination.css', [], filemtime(ARNABWP_DIR_PATH . '/assets/css/blog/pagination.css'), 'all');
+        wp_enqueue_style('arnabwp-pagination-css');
+
+        wp_register_style('arnabwp-blogpost-css', ARNABWP_TEMP_DIR_URI . '/assets/css/blog/blogpost.css', [], filemtime(ARNABWP_DIR_PATH . '/assets/css/blog/blogpost.css'), 'all');
+        wp_enqueue_style('arnabwp-blogpost-css');
+
+        wp_register_style('arnabwp-breadcrumbs-css', ARNABWP_TEMP_DIR_URI . '/assets/css/basics/breadcrumbs.css', [], filemtime(ARNABWP_DIR_PATH . '/assets/css/basics/breadcrumbs.css'), 'all');
+        wp_enqueue_style('arnabwp-breadcrumbs-css');
+
+        wp_register_style('arnabwp-footer-widgets-css', ARNABWP_TEMP_DIR_URI . '/assets/css/basics/footer-widgets.css', [], filemtime(ARNABWP_DIR_PATH . '/assets/css/basics/footer-widgets.css'), 'all');
+        wp_enqueue_style('arnabwp-footer-widgets-css');
+
+        wp_register_style('arnabwp-widgets-css', ARNABWP_TEMP_DIR_URI . '/assets/css/basics/widgets.css', [], filemtime(ARNABWP_DIR_PATH . '/assets/css/basics/widgets.css'), 'all');
+        wp_enqueue_style('arnabwp-widgets-css');
+
+        wp_register_style('arnabwp-sidebar-widgets-css', ARNABWP_TEMP_DIR_URI . '/assets/css/basics/sidebar-widgets.css', [], filemtime(ARNABWP_DIR_PATH . '/assets/css/basics/sidebar-widgets.css'), 'all');
+        wp_enqueue_style('arnabwp-sidebar-widgets-css');
+
+        wp_register_style('arnabwp-sidebar-layout-css', ARNABWP_TEMP_DIR_URI . '/assets/css/basics/sidebar-layout.css', [], filemtime(ARNABWP_DIR_PATH . '/assets/css/basics/sidebar-layout.css'), 'all');
+        wp_enqueue_style('arnabwp-sidebar-layout-css');
+
+        wp_register_style('arnabwp-scroll-to-top-css', ARNABWP_TEMP_DIR_URI . '/assets/css/basics/scroll-to-top.css', [], filemtime(ARNABWP_DIR_PATH . '/assets/css/basics/scroll-to-top.css'), 'all');
+        wp_enqueue_style('arnabwp-scroll-to-top-css');
+
 
         // Enqueue Google Fonts
 
@@ -116,5 +136,15 @@ class Enqueue
 
         // Owl Carousel JS
         wp_enqueue_script('owl-carousel', 'https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js', array('jquery'), null, true);
+
+         // Register and Enqueue Main JS
+         wp_register_script(
+            'arnabwp-slider-js',
+            ARNABWP_TEMP_DIR_URI . '/assets/js/owl-carousel/slider.js',
+            [],
+            filemtime(ARNABWP_DIR_PATH . '/assets/js/owl-carousel/slider.js'),
+            true
+        );
+        wp_enqueue_script('arnabwp-slider-js');
     }
 }

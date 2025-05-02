@@ -1,0 +1,33 @@
+  
+  /* Scroll to Top Button */
+  .scroll-to-top {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    background-color: var(--primary-color);
+    color: var(--button-text-color);
+    border: none;
+    padding: 5px 15px;
+    font-size: 20px;
+    cursor: pointer;
+    display: none; /* Hidden by default */
+    transition: all 0.3s ease;
+    z-index: 9999; /* Ensure it's above other content */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Soft shadow for depth */
+  }
+  
+  /* Scroll to Top button hover effect */
+  .scroll-to-top:hover {
+    background-color: var(--secondary-color);
+    transform: translateY(-5px); /* Slight lift effect */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover */
+  }
+  
+  /* Focus Effect for Accessibility */
+  .scroll-to-top:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.6); /* Blue focus outline */
+  }
+  
+
+

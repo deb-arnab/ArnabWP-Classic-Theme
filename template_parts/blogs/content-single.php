@@ -6,7 +6,7 @@
  */
 ?>
 
-<article id="post-<?php the_ID(); ?>" <?php post_class('mb-5'); ?>>
+<article id="post-<?php the_ID(); ?>" <?php post_class('post-card shadow-sm px-5 py-5 mb-4'); ?>>
 
   <?php if ( has_post_thumbnail() ) : ?>
     <div class="post-thumbnail mb-4">
@@ -15,13 +15,13 @@
   <?php endif; ?>
 
   <header class="mb-3">
-    <h1 class="display-5 post-title"><?php the_title(); ?></h1>
+    <h2 class="display-5 post-title"><?php the_title(); ?></h2>
 
     <?php get_template_part( 'template_parts/blogs/content', 'meta' ); ?>
 
   </header>
 
-  <div class="entry-content mb-4">
+  <div class="entry-content">
   <?php the_content(); ?>
   <?php
 wp_link_pages(array(

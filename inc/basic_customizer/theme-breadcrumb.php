@@ -38,6 +38,26 @@ function add_breadcrumb_section( $wp_customize ) {
         ]
     ));
 
+    	// breadcrumbs text alignment
+		$wp_customize->add_setting('arnabwp_breadcrumbs_text_alignment', [
+			'default'           => 'right',
+			'sanitize_callback' => 'sanitize_breadcrumbs_alignment',
+		]);
+
+		$wp_customize->add_control('arnabwp_breadcrumbs_text_alignment', [
+			'label'   => __('Breadcrumbs Text Alignment', 'arnabwp'),
+			'section' => 'arnabwp_breadcrumbs_section',
+			'type'    => 'select',
+			'choices' => [
+				'left'   => __('Left', 'arnabwp'),
+				'center' => __('Center', 'arnabwp'),
+				'right'  => __('Right', 'arnabwp'),
+			],
+			'active_callback' => function() {
+					return get_theme_mod('arnabwp_enable_breadcrumbs') === true;
+				},
+		]);
+
     /**
      * Divider: Separator & Typography
      */
@@ -158,3 +178,17 @@ function sanitize_breadcrumb_separator( $value ) {
     // Return the value only if it's valid; otherwise fallback to '>'
     return in_array($value, $valid, true) ? $value : '>';
 }
+
+	/**
+	 * Sanitize the breadcrumb alignment option.
+	 *
+	 * @param string $value The selected alignment value.
+	 * @return string
+	 */
+	function sanitize_breadcrumbs_alignment($value)
+	{
+		$valid = ['left', 'center', 'right'];
+
+		// Return the value only if it's valid; fallback to 'right'
+		return in_array($value, $valid, true) ? $value : 'right';
+	}

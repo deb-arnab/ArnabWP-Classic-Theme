@@ -1,0 +1,25 @@
+/* ================================
+   Sidebar Layout (Left / Right)
+================================ */
+
+.has-sidebar-left .content-area {
+    order: 2;
+  }
+  
+  .has-sidebar-left aside,
+  .has-sidebar-right aside {
+    width: 280px;
+    flex-shrink: 0;
+  }
+  
+  .arnabwp-blog-content.d-flex.has-sidebar-left,
+  .arnabwp-blog-content.d-flex.has-sidebar-right {
+    display: flex;
+    gap: 2rem;
+  }
+  
+  .no-sidebar aside {
+    display: none;
+  }
+  
+

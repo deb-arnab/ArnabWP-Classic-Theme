@@ -255,3 +255,4 @@ trait Header_Options
 		return $value;
 	}
 }
+

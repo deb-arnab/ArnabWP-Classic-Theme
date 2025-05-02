@@ -1,0 +1,25 @@
+  /* Breadcrumb styling */
+
+  
+  /* Breadcrumb separator styling */
+  .arnabwp-breadcrumb-separator {
+    margin: 0 8px;
+    color: var(--primary-color);
+  }
+  
+ /* ==================================
+     Breadcrumb Text Alignment
+     ================================== */
+  
+  /* Breadcrumb text alignment options */
+  .breadcrumb-align-left {
+    text-align: left;
+  }
+  
+.breadcrumb-align-center {
+    text-align: center;
+  }
+  
+  .breadcrumb-align-right {
+    text-align: right;
+  }

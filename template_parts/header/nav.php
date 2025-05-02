@@ -13,12 +13,14 @@ use ARNABWP_THEME\Inc\MENUS;
 // Instantiate the Menus class to retrieve the custom walker.
 $menu_class = Menus::get_instance();
 $walker     = $menu_class->arnabwp_get_navwalker();
+$sticky_enabled = get_theme_mod( 'arnabwp_sticky_header', false );
+$sticky_class   = ( $sticky_enabled && is_front_page() ) ? 'sticky-navbar' : '';
 ?>
 
 <!-- Skip Link for Accessibility -->
 <a class="skip-link screen-reader-text" href="#content"><?php esc_html_e( 'Skip to content', 'arnabwp' ); ?></a>
 
-<nav class="navbar navbar-expand-lg navbar-dark" role="navigation" aria-label="<?php esc_attr_e( 'Main Navigation', 'arnabwp' ); ?>">
+<nav class="navbar navbar-expand-lg navbar-dark arnabwp-navbar <?php echo esc_attr($sticky_class); ?>" role="navigation" aria-label="<?php esc_attr_e( 'Main Navigation', 'arnabwp' ); ?>">
     <div class="container site-container">
 
         <!-- Site Logo / Site Name -->

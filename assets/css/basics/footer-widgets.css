@@ -1,0 +1,32 @@
+  /* Footer widget list styling */
+  .footer-widget ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .footer-widget ul li {
+    margin-bottom: 10px;
+  }
+  
+  /* Footer widget link styling */
+  .footer-widget ul li a {
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  
+  .footer-widget ul li a:hover {
+    color: var(--link-color);
+  }
+  
+  /* Social link styling in footer */
+  .footer-social a {
+    margin-right: 12px;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  
+  .footer-social a:hover {
+    color: var(--link-color);
+  }
+  

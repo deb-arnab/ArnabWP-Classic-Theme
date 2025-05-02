@@ -196,6 +196,7 @@ class Theme_Customizer {
         if ( $colors['nav_bg_color'] ) {
             echo "header.site-header { background-color: {$colors['nav_bg_color']}; }";
         }
+        
         if ( $colors['menu_color'] ) {
             echo ":root { --menu-color: {$colors['menu_color']}; }";
         }
@@ -285,7 +286,7 @@ echo '<style type="text/css">
 </style>';
 
 // === Footer Styles === //
-$footer_heading_color= get_theme_mod('arnabwp_footer_widget_heading_color', '#ffffff');
+
 $footer_text_color= get_theme_mod('arnabwp_footer_widget_text_color', '#bbbbbb');
 $footer_copyright_color= get_theme_mod('arnabwp_footer_copyright_text_color', '#999999');
 
@@ -293,10 +294,6 @@ if ( $footer_heading_color || $footer_text_color || $footer_copyright_color )
     
     echo '
     <style type="text/css">
-        .site-footer .footer-widget .wp-block-heading{
-            color: '.esc_attr( $footer_heading_color ).'!important;
-        }
-
         .site-footer .footer-widget ul li,
         .site-footer .footer-widget p
         {

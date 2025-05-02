@@ -5,6 +5,45 @@ window.addEventListener("load", function() {
   document.body.classList.add('loaded');
 });
 
+
+document.addEventListener('DOMContentLoaded', function () {
+  const navbar = document.querySelector('.arnabwp-navbar');
+  const mainNav = document.getElementById('mainNav');
+
+  if (!navbar || !mainNav) return;
+
+  // Scroll detection function
+  function updateNavbarOnScroll() {
+      if (window.scrollY > 10) {
+          navbar.classList.add('scrolled');
+      } else {
+          navbar.classList.remove('scrolled');
+      }
+  }
+
+  // Front page logic: Handle sticky and non-sticky navbar separately
+  if (navbar) {
+      if (navbar.classList.contains('sticky-navbar')) {
+          // If sticky, handle scroll events
+          window.addEventListener('scroll', updateNavbarOnScroll);
+          updateNavbarOnScroll();  // Run initially
+
+          // Bootstrap collapse toggle events
+          mainNav.addEventListener('show.bs.collapse', function () {
+              navbar.classList.add('scrolled');
+          });
+
+          mainNav.addEventListener('hide.bs.collapse', function () {
+              updateNavbarOnScroll();
+          });
+      } else {
+          // For non-sticky navbar, keep it transparent unless scrolled
+          window.addEventListener('scroll', updateNavbarOnScroll);
+          updateNavbarOnScroll();  // Run initially
+      }
+  }
+});
+
 document.addEventListener("DOMContentLoaded", function () {
   const dropdowns = document.querySelectorAll(".navbar .dropdown");
 
@@ -22,89 +61,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 });
-/**
- * Initializes the hero slider using Owl Carousel.
- * 
- * @requires Owl Carousel
- */
-jQuery(document).ready(function($) {
-  $(".owl-carousel.hero-slider").owlCarousel({
-    items: 1, // Show one slide at a time
-    loop: true, // Loop the slides
-    autoplay: true, // Enable autoplay
-    autoplayTimeout: 3000, // Delay between slides
-    autoplayHoverPause: true, // Pause on hover
-    nav: true, // Show navigation buttons
-    dots: true, // Show pagination dots
-    responsive: {
-      600: { items: 1 },
-      1000: { items: 1 }
-    }
-  });
-});
 
-/**
- * Initializes the employee slider using Owl Carousel.
- * 
- * @requires Owl Carousel
- */
-jQuery(document).ready(function($) {
-  $(".owl-carousel.employee-slider").owlCarousel({
-    loop: true,
-    margin: 20,
-    nav: false,
-    dots: false,
-    autoplay: true,
-    responsive: {
-      0: { items: 1 },
-      600: { items: 2 },
-      1000: { items: 4 }
-    }
-  });
-});
-
-/**
- * Initializes the client logo carousel using Owl Carousel.
- * 
- * @requires Owl Carousel
- */
-jQuery(document).ready(function($) {
-  $('.owl-carousel.client-carousel').owlCarousel({
-    loop: true,
-    margin: 20,
-    autoplay: true,
-    autoplayTimeout: 3000,
-    nav: false,
-    dots: false,
-    smartSpeed: 600,
-    responsive: {
-      0: { items: 2 },
-      600: { items: 3 },
-      1000: { items: 5 }
-    }
-  });
-});
-
-/**
- * Initializes the testimonial slider using Owl Carousel.
- * 
- * @requires Owl Carousel
- */
-jQuery(document).ready(function($) {
-  $('.owl-carousel.testimonial-carousel').owlCarousel({
-    loop: true,
-    margin: 20,
-    autoplay: true,
-    autoplayTimeout: 6000,
-    nav: false,
-    dots: false,
-    responsive: {
-      0: { items: 1 },
-      600: { items: 1 },
-      1000: { items: 1 }
-    }
-  });
-});
 
 /**
  * Displays or hides the "scroll-to-top" button depending on scroll position.

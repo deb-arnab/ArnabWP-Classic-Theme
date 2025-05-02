@@ -42,6 +42,7 @@ trait Frontpage_Options {
         add_about_section( $wp_customize );
         add_employee_section( $wp_customize );
         add_client_section( $wp_customize );
+        add_testimonial_section( $wp_customize );
         add_newsletter_section( $wp_customize );
     }
 }

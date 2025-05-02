@@ -1,0 +1,100 @@
+.post-navigation {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+    margin-bottom: 40px;
+    position: relative;
+    gap:15px;
+    padding-left: 0;
+  }
+  
+  .post-navigation .previous-post,
+  .post-navigation .next-post {
+    flex: 1;
+    text-align: center;
+  }
+  
+  .post-navigation .previous-post a,
+  .post-navigation .next-post a {
+    display: inline-block;
+    padding: 10px 15px;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    color: var(--button-text-color);
+    background-color: var(--primary-color);
+    border: none;
+    border-radius: 50px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+  }
+  
+  .post-navigation .previous-post a {
+    margin-right: 10px;
+  }
+  
+  .post-navigation .next-post a {
+    margin-left: 10px;
+  }
+  
+  .post-navigation .previous-post a:hover,
+  .post-navigation .next-post a:hover {
+    background: var(--secondary-color); /* Darker gradient on hover */
+    color: var(--button-text-color);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  }
+
+  
+.pagination-wrapper {
+    margin-top: 30px;
+  }
+  
+  .pagination {
+    display: flex;
+    list-style: none;
+    padding-left: 0;
+    gap: 15px;
+    flex-wrap: wrap;
+  }
+  
+  .pagination .page-item {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  /* Unified button style for both links and spans (including prev/next) */
+  .pagination .page-link,
+  .pagination .page-numbers {
+    position: relative;
+    display: inline-block;
+    padding: 10px 15px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--button-text-color);
+    background-color: var(--primary-color);
+    border: none;
+    border-radius: 50px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Active and hover styles */
+  .pagination .page-item.active .page-link,
+  .pagination .page-numbers.current,
+  .pagination .page-link:hover,
+  .pagination .page-numbers:hover {
+    background: var(--secondary-color);
+    color: var(--button-text-color);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Focus outline for accessibility */
+  .pagination .page-link:focus,
+  .pagination .page-numbers:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.4);
+  }
+  
