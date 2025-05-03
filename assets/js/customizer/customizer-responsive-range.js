@@ -49,3 +49,34 @@ jQuery(document).ready(function ($) {
         // Optionally, you can show/hide different range sliders for each device if you use per-device controls
     });
 });
+
+jQuery(document).ready(function ($) {
+  $('.arnabwp-responsive-range-control').each(function () {
+    const $control = $(this);
+    const $hidden = $control.find('.responsive-range-hidden');
+
+    // Attach reset event
+    $control.find('.arnabwp-range-reset').on('click', function () {
+      // Find active device
+      const activeDevice = $control.find('.device-tab.active').data('device');
+      const $range = $control.find('.device-' + activeDevice + ' input[type="range"]');
+      const $value = $control.find('.device-' + activeDevice + ' input[type="text"]');
+      
+      // Get default value from range input
+      const defaultVal = $range.data('default-value');
+
+      if (typeof defaultVal !== 'undefined') {
+        $range.val(defaultVal).trigger('input');
+        $value.val(defaultVal).trigger('input');
+      }
+
+      // Update hidden field for Customizer
+      let values = {};
+      $control.find('.range-slider').each(function () {
+        const device = $(this).data('device');
+        values[device] = $(this).val();
+      });
+      $hidden.val(JSON.stringify(values)).trigger('change');
+    });
+  });
+});

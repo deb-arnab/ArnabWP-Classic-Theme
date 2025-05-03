@@ -51,9 +51,10 @@ if ($hero_type === 'image' && $hero_image) :
         <img src="<?php echo esc_url( $hero_image ); ?>" alt="Hero Background Image" loading="lazy" class="visually-hidden">
 
         <!-- Hero Content -->
+     
         <div class="hero-content site-container <?php echo esc_attr($align_class); ?>">
-            <h1><?php echo esc_html($hero_title); ?></h1>
-            <p><?php echo esc_html($hero_subtitle); ?></p>
+            <h1 class="hero-title"><?php echo esc_html($hero_title); ?></h1>
+            <p class="hero-subtitle"><?php echo esc_html($hero_subtitle); ?></p>
 
             <!-- CTA Buttons -->
             <?php if (!empty($hero_buttons) && is_array($hero_buttons)) : ?>
@@ -94,9 +95,9 @@ elseif ($hero_type === 'slider' && !empty($hero_slider)) :
                         endforeach;?>" loading="lazy" class="visually-hidden">
 
                 <!-- Slider Content (same as image section) -->
-                <div class="hero-content site-container">
-                    <h1><?php echo esc_html($hero_title); ?></h1>
-                    <p><?php echo esc_html($hero_subtitle); ?></p>
+                <div class="hero-content site-container <?php echo esc_attr($align_class); ?>">
+                    <h1 class="hero-title"><?php echo esc_html($hero_title); ?></h1>
+                    <p class="hero-subtitle"><?php echo esc_html($hero_subtitle); ?></p>
 
                     <!-- CTA Buttons -->
                     <?php if (!empty($hero_buttons) && is_array($hero_buttons)) : ?>

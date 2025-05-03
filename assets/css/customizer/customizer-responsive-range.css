@@ -1,38 +1,72 @@
-.arnabwp-responsive-range-control {
+ 
+  .arnabwp-responsive-range-control {
     margin-top: 10px;
   }
   
+  /* Device Tabs */
   .device-tabs {
     display: flex;
-    margin-bottom: 10px;
+    gap: 8px;
+    margin-bottom: 12px;
     list-style: none;
     padding-left: 0;
   }
   
   .device-tab {
     cursor: pointer;
-    padding: 5px 10px;
-    border: 1px solid #ccc;
-    margin-right: 5px;
-    border-radius: 3px;
+    padding: 3px 6px;
+    border: 1px solid #db007c;
+    border-radius: 4px;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+   
   }
   
   .device-tab.active {
-    background: #0073aa;
+    background: #db007c;
+    border-color: #db007c;
     color: #fff;
   }
   
   .device-range-group {
-    display: none;
+    display: flex;
+    align-items: center;
+    gap: 12px;
     margin-bottom: 10px;
+    flex-wrap: nowrap;
   }
   
-  .range-slider {
-    width: 70%;
+  /* Range slider — takes flexible space */
+  .device-range-group input[type="range"] {
+    flex: 1;
+    height: 5px;
+    border-radius: 5px;
+    background: linear-gradient(to right, #b90069, #db007c);
+    appearance: none;
+    cursor: pointer;
+  }
+
+
+  
+  /* Value field stays next to range */
+  .device-range-group input[type="text"] {
+    width: 60px;
+    text-align: center;
+    background: #f7f7f7;
+    border: 1px solid #dcdcdc;
+    padding: 4px 6px;
+    font-size: 14px;
+    border-radius: 4px;
+    flex-shrink: 0;
   }
   
-  .range-value {
-    width: 50px;
-    margin-left: 10px;
+  /* Reset button stays on same line */
+  .device-range-group .button.arnabwp-range-reset {
+    height: 30px;
+    padding: 0 8px;
+    line-height: 1;
+    flex-shrink: 0;
   }
   

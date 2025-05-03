@@ -139,22 +139,28 @@ function add_feature_section($wp_customize)
 
     // === Font Size: Service Name === //
     $wp_customize->add_setting('arnabwp_service_name_font_size', [
-        'default'           => 18,
-        'sanitize_callback' => 'absint',
+        'default' => json_encode([
+            'desktop' => '20',
+            'tablet'  => '18',
+            'mobile'  => '16'
+        ]),
+        'transport' => 'refresh',
+       'sanitize_callback' => 'arnabwp_sanitize_service_font_size',
     ]);
-    $wp_customize->add_control(new \ARNABWP_THEME\Inc\Controls\Range_Control(
+    $wp_customize->add_control(new \ARNABWP_THEME\Inc\Controls\Responsive_Range_Control(
         $wp_customize,
         'arnabwp_service_name_font_size',
         [
             'label'       => __('Service Name Font Size', 'arnabwp'),
             'section'     => 'arnabwp_feature_section',
-            'type'        => 'number',
             'input_attrs' => [
-                'min'  => 10,
-                'max'  => 30,
+                'min' => 6,
+                'max' => 100,
                 'step' => 1,
+                'default_desktop' => 20,
+            'default_tablet'  => 18,
+            'default_mobile'  => 16,
             ],
-            'class'     => 'arnabwp-range-control',
             'active_callback' => fn() => get_theme_mod('arnabwp_current_features_tab', 'general') === 'style',
         ]
     ));
@@ -187,22 +193,28 @@ function add_feature_section($wp_customize)
 
     // === Font Size: Service Description === //
     $wp_customize->add_setting('arnabwp_service_description_font_size', [
-        'default'           => 14,
-        'sanitize_callback' => 'absint',
+        'default' => json_encode([
+            'desktop' => '16',
+            'tablet'  => '14',
+            'mobile'  => '12'
+        ]),
+        'transport' => 'refresh',
+       'sanitize_callback' => 'arnabwp_sanitize_testimonial_font_size',
     ]);
-    $wp_customize->add_control(new \ARNABWP_THEME\Inc\Controls\Range_Control(
+    $wp_customize->add_control(new \ARNABWP_THEME\Inc\Controls\Responsive_Range_Control(
         $wp_customize,
         'arnabwp_service_description_font_size',
         [
             'label'       => __('Service Description Font Size', 'arnabwp'),
             'section'     => 'arnabwp_feature_section',
-            'type'        => 'range',
             'input_attrs' => [
-                'min'  => 10,
-                'max'  => 30,
+                'min' => 6,
+                'max' => 100,
                 'step' => 1,
+                'default_desktop' => 16,
+            'default_tablet'  => 14,
+            'default_mobile'  => 12,
             ],
-            'class'     => 'arnabwp-range-control',
             'active_callback' => fn() => get_theme_mod('arnabwp_current_features_tab', 'general') === 'style',
         ]
     ));
@@ -281,3 +293,33 @@ function add_feature_section($wp_customize)
 // ===================== //
 // === Sanitize Callbacks === //
 // ===================== //
+
+
+function arnabwp_sanitize_service_font_size($value) {
+    // Decode the JSON value into an associative array
+    $decoded = json_decode( $value, true );
+
+    // If decoding failed or the result is not an array, return a default size
+    if ( ! is_array( $decoded ) ) {
+        return json_encode([
+            'desktop' => 16,
+            'tablet'  => 14,
+            'mobile'  => 12
+        ]);
+    }
+
+    // Sanitize each device size
+    foreach ( $decoded as $device => $size ) {
+        // Ensure size is numeric and within a reasonable range
+        if ( ! is_numeric( $size ) || $size < 6 || $size > 100 ) {
+            // Set to a reasonable default if invalid
+            $decoded[ $device ] = ($device === 'desktop') ? 16 : ($device === 'tablet' ? 14 : 12);
+        } else {
+            // Sanitize the value to a positive integer
+            $decoded[ $device ] = absint( $size );
+        }
+    }
+
+    // Return the sanitized array as a JSON-encoded string
+    return json_encode( $decoded );
+}

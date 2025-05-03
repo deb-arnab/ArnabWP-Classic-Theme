@@ -30,14 +30,10 @@ $service_query = new WP_Query([
 $section_title       =  get_theme_mod('arnabwp_service_section_title', __('Our Services', 'arnabwp'));
 $section_description =  get_theme_mod('arnabwp_service_section_description', __('Explore the solutions we offer', 'arnabwp'));
 
-$section_title_font_size =  absint(get_theme_mod('arnabwp_section_title_font_size', 32));
-$section_desc_font_size =  absint(get_theme_mod('arnabwp_section_description_font_size', 16));
 
-
-$name_font_size      = absint(get_theme_mod('arnabwp_service_name_font_size', 18));
 $name_color          = esc_attr(get_theme_mod('arnabwp_service_name_color', '#ffffff'));
 
-$desc_font_size      = absint(get_theme_mod('arnabwp_service_description_font_size', 14));
+
 $desc_color          = esc_attr(get_theme_mod('arnabwp_service_description_color', '#dddddd'));
 
 $icon_size           = absint(get_theme_mod('arnabwp_service_icon_size', 70));
@@ -48,8 +44,8 @@ if ($service_query->have_posts()) : ?>
     <div class="site-container">
             <!-- Section heading -->
             <div class="text-center mb-4">
-                <h2 class="fw-bold" style="font-size: <?php echo $section_title_font_size; ?>px; "><?php echo esc_html($section_title); ?></h2>
-                <p class="text-muted" style="font-size: <?php echo $section_desc_font_size; ?>px; "><?php echo esc_html($section_description); ?></p>
+                <h2 class="fw-bold section-title"><?php echo esc_html($section_title); ?></h2>
+                <p class="text-muted section-description"><?php echo esc_html($section_description); ?></p>
             </div>
 
             <div class="row">
@@ -82,15 +78,15 @@ if ($service_query->have_posts()) : ?>
                             <div class="card-body">
                                 <?php if (! empty($service_name)) : ?>
                                     <a href="<?php the_permalink(); ?>" class="text-decoration-none">
-                                        <h5 class="card-title entry-title"
-                                            style="font-size: <?php echo $name_font_size; ?>px; color: <?php echo $name_color; ?>;">
+                                        <h5 class="card-title service-name entry-title"
+                                            style="color: <?php echo $name_color; ?>;">
                                             <?php echo esc_html($service_name ?: get_the_title()); ?>
                                         </h5>
                                     </a>
                                 <?php endif; ?>
                                 <?php if (! empty($service_description)) : ?>
-                                    <p class="card-text"
-                                        style="font-size: <?php echo esc_attr($desc_font_size); ?>px !important; color: <?php echo esc_attr($desc_color); ?>;">
+                                    <p class="card-text service-description"
+                                        style="color: <?php echo esc_attr($desc_color); ?>;">
                                         <?php echo esc_html($service_description); ?>
                                     </p>
                                 <?php endif; ?>

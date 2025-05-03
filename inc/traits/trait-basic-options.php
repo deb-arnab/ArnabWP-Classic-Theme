@@ -28,11 +28,11 @@ trait Basic_Options {
         ]);
 
         // Include modular files for each frontpage section
-        include_once ARNABWP_DIR_PATH . '/inc/basic_customizer/theme-color.php';
-        include_once ARNABWP_DIR_PATH . '/inc/basic_customizer/theme-typography.php';
-        include_once ARNABWP_DIR_PATH . '/inc/basic_customizer/theme-breadcrumb.php';
-        include_once ARNABWP_DIR_PATH . '/inc/basic_customizer/theme-preloader.php';
-        include_once ARNABWP_DIR_PATH . '/inc/basic_customizer/theme-general.php';
+        include_once ARNABWP_DIR_PATH . '/inc/customizer/basic_customizer/theme-color.php';
+        include_once ARNABWP_DIR_PATH . '/inc/customizer/basic_customizer/theme-typography.php';
+        include_once ARNABWP_DIR_PATH . '/inc/customizer/basic_customizer/theme-breadcrumb.php';
+        include_once ARNABWP_DIR_PATH . '/inc/customizer/basic_customizer/theme-preloader.php';
+        include_once ARNABWP_DIR_PATH . '/inc/customizer/basic_customizer/theme-general.php';
       
         // Register each section with the customizer
         add_color_section( $wp_customize );

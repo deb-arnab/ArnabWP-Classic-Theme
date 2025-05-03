@@ -85,112 +85,87 @@ function add_typography_section( $wp_customize ) {
         ]
     ));
 
-    // $wp_customize->add_setting( 'arnabwp_body_font_size', [
-    //     'default'           => json_encode([
-    //         'desktop' => '18px',
-    //         'tablet'  => '16px',
-    //         'mobile'  => '14px',
-    //     ]),
-    //     'transport'         => 'refresh',
-    //     'sanitize_callback' => 'sanitize_text_field', 
-    // ] );
-    
-    // $wp_customize->add_control( new \ARNABWP_THEME\Inc\Controls\Dimensions_Control(
-    //     $wp_customize,
-    //     'arnabwp_body_font_size',
-    //     [
-    //         'label'    => __( 'Body Font Size', 'arnabwp' ),
-    //         'section'  => 'arnabwp_typography_section',
-    //         'settings' => 'arnabwp_body_font_size',  
-    //     ]
-    // ) );
-
-    $wp_customize->add_setting( 'arnabwp_body_font_size', [
-        'default' => json_encode([
-            'desktop' => '18',
-            'tablet'  => '16',
-            'mobile'  => '14'
-        ]),
-        'transport' => 'refresh',
-        'sanitize_callback' => function( $value ) {
-            $decoded = json_decode( $value, true );
-            return is_array( $decoded ) ? json_encode( array_map( 'sanitize_text_field', $decoded ) ) : '';
-        },
-    ]);
-    
-    $wp_customize->add_control( new \ARNABWP_THEME\Inc\Controls\Responsive_Range_Control(
-        $wp_customize,
-        'arnabwp_body_font_size',
-        [
-            'label' => __( 'Responsive Font Size', 'arnabwp' ),
-            'section' => 'arnabwp_typography_section',
-            'input_attrs' => [
-                'min' => 10,
-                'max' => 100,
-                'step' => 1
-            ]
-        ]
-    ) );
-
     // Heading Font Size
     $wp_customize->add_setting('arnabwp_heading_font_size', [
-        'default'           => 32,
-        'sanitize_callback' => 'absint',
+        'default' => json_encode([
+            'desktop' => '36',
+            'tablet'  => '30',
+            'mobile'  => '24'
+        ]),
+        'sanitize_callback' => 'arnabwp_sanitize_responsive_font_size',
     ]);
 
-    $wp_customize->add_control(new \ARNABWP_THEME\Inc\Controls\Range_Control(
+    $wp_customize->add_control(new \ARNABWP_THEME\Inc\Controls\Responsive_Range_Control(
         $wp_customize,
         'arnabwp_heading_font_size',
         [
             'label'       => __('Page Heading Font Size (px)', 'arnabwp'),
             'section'     => 'arnabwp_typography_section',
             'input_attrs' => [
-                'min'  => 25,
-                'max'  => 60,
+                'min'  => 6,
+                'max'  => 100,
                 'step' => 1,
+                'default_desktop' => 36,
+                'default_tablet'  => 30,
+                'default_mobile'  => 24,
             ],
         ]
     ));
 
     // Content Title Font Size
     $wp_customize->add_setting('arnabwp_content_title_font_size', [
-        'default'           => 32,
-        'sanitize_callback' => 'absint',
+        'default' => json_encode([
+            'desktop' => '28',
+            'tablet'  => '24',
+            'mobile'  => '20'
+        ]),
+        'sanitize_callback' => 'arnabwp_sanitize_responsive_font_size',
     ]);
 
-    $wp_customize->add_control(new \ARNABWP_THEME\Inc\Controls\Range_Control(
+    $wp_customize->add_control(new \ARNABWP_THEME\Inc\Controls\Responsive_Range_Control(
         $wp_customize,
         'arnabwp_content_title_font_size',
         [
             'label'       => __('Blog Content Title Font Size (px)', 'arnabwp'),
             'section'     => 'arnabwp_typography_section',
             'input_attrs' => [
-                'min'  => 14,
-                'max'  => 40,
+                'min'  => 6,
+                'max'  => 100,
                 'step' => 1,
+                'default_desktop' => 28,
+                'default_tablet'  => 24,
+                'default_mobile'  => 20,
             ],
         ]
     ));
 
-     // Body Font Size
-    //  $wp_customize->add_setting('arnabwp_body_font_size', [
-    //     'default'           => 16,
-    //     'sanitize_callback' => 'absint',
-    // ]);
 
-    // $wp_customize->add_control(new \ARNABWP_THEME\Inc\Controls\Range_Control(
-    //     $wp_customize,
-    //     'arnabwp_body_font_size',
-    //     [
-    //         'label'       => __('Blog Content Font Size (px)', 'arnabwp'),
-    //         'section'     => 'arnabwp_typography_section',
-    //         'input_attrs' => [
-    //             'min'  => 10,
-    //             'max'  => 30,
-    //             'step' => 1,
-    //         ],
-    //     ]
-    // ));
+    $wp_customize->add_setting( 'arnabwp_body_font_size', [
+        'default' => json_encode([
+            'desktop' => '16',
+            'tablet'  => '14',
+            'mobile'  => '12'
+        ]),
+        'transport' => 'refresh',
+       'sanitize_callback' => 'arnabwp_sanitize_responsive_font_size',
+    ]);
+    
+    $wp_customize->add_control( new \ARNABWP_THEME\Inc\Controls\Responsive_Range_Control(
+        $wp_customize,
+        'arnabwp_body_font_size',
+        [
+            'label' => __( 'Blog Content Font Size (px)', 'arnabwp' ),
+            'section' => 'arnabwp_typography_section',
+            'input_attrs' => [
+                'min' => 6,
+                'max' => 100,
+                'step' => 1,
+                'default_desktop' => 16,
+            'default_tablet'  => 14,
+            'default_mobile'  => 12,
+            ],
+        ]
+    ) );
 
     // =============================
     // Front Page Font Size
@@ -213,40 +188,56 @@ function add_typography_section( $wp_customize ) {
 
     // Section Title Font Size
     $wp_customize->add_setting('arnabwp_section_title_font_size', [
-        'default'           => 32,
-        'sanitize_callback' => 'absint',
+     'default' => json_encode([
+            'desktop' => '32',
+            'tablet'  => '26',
+            'mobile'  => '20'
+        ]),
+        'transport' => 'refresh',
+       'sanitize_callback' => 'arnabwp_sanitize_responsive_font_size',
     ]);
 
-    $wp_customize->add_control(new \ARNABWP_THEME\Inc\Controls\Range_Control(
+    $wp_customize->add_control(new \ARNABWP_THEME\Inc\Controls\Responsive_Range_Control(
         $wp_customize,
         'arnabwp_section_title_font_size',
         [
             'label'       => __('Section Title Font Size (px)', 'arnabwp'),
             'section'     => 'arnabwp_typography_section',
             'input_attrs' => [
-                'min'  => 25,
-                'max'  => 60,
+                'min' => 6,
+                'max' => 100,
                 'step' => 1,
+                'default_desktop' => 32,
+            'default_tablet'  => 26,
+            'default_mobile'  => 20,
             ],
         ]
     ));
 
         // Section Description/subtitle Font Size
         $wp_customize->add_setting('arnabwp_section_description_font_size', [
-            'default'           => 16,
-            'sanitize_callback' => 'absint',
+            'default' => json_encode([
+                'desktop' => '16',
+                'tablet'  => '14',
+                'mobile'  => '12'
+            ]),
+            'transport' => 'refresh',
+           'sanitize_callback' => 'arnabwp_sanitize_responsive_font_size',
         ]);
     
-        $wp_customize->add_control(new \ARNABWP_THEME\Inc\Controls\Range_Control(
+        $wp_customize->add_control(new \ARNABWP_THEME\Inc\Controls\Responsive_Range_Control(
             $wp_customize,
             'arnabwp_section_description_font_size',
             [
                 'label'       => __('Section Subtitle Font Size (px)', 'arnabwp'),
                 'section'     => 'arnabwp_typography_section',
                 'input_attrs' => [
-                    'min'  => 10,
-                    'max'  => 30,
+                    'min' => 6,
+                    'max' => 100,
                     'step' => 1,
+                    'default_desktop' => 16,
+                'default_tablet'  => 14,
+                'default_mobile'  => 12,
                 ],
             ]
         ));
@@ -274,4 +265,34 @@ function get_font_choices() {
         'Montserrat, sans-serif'       => 'Montserrat',
     ];
 }
+
+function arnabwp_sanitize_responsive_font_size($value) {
+    // Decode the JSON value into an associative array
+    $decoded = json_decode( $value, true );
+
+    // If decoding failed or the result is not an array, return a default size
+    if ( ! is_array( $decoded ) ) {
+        return json_encode([
+            'desktop' => 16,
+            'tablet'  => 14,
+            'mobile'  => 12
+        ]);
+    }
+
+    // Sanitize each device size
+    foreach ( $decoded as $device => $size ) {
+        // Ensure size is numeric and within a reasonable range
+        if ( ! is_numeric( $size ) || $size < 6 || $size > 100 ) {
+            // Set to a reasonable default if invalid
+            $decoded[ $device ] = ($device === 'desktop') ? 16 : ($device === 'tablet' ? 14 : 12);
+        } else {
+            // Sanitize the value to a positive integer
+            $decoded[ $device ] = absint( $size );
+        }
+    }
+
+    // Return the sanitized array as a JSON-encoded string
+    return json_encode( $decoded );
+}
+
 

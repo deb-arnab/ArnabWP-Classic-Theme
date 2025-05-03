@@ -28,31 +28,28 @@ $show_quotation_mark = (bool) get_theme_mod('show_testimonial_quotation_mark', t
 $section_title       = get_theme_mod('testimonial_section_title', __('What Our Clients Say', 'arnabwp'));
 $section_description =  get_theme_mod('testimonial_section_description', __('Experience the difference with us', 'arnabwp'));
 
-$section_title_font_size =  absint(get_theme_mod('arnabwp_section_title_font_size', 32));
-$section_desc_font_size =  absint(get_theme_mod('arnabwp_section_description_font_size', 16));
 
-$name_font_size      = absint(get_theme_mod('testimonial_name_font_size', 18));
-$name_color          = esc_attr(get_theme_mod('testimonial_name_color', '#ffffff'));
+$name_color          = esc_attr(get_theme_mod('testimonial_name_color', '#187dbc'));
 
-$job_font_size       = absint(get_theme_mod('testimonial_job_font_size', 14));
-$job_color           = esc_attr(get_theme_mod('testimonial_job_color', '#dddddd'));
 
-$comment_font_size   = absint(get_theme_mod('testimonial_comment_font_size', 12));
-$comment_color       = esc_attr(get_theme_mod('testimonial_comment_color', '#ffffff'));
+$job_color           = esc_attr(get_theme_mod('testimonial_job_color', '#555555'));
+
+
+$comment_color       = esc_attr(get_theme_mod('testimonial_comment_color', '#ccc'));
 
 $icon_size           = absint(get_theme_mod('testimonial_icon_size', 70));
 $icon_radius         = absint(get_theme_mod('testimonial_icon_radius', 50));
 
-$social_icon_size    = absint(get_theme_mod('testimonial_social_icon_font_size', 12));
-$social_icon_color   = esc_attr(get_theme_mod('testimonial_social_icon_color', '#187dbc'));
+
+$social_icon_color   = esc_attr(get_theme_mod('testimonial_social_icon_color', '#e83582'));
 
 if ($testimonial_query->have_posts()) : ?>
     <section class="testimonial-section py-5" id="testimonials" aria-label="Client Testimonial">
     <div class="site-container">
             <!-- Section heading -->
             <div class="text-center mb-5">
-                <h2 class="fw-bold" style="font-size: <?php echo $section_title_font_size; ?>px; "><?php echo esc_html($section_title); ?></h2>
-                <p class="text-muted" style="font-size: <?php echo $section_desc_font_size; ?>px; "><?php echo esc_html($section_description); ?></p>
+                <h2 class="fw-bold section-title" ><?php echo esc_html($section_title); ?></h2>
+                <p class="text-muted section-description" ><?php echo esc_html($section_description); ?></p>
             </div>
 
             <div class="owl-carousel owl-theme testimonial-carousel" role="region" aria-label="Testimonials Carousel">
@@ -76,7 +73,7 @@ if ($testimonial_query->have_posts()) : ?>
                             <?php endif; ?>
                             <!-- Testimonial Content -->
                             <blockquote class="testimonial-comment text-center mb-4">
-                                <p class="mb-0" style="font-style: italic; font-size: <?php echo esc_attr($comment_font_size); ?>px; color: <?php echo esc_attr($comment_color); ?>;"><?php echo $testimonial_comment; ?></p>
+                                <p class="mb-0" style="font-style: italic; color: <?php echo esc_attr($comment_color); ?>;"><?php echo $testimonial_comment; ?></p>
                             </blockquote>
 
                             <!-- Rating (Centered) -->
@@ -105,13 +102,14 @@ if ($testimonial_query->have_posts()) : ?>
                                 </div>
 
                                 <div class="testimonial-client-details">
-                                    <h5 class="testimonial-client-name mb-1 entry-title" style="font-size: <?php echo esc_attr($name_font_size); ?>px; color: <?php echo esc_attr($name_color); ?>;"><?php echo $client_name; ?></h5>
-                                    <p class="testimonial-client-title text-muted mb-2" style="font-size: <?php echo esc_attr($job_font_size); ?>px; color: <?php echo esc_attr($job_color); ?>;"><?php echo $client_title; ?></p>
+                                    <h5 class="testimonial-client-name mb-1 entry-title fw-bold" style="color: <?php echo esc_attr($name_color); ?>;"><?php echo $client_name; ?></h5>
+                                    <p class="testimonial-client-title text-muted mb-2" style="color: <?php echo esc_attr($job_color); ?>;"><?php echo $client_title; ?></p>
                                     <!-- Social Links (Below Subtitle) -->
                                     <?php if (!empty($social_links)) : ?>
-                                        <div class="testimonial-client-social-links" style="font-size: <?php echo esc_attr($social_icon_size); ?>px !important;">
+                                        <div class="testimonial-social-icon testimonial-client-social-links">
                                             <?php if (!empty($social_links['facebook'])) : ?>
-                                                <a href="<?php echo esc_url($social_links['facebook']); ?>"
+                                                <a 
+                                                href="<?php echo esc_url($social_links['facebook']); ?>"
                                                     target="_blank"
                                                     style="color: <?php echo esc_attr($social_icon_color); ?>;"
                                                     rel="noopener"
@@ -120,15 +118,22 @@ if ($testimonial_query->have_posts()) : ?>
                                                 </a>
                                             <?php endif; ?>
                                             <?php if (!empty($social_links['twitter'])) : ?>
-                                                <a href="<?php echo esc_url($social_links['twitter']); ?>" target="_blank" style="color: <?php echo esc_attr($social_icon_color); ?>;" rel="noopener"
-                                                    aria-label="Twitter profile of <?php echo esc_attr($client_name); ?>">
+                                                <a 
+                                                href="<?php echo esc_url($social_links['twitter']); ?>" 
+                                                target="_blank" 
+                                                style="color: <?php echo esc_attr($social_icon_color); ?>;" 
+                                                rel="noopener"
+                                                aria-label="Twitter profile of <?php echo esc_attr($client_name); ?>">
                                                     <i class="fab fa-twitter"></i>
                                                 </a>
                                             <?php endif; ?>
                                             <?php if (!empty($social_links['linkedin'])) : ?>
-                                                <a href="<?php echo esc_url($social_links['linkedin']); ?>" target="_blank" style="color: <?php echo esc_attr($social_icon_color); ?>;"
-                                                    rel="noopener"
-                                                    aria-label="Linkedin profile of <?php echo esc_attr($client_name); ?>">
+                                                <a 
+                                                href="<?php echo esc_url($social_links['linkedin']); ?>" 
+                                                target="_blank" 
+                                                style="color: <?php echo esc_attr($social_icon_color); ?>;"
+                                                rel="noopener"
+                                                aria-label="Linkedin profile of <?php echo esc_attr($client_name); ?>">
                                                     <i class="fab fa-linkedin-in"></i>
                                                 </a>
                                             <?php endif; ?>

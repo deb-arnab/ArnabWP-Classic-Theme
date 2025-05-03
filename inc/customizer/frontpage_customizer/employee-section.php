@@ -141,20 +141,27 @@ $wp_customize->add_control( new \ARNABWP_THEME\Inc\Controls\Tabs_Control(
     ));
 
     // === Font Size:Employee Name === //
-    $wp_customize->add_setting('employee_name_font_size', [
-        'default'           => 18,
-        'sanitize_callback' => 'absint',
+    $wp_customize->add_setting('arnabwp_employee_name_font_size', [
+        'default' => json_encode([
+            'desktop' => '20',
+            'tablet'  => '18',
+            'mobile'  => '16'
+        ]),
+        'transport' => 'refresh',
+       'sanitize_callback' => 'arnabwp_sanitize_employee_font_size',
     ]);
-    $wp_customize->add_control(new \ARNABWP_THEME\Inc\Controls\Range_Control(
+    $wp_customize->add_control(new \ARNABWP_THEME\Inc\Controls\Responsive_Range_Control(
         $wp_customize,
-        'employee_name_font_size', [
+        'arnabwp_employee_name_font_size', [
         'label'       => __('Employee Name Font Size', 'arnabwp'),
         'section'     => 'arnabwp_employee_section',
-        'type'        => 'number',
         'input_attrs' => [
-            'min'  => 10,
-            'max'  => 30,
+            'min' => 6,
+            'max' => 100,
             'step' => 1,
+            'default_desktop' => 20,
+        'default_tablet'  => 18,
+        'default_mobile'  => 16,
         ],
         'active_callback' => fn() => get_theme_mod('arnabwp_current_employee_tab', 'general') === 'style',
     ]
@@ -162,7 +169,7 @@ $wp_customize->add_control( new \ARNABWP_THEME\Inc\Controls\Tabs_Control(
 
     // === Color: Employee Name === //
     $wp_customize->add_setting('employee_name_color', [
-        'default'           => '#111111',
+        'default'           => '#187dbc',
         'sanitize_callback' => 'sanitize_hex_color',
     ]);
     $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'employee_name_color', [
@@ -187,20 +194,27 @@ $wp_customize->add_control( new \ARNABWP_THEME\Inc\Controls\Tabs_Control(
     ));
 
     // === Font Size: Employee Description === //
-    $wp_customize->add_setting('employee_description_font_size', [
-        'default'           => 16,
-        'sanitize_callback' => 'absint',
+    $wp_customize->add_setting('arnabwp_employee_description_font_size', [
+        'default' => json_encode([
+            'desktop' => '16',
+            'tablet'  => '14',
+            'mobile'  => '12'
+        ]),
+        'transport' => 'refresh',
+       'sanitize_callback' => 'arnabwp_sanitize_employee_font_size',
     ]);
-    $wp_customize->add_control(new \ARNABWP_THEME\Inc\Controls\Range_Control(
+    $wp_customize->add_control(new \ARNABWP_THEME\Inc\Controls\Responsive_Range_Control(
         $wp_customize,
-        'employee_description_font_size', [
+        'arnabwp_employee_description_font_size', [
         'label'       => __('Employee Description Font Size', 'arnabwp'),
         'section'     => 'arnabwp_employee_section',
-        'type'        => 'number',
         'input_attrs' => [
-            'min'  => 10,
-            'max'  => 30,
+            'min' => 6,
+            'max' => 100,
             'step' => 1,
+            'default_desktop' => 16,
+        'default_tablet'  => 14,
+        'default_mobile'  => 12,
         ],
         'active_callback' => fn() => get_theme_mod('arnabwp_current_employee_tab', 'general') === 'style',
     ]
@@ -233,29 +247,35 @@ $wp_customize->add_control( new \ARNABWP_THEME\Inc\Controls\Tabs_Control(
     ));
 
     // === Font Size: Employee email === //
-    $wp_customize->add_setting('employee_email_font_size', [
-        'default'           => 14,
-        'transport'=>'refresh',
-        'sanitize_callback' => 'absint',
+    $wp_customize->add_setting('arnabwp_employee_email_font_size', [
+        'default' => json_encode([
+            'desktop' => '14',
+            'tablet'  => '12',
+            'mobile'  => '10'
+        ]),
+        'transport' => 'refresh',
+       'sanitize_callback' => 'arnabwp_sanitize_employee_font_size',
     ]);
-    $wp_customize->add_control(new \ARNABWP_THEME\Inc\Controls\Range_Control(
+    $wp_customize->add_control(new \ARNABWP_THEME\Inc\Controls\Responsive_Range_Control(
         $wp_customize,
-        'employee_email_font_size', [
+        'arnabwp_employee_email_font_size', [
         'label'       => __('Employee Email Font Size', 'arnabwp'),
         'section'     => 'arnabwp_employee_section',
-        'type'        => 'number',
-        'input_attrs' => [
-            'min'  => 10,
-            'max'  => 20,
-            'step' => 1,
-        ],
+       'input_attrs' => [
+                'min' => 6,
+                'max' => 100,
+                'step' => 1,
+                'default_desktop' => 14,
+            'default_tablet'  => 12,
+            'default_mobile'  => 10,
+            ],
         'active_callback' => fn() => get_theme_mod('arnabwp_current_employee_tab', 'general') === 'style',
     ]
     ));
 
     // === Color: Employee email === //
     $wp_customize->add_setting('employee_email_color', [
-        'default'           => '#dddddd',
+        'default'           => '#e83582',
         'sanitize_callback' => 'sanitize_hex_color',
     ]);
     $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'employee_email_color', [
@@ -265,28 +285,35 @@ $wp_customize->add_control( new \ARNABWP_THEME\Inc\Controls\Tabs_Control(
     ]));
 
     // === Font Size: Employee sicial icons === //
-    $wp_customize->add_setting('employee_social_icon_font_size', [
-        'default'           => 12,
-        'sanitize_callback' => 'absint',
+    $wp_customize->add_setting('arnabwp_employee_social_icon_font_size', [
+        'default' => json_encode([
+            'desktop' => '18',
+            'tablet'  => '16',
+            'mobile'  => '14'
+        ]),
+        'transport' => 'refresh',
+       'sanitize_callback' => 'arnabwp_sanitize_employee_font_size',
     ]);
-    $wp_customize->add_control(new \ARNABWP_THEME\Inc\Controls\Range_Control(
+    $wp_customize->add_control(new \ARNABWP_THEME\Inc\Controls\Responsive_Range_Control(
         $wp_customize,
-        'employee_social_icon_font_size', [
+        'arnabwp_employee_social_icon_font_size', [
         'label'       => __('Employee Social Icon Size', 'arnabwp'),
         'section'     => 'arnabwp_employee_section',
-        'type'        => 'number',
-        'input_attrs' => [
-            'min'  => 10,
-            'max'  => 20,
-            'step' => 1,
-        ],
+     'input_attrs' => [
+                'min' => 6,
+                'max' => 100,
+                'step' => 1,
+                'default_desktop' => 18,
+            'default_tablet'  => 16,
+            'default_mobile'  => 14,
+            ],
         'active_callback' => fn() => get_theme_mod('arnabwp_current_employee_tab', 'general') === 'style',
     ]
     ));
 
     // === Color: Employee social icons === //
     $wp_customize->add_setting('employee_social_icon_color', [
-        'default'           => '#187dbc',
+        'default'           => '#e83582',
         'sanitize_callback' => 'sanitize_hex_color',
     ]);
     $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'employee_social_icon_color', [
@@ -301,3 +328,31 @@ $wp_customize->add_control( new \ARNABWP_THEME\Inc\Controls\Tabs_Control(
 // === Sanitize Callbacks === //
 // ===================== //
 
+function arnabwp_sanitize_employee_font_size($value) {
+    // Decode the JSON value into an associative array
+    $decoded = json_decode( $value, true );
+
+    // If decoding failed or the result is not an array, return a default size
+    if ( ! is_array( $decoded ) ) {
+        return json_encode([
+            'desktop' => 16,
+            'tablet'  => 14,
+            'mobile'  => 12
+        ]);
+    }
+
+    // Sanitize each device size
+    foreach ( $decoded as $device => $size ) {
+        // Ensure size is numeric and within a reasonable range
+        if ( ! is_numeric( $size ) || $size < 6 || $size > 100 ) {
+            // Set to a reasonable default if invalid
+            $decoded[ $device ] = ($device === 'desktop') ? 16 : ($device === 'tablet' ? 14 : 12);
+        } else {
+            // Sanitize the value to a positive integer
+            $decoded[ $device ] = absint( $size );
+        }
+    }
+
+    // Return the sanitized array as a JSON-encoded string
+    return json_encode( $decoded );
+}

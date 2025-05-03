@@ -67,7 +67,7 @@
     left: 0;
     transform: translate(0, -50%);
     text-align: left;
-    padding-left: 40px; /* Adjust padding as needed */
+    padding-left: 150px; /* Adjust padding as needed */
     max-width: 60%;
   }
   
@@ -78,8 +78,8 @@
   }
   
   .hero-content.align-right {
-    left: auto;
-    right: 40px; /* Moves it in from the right */
+    /* left: auto; */
+    right: 150px; /* Moves it in from the right */
     transform: translate(0, -50%);
     text-align: right;
     padding-right: 0; /* Already spaced using 'right' */
@@ -226,7 +226,7 @@
     right: 0;
     padding: 0.6rem;
     text-align: center;
-    background: rgba(0, 0, 0, 0.4);
+    background: rgba(0, 0, 0, 0.8);
     color: #fff;
     opacity: 0;
     visibility: hidden;

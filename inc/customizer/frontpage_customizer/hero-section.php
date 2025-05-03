@@ -194,30 +194,49 @@ $wp_customize->add_control(new WP_Customize_Control(
 
 // === Font Sizes (Custom Range Control) === //
 $wp_customize->add_setting('arnabwp_hero_title_font_size', [
-    'default'           => 40,
-    'transport'         => 'refresh',
-    'sanitize_callback' => 'absint',
+    'default' => json_encode([
+        'desktop' => '46',
+        'tablet'  => '36',
+        'mobile'  => '26'
+    ]),
+    'transport' => 'refresh',
+   'sanitize_callback' => 'arnabwp_sanitize_hero_font_size',
 ]);
-$wp_customize->add_control(new \ARNABWP_THEME\Inc\Controls\Range_Control($wp_customize, 'arnabwp_hero_title_font_size', [
+$wp_customize->add_control(new \ARNABWP_THEME\Inc\Controls\Responsive_Range_Control($wp_customize, 'arnabwp_hero_title_font_size', [
     'label'           => __('Hero Title Font Size', 'arnabwp'),
     'section'         => 'arnabwp_hero_section',
-    'type'            => 'range',
-    'input_attrs'     => ['min' => 10, 'max' => 70, 'step' => 1],
-    'class'           => 'arnabwp-range-control',
+    'input_attrs' => [
+                'min' => 6,
+                'max' => 100,
+                'step' => 1,
+                'default_desktop' => 46,
+            'default_tablet'  => 36,
+            'default_mobile'  => 26,
+            ],
     'active_callback' => fn() => get_theme_mod('arnabwp_current_hero_tab', 'general') === 'style',
 ]));
 
 $wp_customize->add_setting('arnabwp_hero_subtitle_font_size', [
-    'default'           => 16,
-    'transport'         => 'refresh',
-    'sanitize_callback' => 'absint',
-]);
-$wp_customize->add_control(new \ARNABWP_THEME\Inc\Controls\Range_Control($wp_customize, 'arnabwp_hero_subtitle_font_size', [
+   'default' => json_encode([
+                'desktop' => '16',
+                'tablet'  => '14',
+                'mobile'  => '12'
+            ]),
+            'transport' => 'refresh',
+           'sanitize_callback' => 'arnabwp_sanitize_hero_font_size',
+        ]);
+$wp_customize->add_control(new \ARNABWP_THEME\Inc\Controls\Responsive_Range_Control($wp_customize, 'arnabwp_hero_subtitle_font_size', [
     'label'           => __('Hero Subtitle Font Size', 'arnabwp'),
     'section'         => 'arnabwp_hero_section',
     'type'            => 'range',
-    'input_attrs'     => ['min' => 10, 'max' => 40, 'step' => 1],
-    'class'           => 'arnabwp-range-control',
+    'input_attrs' => [
+        'min' => 6,
+        'max' => 100,
+        'step' => 1,
+        'default_desktop' => 16,
+    'default_tablet'  => 14,
+    'default_mobile'  => 12,
+    ],
     'active_callback' => fn() => get_theme_mod('arnabwp_current_hero_tab', 'general') === 'style',
 ]));
 
@@ -274,4 +293,33 @@ function arnabwp_sanitize_cta_repeater($input) {
     }
 
     return json_encode($clean);
+}
+
+function arnabwp_sanitize_hero_font_size($value) {
+    // Decode the JSON value into an associative array
+    $decoded = json_decode( $value, true );
+
+    // If decoding failed or the result is not an array, return a default size
+    if ( ! is_array( $decoded ) ) {
+        return json_encode([
+            'desktop' => 16,
+            'tablet'  => 14,
+            'mobile'  => 12
+        ]);
+    }
+
+    // Sanitize each device size
+    foreach ( $decoded as $device => $size ) {
+        // Ensure size is numeric and within a reasonable range
+        if ( ! is_numeric( $size ) || $size < 6 || $size > 100 ) {
+            // Set to a reasonable default if invalid
+            $decoded[ $device ] = ($device === 'desktop') ? 16 : ($device === 'tablet' ? 14 : 12);
+        } else {
+            // Sanitize the value to a positive integer
+            $decoded[ $device ] = absint( $size );
+        }
+    }
+
+    // Return the sanitized array as a JSON-encoded string
+    return json_encode( $decoded );
 }

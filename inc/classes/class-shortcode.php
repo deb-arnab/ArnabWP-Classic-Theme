@@ -101,24 +101,28 @@ class Shortcode
                 $existing_emails[] = $email;
                 update_option('arnabwp_newsletter_emails', $existing_emails);
         ?>
-                <div class="alert alert-success" role="alert">
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
                     <?php esc_html_e('Thank you for subscribing!', 'arnabwp'); ?>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
             <?php
 
             } else {
             ?>
-                <div class="alert alert-info" role="alert">
+                <div class="alert alert-info alert-dismissible fade show" role="alert">
                     <?php esc_html_e('You are already subscribed.', 'arnabwp'); ?>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
             <?php
 
             }
         } else {
             ?>
-            <div class="alert alert-danger" role="alert">
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
                 <?php esc_html_e('Please enter a valid email address.', 'arnabwp'); ?>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
+            
 <?php
 
         }

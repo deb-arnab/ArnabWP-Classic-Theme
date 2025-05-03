@@ -28,13 +28,13 @@ trait Frontpage_Options {
         ]);
 
         // Include modular files for each frontpage section
-        include_once ARNABWP_DIR_PATH . '/inc/frontpage_customizer/hero-section.php';
-        include_once ARNABWP_DIR_PATH . '/inc/frontpage_customizer/features-section.php';
-        include_once ARNABWP_DIR_PATH . '/inc/frontpage_customizer/about-section.php';
-        include_once ARNABWP_DIR_PATH . '/inc/frontpage_customizer/employee-section.php';
-        include_once ARNABWP_DIR_PATH . '/inc/frontpage_customizer/client-section.php';
-        include_once ARNABWP_DIR_PATH . '/inc/frontpage_customizer/testimonial-section.php';
-        include_once ARNABWP_DIR_PATH . '/inc/frontpage_customizer/newsletter-section.php';
+        include_once ARNABWP_DIR_PATH . '/inc/customizer/frontpage_customizer/hero-section.php';
+        include_once ARNABWP_DIR_PATH . '/inc/customizer/frontpage_customizer/features-section.php';
+        include_once ARNABWP_DIR_PATH . '/inc/customizer/frontpage_customizer/about-section.php';
+        include_once ARNABWP_DIR_PATH . '/inc/customizer/frontpage_customizer/employee-section.php';
+        include_once ARNABWP_DIR_PATH . '/inc/customizer/frontpage_customizer/client-section.php';
+        include_once ARNABWP_DIR_PATH . '/inc/customizer/frontpage_customizer/testimonial-section.php';
+        include_once ARNABWP_DIR_PATH . '/inc/customizer/frontpage_customizer/newsletter-section.php';
 
         // Register each section with the customizer
         add_hero_section( $wp_customize );

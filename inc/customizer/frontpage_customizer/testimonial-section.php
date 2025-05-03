@@ -141,61 +141,109 @@ $wp_customize->add_control(new \ARNABWP_THEME\Inc\Controls\Tabs_Control(
     ));
 
  // === Font Size: Name === //
- $wp_customize->add_setting('testimonial_name_font_size', [
-    'default'           => 18,
-    'sanitize_callback' => 'absint',
+ $wp_customize->add_setting('arnabwp_testimonial_name_font_size', [
+    'default' => json_encode([
+        'desktop' => '20',
+        'tablet'  => '18',
+        'mobile'  => '16'
+    ]),
+    'transport' => 'refresh',
+   'sanitize_callback' => 'arnabwp_sanitize_testimonial_font_size',
 ]);
-$wp_customize->add_control(new \ARNABWP_THEME\Inc\Controls\Range_Control(
+$wp_customize->add_control(new \ARNABWP_THEME\Inc\Controls\Responsive_Range_Control(
     $wp_customize,
-    'testimonial_name_font_size', [
+    'arnabwp_testimonial_name_font_size', [
     'label'       => __('Client Name Font Size', 'arnabwp'),
     'section'     => 'arnabwp_testimonial_section',
-    'type'        => 'number',
     'input_attrs' => [
-        'min'  => 10,
-        'max'  => 30,
-        'step' => 1,
-    ],
+            'min' => 6,
+            'max' => 100,
+            'step' => 1,
+            'default_desktop' => 20,
+        'default_tablet'  => 18,
+        'default_mobile'  => 16,
+        ],
     'active_callback' => fn() => get_theme_mod('arnabwp_current_testimonial_tab', 'general') === 'style',
 ]
 ));
 
     // === Font Size: Testimonial comment === //
-    $wp_customize->add_setting('testimonial_comment_font_size', [
-        'default'           => 12,
-        'sanitize_callback' => 'absint',
+    $wp_customize->add_setting('arnabwp_testimonial_comment_font_size', [
+        'default' => json_encode([
+            'desktop' => '16',
+            'tablet'  => '14',
+            'mobile'  => '12'
+        ]),
+        'transport' => 'refresh',
+       'sanitize_callback' => 'arnabwp_sanitize_testimonial_font_size',
     ]);
-    $wp_customize->add_control(new \ARNABWP_THEME\Inc\Controls\Range_Control(
+    $wp_customize->add_control(new \ARNABWP_THEME\Inc\Controls\Responsive_Range_Control(
         $wp_customize,
-        'testimonial_comment_font_size', [
+        'arnabwp_testimonial_comment_font_size', [
         'label'       => __('Client Comment Font Size', 'arnabwp'),
         'section'     => 'arnabwp_testimonial_section',
-        'type'        => 'number',
         'input_attrs' => [
-            'min'  => 10,
-            'max'  => 30,
+            'min' => 6,
+            'max' => 100,
             'step' => 1,
+            'default_desktop' => 16,
+        'default_tablet'  => 14,
+        'default_mobile'  => 12,
         ],
         'active_callback' => fn() => get_theme_mod('arnabwp_current_testimonial_tab', 'general') === 'style',
     ]
     ));
 
     // === Font Size: Job position/Description === //
-    $wp_customize->add_setting('testimonial_job_font_size', [
-        'default'           => 14,
-        'sanitize_callback' => 'absint',
+    $wp_customize->add_setting('arnabwp_testimonial_job_font_size', [
+        'default' => json_encode([
+            'desktop' => '16',
+            'tablet'  => '14',
+            'mobile'  => '12'
+        ]),
+        'transport' => 'refresh',
+       'sanitize_callback' => 'arnabwp_sanitize_testimonial_font_size',
     ]);
-    $wp_customize->add_control(new \ARNABWP_THEME\Inc\Controls\Range_Control(
+    $wp_customize->add_control(new \ARNABWP_THEME\Inc\Controls\Responsive_Range_Control(
         $wp_customize,
-        'testimonial_job_font_size', [
+        'arnabwp_testimonial_job_font_size', [
         'label'       => __('Client Job Font Size', 'arnabwp'),
         'section'     => 'arnabwp_testimonial_section',
-        'type'        => 'number',
         'input_attrs' => [
-            'min'  => 10,
-            'max'  => 30,
+            'min' => 6,
+            'max' => 100,
             'step' => 1,
+            'default_desktop' => 16,
+        'default_tablet'  => 14,
+        'default_mobile'  => 12,
         ],
+        'active_callback' => fn() => get_theme_mod('arnabwp_current_testimonial_tab', 'general') === 'style',
+    ]
+    ));
+
+    // === Font Size: social icons === //
+    $wp_customize->add_setting('arnabwp_testimonial_social_icon_font_size', [
+        'default' => json_encode([
+            'desktop' => '18',
+            'tablet'  => '16',
+            'mobile'  => '14'
+        ]),
+        'transport' => 'refresh',
+       'sanitize_callback' => 'arnabwp_sanitize_testimonial_font_size',
+    ]);
+    $wp_customize->add_control(new \ARNABWP_THEME\Inc\Controls\Responsive_Range_Control(
+        $wp_customize,
+        'arnabwp_testimonial_social_icon_font_size', [
+        'label'       => __('Client Social Icon Size', 'arnabwp'),
+        'section'     => 'arnabwp_testimonial_section',
+     'input_attrs' => [
+                'min' => 6,
+                'max' => 100,
+                'step' => 1,
+                'default_desktop' => 18,
+            'default_tablet'  => 16,
+            'default_mobile'  => 14,
+            ],
         'active_callback' => fn() => get_theme_mod('arnabwp_current_testimonial_tab', 'general') === 'style',
     ]
     ));
@@ -217,7 +265,7 @@ $wp_customize->add_control(new \ARNABWP_THEME\Inc\Controls\Range_Control(
 
     // === Color: Name === //
     $wp_customize->add_setting('testimonial_name_color', [
-        'default'           => '#ffffff',
+        'default'           => '#187dbc',
         'sanitize_callback' => 'sanitize_hex_color',
     ]);
     $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'testimonial_name_color', [
@@ -228,7 +276,7 @@ $wp_customize->add_control(new \ARNABWP_THEME\Inc\Controls\Range_Control(
 
     // === Color: Testimonial comment === //
     $wp_customize->add_setting('testimonial_comment_color', [
-        'default'           => '#ffffff',
+        'default'           => '#ccc',
         'sanitize_callback' => 'sanitize_hex_color',
     ]);
     $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'testimonial_comment_color', [
@@ -239,11 +287,22 @@ $wp_customize->add_control(new \ARNABWP_THEME\Inc\Controls\Range_Control(
 
     // === Color: Job position/Description === //
     $wp_customize->add_setting('testimonial_job_color', [
-        'default'           => '#dddddd',
+        'default'           => '#555555',
         'sanitize_callback' => 'sanitize_hex_color',
     ]);
     $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'testimonial_job_color', [
         'label'   => __('Client Job Color', 'arnabwp'),
+        'section' => 'arnabwp_testimonial_section',
+        'active_callback' => fn() => get_theme_mod('arnabwp_current_testimonial_tab', 'general') === 'style',
+    ]));
+
+       // === Color: social icons === //
+       $wp_customize->add_setting('testimonial_social_icon_color', [
+        'default'           => '#e83582',
+        'sanitize_callback' => 'sanitize_hex_color',
+    ]);
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'testimonial_social_icon_color', [
+        'label'   => __('Client Social Icons Color', 'arnabwp'),
         'section' => 'arnabwp_testimonial_section',
         'active_callback' => fn() => get_theme_mod('arnabwp_current_testimonial_tab', 'general') === 'style',
     ]));
@@ -271,7 +330,7 @@ $wp_customize->add_control(new \ARNABWP_THEME\Inc\Controls\Range_Control(
     $wp_customize->add_control(new \ARNABWP_THEME\Inc\Controls\Range_Control(
         $wp_customize,
         'testimonial_icon_size', [
-        'label'       => __('Client Icon Size (px)', 'arnabwp'),
+        'label'       => __('Client Image Size Width & Height (px)', 'arnabwp'),
         'section'     => 'arnabwp_testimonial_section',
         'type'        => 'range',
         'input_attrs' => [
@@ -291,7 +350,7 @@ $wp_customize->add_control(new \ARNABWP_THEME\Inc\Controls\Range_Control(
     $wp_customize->add_control(new \ARNABWP_THEME\Inc\Controls\Range_Control(
         $wp_customize,
         'testimonial_icon_radius', [
-        'label'       => __('Client Icon Border Radius (%)', 'arnabwp'),
+        'label'       => __('Client Image Border Radius (%)', 'arnabwp'),
         'section'     => 'arnabwp_testimonial_section', // fixed typo: was 'feature_section'
         'type'        => 'range',
         'input_attrs' => [
@@ -303,36 +362,9 @@ $wp_customize->add_control(new \ARNABWP_THEME\Inc\Controls\Range_Control(
     ]
     ));
 
-    // === Font Size: social icons === //
-    $wp_customize->add_setting('testimonial_social_icon_font_size', [
-        'default'           => 12,
-        'sanitize_callback' => 'absint',
-    ]);
-    $wp_customize->add_control(new \ARNABWP_THEME\Inc\Controls\Range_Control(
-        $wp_customize,
-        'testimonial_social_icon_font_size', [
-        'label'       => __('Client Social Icon Size', 'arnabwp'),
-        'section'     => 'arnabwp_testimonial_section',
-        'type'        => 'range',
-        'input_attrs' => [
-            'min'  => 10,
-            'max'  => 30,
-            'step' => 1,
-        ],
-        'active_callback' => fn() => get_theme_mod('arnabwp_current_testimonial_tab', 'general') === 'icon',
-    ]
-    ));
+    
 
-    // === Color: social icons === //
-    $wp_customize->add_setting('testimonial_social_icon_color', [
-        'default'           => '#187dbc',
-        'sanitize_callback' => 'sanitize_hex_color',
-    ]);
-    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'testimonial_social_icon_color', [
-        'label'   => __('Client Social Icons Color', 'arnabwp'),
-        'section' => 'arnabwp_testimonial_section',
-        'active_callback' => fn() => get_theme_mod('arnabwp_current_testimonial_tab', 'general') === 'icon',
-    ]));
+ 
     
 }
 
@@ -342,3 +374,31 @@ $wp_customize->add_control(new \ARNABWP_THEME\Inc\Controls\Range_Control(
 // ===================== //
 
 
+function arnabwp_sanitize_testimonial_font_size($value) {
+    // Decode the JSON value into an associative array
+    $decoded = json_decode( $value, true );
+
+    // If decoding failed or the result is not an array, return a default size
+    if ( ! is_array( $decoded ) ) {
+        return json_encode([
+            'desktop' => 16,
+            'tablet'  => 14,
+            'mobile'  => 12
+        ]);
+    }
+
+    // Sanitize each device size
+    foreach ( $decoded as $device => $size ) {
+        // Ensure size is numeric and within a reasonable range
+        if ( ! is_numeric( $size ) || $size < 6 || $size > 100 ) {
+            // Set to a reasonable default if invalid
+            $decoded[ $device ] = ($device === 'desktop') ? 16 : ($device === 'tablet' ? 14 : 12);
+        } else {
+            // Sanitize the value to a positive integer
+            $decoded[ $device ] = absint( $size );
+        }
+    }
+
+    // Return the sanitized array as a JSON-encoded string
+    return json_encode( $decoded );
+}

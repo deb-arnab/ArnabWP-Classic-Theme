@@ -53,8 +53,11 @@ function autoloader( $resource = '' ) {
 				$file_name = sprintf( 'trait-%s', trim( strtolower( $path[2] ) ) );
 				break;
 
-			case 'widgets':
-			case 'blocks': // phpcs:ignore PSR2.ControlStructures.SwitchDeclaration.TerminatingComment
+				case 'helpers':
+					$directory = 'helpers'; // this should work for Font_Output
+					$file_name = sprintf( 'class-%s', trim( strtolower( $path[2] ) ) );
+					break;
+
 				/**
 				 * If there is class name provided for specific directory then load that.
 				 * otherwise find in inc/ directory.

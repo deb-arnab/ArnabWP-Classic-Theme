@@ -14,33 +14,14 @@
 /* Styling the range input element */
 .arnabwp-range-control input[type="range"] {
   flex: 1; /* Makes the range input fill the available space */
-  height: 4px; /* Sets the height of the slider */
+  height: 5px; /* Sets the height of the slider */
   border-radius: 5px; /* Rounds the corners */
-  background: linear-gradient(to right, #0073aa, #2196F3); /* Blue gradient background */
+  background: linear-gradient(to right, #b90069, #db007c); /* Blue gradient background */
   appearance: none; /* Removes default browser styling */
   cursor: pointer; /* Changes the cursor to a pointer when hovering */
 }
 
-/* Webkit-specific thumb styling for the range input */
-.arnabwp-range-control input[type="range"]::-webkit-slider-thumb {
-  appearance: none; /* Removes default styling */
-  width: 16px; /* Sets the thumb width */
-  height: 16px; /* Sets the thumb height */
-  background: #db007c; /* Sets the thumb background color */
-  border: 2px solid #2196F3; /* Adds a border around the thumb */
-  border-radius: 50%; /* Makes the thumb circular */
-  transition: background 0.3s, border-color 0.3s; /* Adds smooth transition for background and border */
-}
 
-/* Mozilla-specific thumb styling for the range input */
-.arnabwp-range-control input[type="range"]::-moz-range-thumb {
-  width: 16px; /* Sets the thumb width */
-  height: 16px; /* Sets the thumb height */
-  background: #ffffff; /* Sets the thumb background color */
-  border: 2px solid #2196F3; /* Adds a border around the thumb */
-  border-radius: 50%; /* Makes the thumb circular */
-  transition: background 0.3s, border-color 0.3s; /* Adds smooth transition for background and border */
-}
 
 /* Styling for the text input next to the range control */
 .arnabwp-range-control input[type="text"] {
@@ -68,8 +49,3 @@
   padding: 0 8px; /* Adds horizontal padding */
 }
 
-/* Responsive layout for range control on smaller screens */
-.arnabwp-range-control.responsive {
-  flex-direction: column; /* Stacks elements vertically */
-  gap: 10px; /* Adds space between elements */
-}

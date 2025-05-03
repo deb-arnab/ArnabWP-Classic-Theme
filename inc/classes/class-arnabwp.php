@@ -40,6 +40,7 @@ class ArnabWP
 	protected function __construct()
 	{
 		// Initialize theme components
+		
 		Enqueue::get_instance();
 		Menus::get_instance();
 		Breadcrumbs::get_instance();

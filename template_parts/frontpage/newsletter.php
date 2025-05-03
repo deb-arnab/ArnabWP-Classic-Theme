@@ -5,8 +5,7 @@
  * @package ArnabWP
  */
 
- $section_title_font_size =  absint(get_theme_mod('arnabwp_section_title_font_size', 32));
- $section_desc_font_size =  absint(get_theme_mod('arnabwp_section_description_font_size', 16));
+
 
 // Background customization with proper escaping
 $bg_type   = esc_attr(get_theme_mod('newsletter_section_bg_type', 'none'));
@@ -34,13 +33,13 @@ if ( get_theme_mod( 'show_newsletter_section', true ) ) :
                     <?php if ( get_theme_mod( 'newsletter_title' ) || get_theme_mod( 'newsletter_description' ) ) : ?>
                         <header class="mb-4">
                             <?php if ( get_theme_mod( 'newsletter_title' ) ) : ?>
-                                <h2 id="newsletter-section-heading" class="mb-3" style="font-size: <?php echo $section_title_font_size; ?>px; ">
+                                <h2 id="newsletter-section-heading" class="section-title mb-3 fw-bold">
                                     <?php echo esc_html( get_theme_mod( 'newsletter_title', __( 'Subscribe to Our Newsletter', 'arnabwp' ) ) ); ?>
                                 </h2>
                             <?php endif; ?>
 
                             <?php if ( get_theme_mod( 'newsletter_description' ) ) : ?>
-                                <p class="mb-0" style="font-size: <?php echo $section_desc_font_size; ?>px; ">
+                                <p class="section-description text-muted mb-0">
                                     <?php echo esc_html( get_theme_mod( 'newsletter_description', __( 'Get the latest updates and offers.', 'arnabwp' ) ) ); ?>
                                 </p>
                             <?php endif; ?>
