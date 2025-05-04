@@ -258,6 +258,13 @@ body:not(.home) .arnabwp-navbar {
 }
 
 
+.site-container {
+  margin: 0 auto;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+
   
   /* ==================================
      Footer Styles

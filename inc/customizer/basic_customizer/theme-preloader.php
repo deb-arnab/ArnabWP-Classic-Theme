@@ -67,7 +67,7 @@ function add_preloader_section( $wp_customize ) {
      * Preloader Spinner Color Setting
      */
     $wp_customize->add_setting( 'preloader_spinner_color', [
-        'default'           => '#007bff', // Default spinner color: blue
+        'default'           => '#187dbc', 
         'sanitize_callback' => 'sanitize_hex_color',
     ]);
 

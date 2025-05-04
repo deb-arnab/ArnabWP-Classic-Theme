@@ -10,14 +10,14 @@
     margin-bottom: 12px;
     list-style: none;
     padding-left: 0;
+
   }
   
   .device-tab {
     cursor: pointer;
-    padding: 3px 6px;
-    border: 1px solid #db007c;
+
+    border: 2px solid #2271b1;
     border-radius: 4px;
-    font-size: 13px;
     display: flex;
     align-items: center;
     gap: 4px;
@@ -68,5 +68,7 @@
     padding: 0 8px;
     line-height: 1;
     flex-shrink: 0;
+    border: 2px solid #2271b1;
+    font-weight: 700;
   }
   

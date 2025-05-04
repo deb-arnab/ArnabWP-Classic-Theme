@@ -6,6 +6,10 @@
     margin: 0 8px;
     color: var(--primary-color);
   }
+
+  .arnabwp-breadcrumb a {
+    text-decoration: none;
+}
   
  /* ==================================
      Breadcrumb Text Alignment

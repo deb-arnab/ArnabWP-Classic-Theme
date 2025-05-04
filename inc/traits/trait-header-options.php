@@ -207,20 +207,26 @@ trait Header_Options
 		// Menu Font Size with restricted choices
 		$wp_customize->add_setting('arnabwp_menu_font_size', [
 			'default'           => 16,
-			'sanitize_callback' => [$this, 'sanitize_header_font_size'],
+			'sanitize_callback' => 'absint',
 		]);
 
-		$wp_customize->add_control('arnabwp_menu_font_size', [
+		$wp_customize->add_control( new \ARNABWP_THEME\Inc\Controls\Range_Control(
+        $wp_customize,
+		'arnabwp_menu_font_size', [
 			'label'    => __('Menu Font Size', 'arnabwp'),
 			'section'  => 'arnabwp_header_options',
-			'type'        => 'number',
-			'input_attrs' => [
-				'min'  => 14,
-				'max'  => 18,
-				'step' => 1,
-			],
-		]);
+			'type'        => 'range',
+        'input_attrs' => [
+            'min'  => 6,
+            'max'  => 100,
+            'step' => 1,
+        ],
+		]
+		) );
+
 	}
+
+
 
 	/**
 	 * Sanitize the header layout option.

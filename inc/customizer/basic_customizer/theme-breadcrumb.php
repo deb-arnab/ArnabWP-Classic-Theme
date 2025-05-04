@@ -105,23 +105,34 @@ function add_breadcrumb_section( $wp_customize ) {
      * Setting: Breadcrumb Font Size
      */
     $wp_customize->add_setting('arnabwp_breadcrumb_font_size', [
-        'default'           => 14,
-        'sanitize_callback' => 'absint',
+        'default' => json_encode([
+            'desktop' => '14',
+            'tablet'  => '12',
+            'mobile'  => '10'
+        ]),
+        'transport' => 'refresh',
+       'sanitize_callback' => 'arnabwp_sanitize_breadcrumb_font_size',
     ]);
 
-    $wp_customize->add_control('arnabwp_breadcrumb_font_size', [
+    $wp_customize->add_control(new \ARNABWP_THEME\Inc\Controls\Responsive_Range_Control(
+        $wp_customize,
+        'arnabwp_breadcrumb_font_size', [
         'label'            => __('Font Size (px)', 'arnabwp'),
         'type'             => 'number',
         'section'          => 'arnabwp_breadcrumbs_section',
-        'input_attrs'      => [
-            'min'  => 10,
-            'max'  => 20,
+        'input_attrs' => [
+            'min' => 6,
+            'max' => 100,
             'step' => 1,
+            'default_desktop' => 14,
+        'default_tablet'  => 12,
+        'default_mobile'  => 10,
         ],
         'active_callback'  => function() {
             return get_theme_mod('arnabwp_enable_breadcrumbs') === true;
         },
-    ]);
+    ]
+    ));
 
     /**
      * Divider: Color Settings
@@ -192,3 +203,32 @@ function sanitize_breadcrumb_separator( $value ) {
 		// Return the value only if it's valid; fallback to 'right'
 		return in_array($value, $valid, true) ? $value : 'right';
 	}
+
+    function arnabwp_sanitize_breadcrumb_font_size($value) {
+        // Decode the JSON value into an associative array
+        $decoded = json_decode( $value, true );
+    
+        // If decoding failed or the result is not an array, return a default size
+        if ( ! is_array( $decoded ) ) {
+            return json_encode([
+                'desktop' => 16,
+                'tablet'  => 14,
+                'mobile'  => 12
+            ]);
+        }
+    
+        // Sanitize each device size
+        foreach ( $decoded as $device => $size ) {
+            // Ensure size is numeric and within a reasonable range
+            if ( ! is_numeric( $size ) || $size < 6 || $size > 100 ) {
+                // Set to a reasonable default if invalid
+                $decoded[ $device ] = ($device === 'desktop') ? 16 : ($device === 'tablet' ? 14 : 12);
+            } else {
+                // Sanitize the value to a positive integer
+                $decoded[ $device ] = absint( $size );
+            }
+        }
+    
+        // Return the sanitized array as a JSON-encoded string
+        return json_encode( $decoded );
+    }

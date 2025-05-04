@@ -32,6 +32,7 @@
   padding: 4px 6px; /* Adds padding inside the input */
   font-size: 14px; /* Sets the font size */
   border-radius: 4px; /* Rounds the corners */
+  flex-shrink: 0;
 }
 
 /* Styling for displaying the range value */
@@ -43,9 +44,12 @@
 }
 
 /* Reset button styling */
-.arnabwp-range-reset {
+.arnabwp-range-control .button.arnabwp-range-reset {
   height: 30px; /* Sets the button height */
   line-height: 1; /* Adjusts the line height */
   padding: 0 8px; /* Adds horizontal padding */
+  flex-shrink: 0;
+  border: 2px solid #2271b1;
+  font-weight: 700;
 }
 

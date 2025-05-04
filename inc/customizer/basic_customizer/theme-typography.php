@@ -165,7 +165,7 @@ function add_typography_section( $wp_customize ) {
             'default_mobile'  => 12,
             ],
         ]
-    ) );
+        ) );
 
     // =============================
     // Front Page Font Size
