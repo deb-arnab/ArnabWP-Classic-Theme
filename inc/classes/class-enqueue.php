@@ -130,10 +130,6 @@ class Enqueue
         );
         wp_enqueue_script('main-js');
 
-
-
-
-
         // Owl Carousel JS
         wp_enqueue_script('owl-carousel', 'https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js', array('jquery'), null, true);
 
@@ -146,5 +142,7 @@ class Enqueue
             true
         );
         wp_enqueue_script('arnabwp-slider-js');
+
+  
     }
 }

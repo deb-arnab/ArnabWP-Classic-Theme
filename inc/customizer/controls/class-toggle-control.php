@@ -7,7 +7,7 @@
  * @package ArnabWP
  */
 
-namespace ARNABWP_THEME\Inc\Controls;
+namespace ARNABWP_THEME\Inc\Customizer\Controls;
 
 
 

@@ -22,34 +22,24 @@ $testimonial_query = new WP_Query([
 ]);
 
 // Get the Customizer setting
-$show_quotation_mark = (bool) get_theme_mod('show_testimonial_quotation_mark', true);
+$show_quotation_mark = (bool) get_theme_mod('arnabwp_show_testimonial_quotation_mark', true);
 
 // Get dynamic customization values
-$section_title       = get_theme_mod('testimonial_section_title', __('What Our Clients Say', 'arnabwp'));
-$section_description =  get_theme_mod('testimonial_section_description', __('Experience the difference with us', 'arnabwp'));
+$section_title       = get_theme_mod('arnabwp_testimonial_section_title', __('What Our Clients Say', 'arnabwp'));
+$section_description =  get_theme_mod('arnabwp_testimonial_section_description', __('Experience the difference with us', 'arnabwp'));
 
+$icon_size           = absint(get_theme_mod('arnabwp_testimonial_icon_size', 70));
+$icon_radius         = absint(get_theme_mod('arnabwp_testimonial_icon_radius', 50));
 
-$name_color          = esc_attr(get_theme_mod('testimonial_name_color', '#187dbc'));
-
-
-$job_color           = esc_attr(get_theme_mod('testimonial_job_color', '#555555'));
-
-
-$comment_color       = esc_attr(get_theme_mod('testimonial_comment_color', '#ccc'));
-
-$icon_size           = absint(get_theme_mod('testimonial_icon_size', 70));
-$icon_radius         = absint(get_theme_mod('testimonial_icon_radius', 50));
-
-
-$social_icon_color   = esc_attr(get_theme_mod('testimonial_social_icon_color', '#e83582'));
 
 if ($testimonial_query->have_posts()) : ?>
+<?php \ARNABWP_THEME\Inc\Helpers\Customizer_Shortcut::arnabwp_display_shortcut( 'arnabwp_testimonial_section' ); ?>
     <section class="testimonial-section py-5" id="testimonials" aria-label="Client Testimonial">
     <div class="site-container">
             <!-- Section heading -->
             <div class="text-center mb-5">
                 <h2 class="fw-bold section-title" ><?php echo esc_html($section_title); ?></h2>
-                <p class="text-muted section-description" ><?php echo esc_html($section_description); ?></p>
+                <p class="section-description" ><?php echo esc_html($section_description); ?></p>
             </div>
 
             <div class="owl-carousel owl-theme testimonial-carousel" role="region" aria-label="Testimonials Carousel">
@@ -73,7 +63,7 @@ if ($testimonial_query->have_posts()) : ?>
                             <?php endif; ?>
                             <!-- Testimonial Content -->
                             <blockquote class="testimonial-comment text-center mb-4">
-                                <p class="mb-0" style="font-style: italic; color: <?php echo esc_attr($comment_color); ?>;"><?php echo $testimonial_comment; ?></p>
+                                <p class="testimonial-comment mb-0" style="font-style: italic;"><?php echo $testimonial_comment; ?></p>
                             </blockquote>
 
                             <!-- Rating (Centered) -->
@@ -102,8 +92,8 @@ if ($testimonial_query->have_posts()) : ?>
                                 </div>
 
                                 <div class="testimonial-client-details">
-                                    <h5 class="testimonial-client-name mb-1 entry-title fw-bold" style="color: <?php echo esc_attr($name_color); ?>;"><?php echo $client_name; ?></h5>
-                                    <p class="testimonial-client-title text-muted mb-2" style="color: <?php echo esc_attr($job_color); ?>;"><?php echo $client_title; ?></p>
+                                    <h5 class="testimonial-client-name mb-1 entry-title fw-bold"><?php echo $client_name; ?></h5>
+                                    <p class="testimonial-client-title mb-2"><?php echo $client_title; ?></p>
                                     <!-- Social Links (Below Subtitle) -->
                                     <?php if (!empty($social_links)) : ?>
                                         <div class="testimonial-social-icon testimonial-client-social-links">
@@ -111,7 +101,7 @@ if ($testimonial_query->have_posts()) : ?>
                                                 <a 
                                                 href="<?php echo esc_url($social_links['facebook']); ?>"
                                                     target="_blank"
-                                                    style="color: <?php echo esc_attr($social_icon_color); ?>;"
+                                                
                                                     rel="noopener"
                                                     aria-label="Facebook profile of <?php echo esc_attr($client_name); ?>">
                                                     <i class="fab fa-facebook-f"></i>
@@ -121,7 +111,7 @@ if ($testimonial_query->have_posts()) : ?>
                                                 <a 
                                                 href="<?php echo esc_url($social_links['twitter']); ?>" 
                                                 target="_blank" 
-                                                style="color: <?php echo esc_attr($social_icon_color); ?>;" 
+                                                 
                                                 rel="noopener"
                                                 aria-label="Twitter profile of <?php echo esc_attr($client_name); ?>">
                                                     <i class="fab fa-twitter"></i>
@@ -131,7 +121,7 @@ if ($testimonial_query->have_posts()) : ?>
                                                 <a 
                                                 href="<?php echo esc_url($social_links['linkedin']); ?>" 
                                                 target="_blank" 
-                                                style="color: <?php echo esc_attr($social_icon_color); ?>;"
+                                                
                                                 rel="noopener"
                                                 aria-label="Linkedin profile of <?php echo esc_attr($client_name); ?>">
                                                     <i class="fab fa-linkedin-in"></i>

@@ -25,7 +25,7 @@ function add_about_section($wp_customize)
     'transport'         => 'refresh',
     'sanitize_callback' => 'sanitize_text_field',
 ]);
-$wp_customize->add_control( new \ARNABWP_THEME\Inc\Controls\Tabs_Control( 
+$wp_customize->add_control( new \ARNABWP_THEME\Inc\Customizer\Controls\Tabs_Control( 
     $wp_customize,
     'arnabwp_current_about_tab', [
 
@@ -60,7 +60,7 @@ $wp_customize->add_control( new \ARNABWP_THEME\Inc\Controls\Tabs_Control(
         'sanitize_callback' => 'wp_validate_boolean',
     ]);
 
-    $wp_customize->add_control(new \ARNABWP_THEME\Inc\Controls\Toggle_Control(
+    $wp_customize->add_control(new \ARNABWP_THEME\Inc\Customizer\Controls\Toggle_Control(
         $wp_customize,
         'arnabwp_about_section_enable',
         [
@@ -108,7 +108,7 @@ $wp_customize->add_control( new \ARNABWP_THEME\Inc\Controls\Tabs_Control(
         'sanitize_callback' => 'wp_validate_boolean',
     ]);
 
-    $wp_customize->add_control(new \ARNABWP_THEME\Inc\Controls\Toggle_Control(
+    $wp_customize->add_control(new \ARNABWP_THEME\Inc\Customizer\Controls\Toggle_Control(
         $wp_customize,
         'about_section_bg_scroll',
         [

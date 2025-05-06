@@ -154,7 +154,7 @@ class Custom_Meta_Boxes
 		</p>
 		<p>
 			<label><?php _e('Comment:', 'arnabwp'); ?></label>
-			<textarea id="testimonial_comment" name="testimonial_comment" class="widefat" rows="6"><?php echo esc_attr($comment); ?></textarea>
+			<textarea id="testimonial_comment" name="testimonial_comment" class="widefat" rows="6"><?php echo esc_html($comment); ?></textarea>
 		</p>
 		<p>
 			<label><?php _e('Rating (1–5):', 'arnabwp'); ?></label>

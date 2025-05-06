@@ -95,7 +95,7 @@ function add_typography_section( $wp_customize ) {
         'sanitize_callback' => 'arnabwp_sanitize_responsive_font_size',
     ]);
 
-    $wp_customize->add_control(new \ARNABWP_THEME\Inc\Controls\Responsive_Range_Control(
+    $wp_customize->add_control(new \ARNABWP_THEME\Inc\Customizer\Controls\Responsive_Range_Control(
         $wp_customize,
         'arnabwp_heading_font_size',
         [
@@ -122,7 +122,7 @@ function add_typography_section( $wp_customize ) {
         'sanitize_callback' => 'arnabwp_sanitize_responsive_font_size',
     ]);
 
-    $wp_customize->add_control(new \ARNABWP_THEME\Inc\Controls\Responsive_Range_Control(
+    $wp_customize->add_control(new \ARNABWP_THEME\Inc\Customizer\Controls\Responsive_Range_Control(
         $wp_customize,
         'arnabwp_content_title_font_size',
         [
@@ -150,7 +150,7 @@ function add_typography_section( $wp_customize ) {
        'sanitize_callback' => 'arnabwp_sanitize_responsive_font_size',
     ]);
     
-    $wp_customize->add_control( new \ARNABWP_THEME\Inc\Controls\Responsive_Range_Control(
+    $wp_customize->add_control( new \ARNABWP_THEME\Inc\Customizer\Controls\Responsive_Range_Control(
         $wp_customize,
         'arnabwp_body_font_size',
         [
@@ -197,7 +197,7 @@ function add_typography_section( $wp_customize ) {
        'sanitize_callback' => 'arnabwp_sanitize_responsive_font_size',
     ]);
 
-    $wp_customize->add_control(new \ARNABWP_THEME\Inc\Controls\Responsive_Range_Control(
+    $wp_customize->add_control(new \ARNABWP_THEME\Inc\Customizer\Controls\Responsive_Range_Control(
         $wp_customize,
         'arnabwp_section_title_font_size',
         [
@@ -225,7 +225,7 @@ function add_typography_section( $wp_customize ) {
            'sanitize_callback' => 'arnabwp_sanitize_responsive_font_size',
         ]);
     
-        $wp_customize->add_control(new \ARNABWP_THEME\Inc\Controls\Responsive_Range_Control(
+        $wp_customize->add_control(new \ARNABWP_THEME\Inc\Customizer\Controls\Responsive_Range_Control(
             $wp_customize,
             'arnabwp_section_description_font_size',
             [

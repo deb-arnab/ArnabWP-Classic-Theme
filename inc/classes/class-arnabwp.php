@@ -50,6 +50,7 @@ class ArnabWP
 		Custom_Meta_Boxes::get_instance();
 		Theme_Customizer::get_instance();
 		Shortcode::get_instance();
+	
 
 
 		// Setup theme hooks
@@ -68,6 +69,7 @@ class ArnabWP
 		add_filter('excerpt_length', [$this, 'custom_excerpt_length'], 999);
 		// Register patterns after WordPress has initialized
 	add_action('init', [$this, 'register_block_patterns']);
+	add_action( 'after_switch_theme', 'arnabwp_setup_homepage_content' );
 	}
 
 	/**
@@ -184,6 +186,31 @@ public function register_block_patterns() {
 	}
 }
 
+public function arnabwp_setup_homepage_content() {
+    // Only run if no front page is set
+    if ( get_option( 'show_on_front' ) !== 'page' ) {
+
+        // Create new page
+        $homepage = array(
+            'post_title'   => 'Home',
+            'post_status'  => 'publish',
+            'post_type'    => 'page',
+            'post_content' => 
+                '<!-- wp:pattern {"slug":"arnabwp/testimonials-static"} /-->'.
+                "\n" .
+                '<!-- wp:pattern {"slug":"arnabwp/team-static"} /-->'.
+                "\n" .
+                '<!-- wp:pattern {"slug":"arnabwp/features-static"} /-->',
+        );
+
+        $home_id = wp_insert_post( $homepage );
+
+        if ( $home_id && ! is_wp_error( $home_id ) ) {
+            update_option( 'show_on_front', 'page' );
+            update_option( 'page_on_front', $home_id );
+        }
+    }
+}
 
 
 	/**

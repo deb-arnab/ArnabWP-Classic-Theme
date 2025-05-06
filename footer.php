@@ -11,11 +11,11 @@ $show_copyright     = get_theme_mod('arnabwp_footer_show_copyright', true);
 $text_align     = get_theme_mod('arnabwp_footer_text_alignment', 'center');
 $align_class    = 'align-' . esc_attr($text_align);
 ?>
-
+<?php \ARNABWP_THEME\Inc\Helpers\Customizer_Shortcut::arnabwp_display_shortcut( 'arnabwp_footer_section' ); ?>
 <footer class="site-footer">
-  <div class="site-container">
   
   <?php if ($show_widgets) : ?>
+    <div class="site-container">
       <div class="row">
         <?php for ($i = 1; $i <= 4; $i++) : ?>
           <div class="col-md-6 col-lg-3 footer-column">
@@ -27,17 +27,18 @@ $align_class    = 'align-' . esc_attr($text_align);
           </div>
         <?php endfor; ?>
       </div>
+    </div>
     <?php endif; ?>
-
+   
     <?php if ($show_copyright) : ?>
+      <div class="site-container">
       <div class="footer-bottom <?php echo esc_attr($align_class); ?>">
         <div class="footer-copy">
           <?php echo wp_kses_post($copyright_text); ?>
         </div>
       </div>
+      </div>
     <?php endif; ?>
-
-  </div>
 
 </footer>
 

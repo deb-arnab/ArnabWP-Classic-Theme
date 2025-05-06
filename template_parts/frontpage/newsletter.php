@@ -25,6 +25,7 @@ if ($bg_type === 'color') {
 
 if ( get_theme_mod( 'show_newsletter_section', true ) ) :
 ?>
+<?php \ARNABWP_THEME\Inc\Helpers\Customizer_Shortcut::arnabwp_display_shortcut( 'arnabwp_newsletter_section' ); ?>
     <section id="newsletter" class="py-5 text-center" aria-labelledby="newsletter-section-heading" <?php echo $bg_style; ?>>
     <div class="site-container">
             <div class="row justify-content-center">
@@ -39,7 +40,7 @@ if ( get_theme_mod( 'show_newsletter_section', true ) ) :
                             <?php endif; ?>
 
                             <?php if ( get_theme_mod( 'newsletter_description' ) ) : ?>
-                                <p class="section-description text-muted mb-0">
+                                <p class="section-description mb-0">
                                     <?php echo esc_html( get_theme_mod( 'newsletter_description', __( 'Get the latest updates and offers.', 'arnabwp' ) ) ); ?>
                                 </p>
                             <?php endif; ?>

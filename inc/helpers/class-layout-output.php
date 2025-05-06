@@ -119,4 +119,24 @@ class Layout_Output {
         echo '</style>';
     }
 
+/**
+ * Outputs the sticky header CSS rules inline in the <head> if the setting is enabled.
+ *
+ * This function checks the Customizer setting for sticky header (`arnabwp_sticky_header`)
+ * and, if true, adds the necessary inline CSS to make the header sticky.
+ *
+ * @return void
+ */
+public static function arnabwp_output_header_sticky_rules() {
+    $sticky = get_theme_mod('arnabwp_sticky_header', false);
+
+    echo '<style>';
+    
+    if ($sticky) {
+        echo "header.site-header { position: sticky; top: 0; z-index: 999; }";
+    }
+
+    echo '</style>';
+}
+
 }

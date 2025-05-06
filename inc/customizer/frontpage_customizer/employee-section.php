@@ -25,7 +25,7 @@ function add_employee_section($wp_customize)
     'transport'         => 'refresh',
     'sanitize_callback' => 'sanitize_text_field',
 ]);
-$wp_customize->add_control( new \ARNABWP_THEME\Inc\Controls\Tabs_Control( 
+$wp_customize->add_control( new \ARNABWP_THEME\Inc\Customizer\Controls\Tabs_Control( 
     $wp_customize,
     'arnabwp_current_employee_tab', [
 
@@ -59,7 +59,7 @@ $wp_customize->add_control( new \ARNABWP_THEME\Inc\Controls\Tabs_Control(
         'sanitize_callback' => 'wp_validate_boolean',
     ]);
 
-    $wp_customize->add_control(new \ARNABWP_THEME\Inc\Controls\Toggle_Control(
+    $wp_customize->add_control(new \ARNABWP_THEME\Inc\Customizer\Controls\Toggle_Control(
         $wp_customize,
         'arnabwp_employee_section_enable',
         [
@@ -70,12 +70,12 @@ $wp_customize->add_control( new \ARNABWP_THEME\Inc\Controls\Tabs_Control(
     ));
 
     // ========== Divider: Section Basics ========== //
-    $wp_customize->add_setting('divider_employee_basics', [
+    $wp_customize->add_setting('arnabwp_divider_employee_basics', [
         'sanitize_callback' => '__return_false',
     ]);
     $wp_customize->add_control(new WP_Customize_Control(
         $wp_customize,
-        'divider_employee_basics',
+        'arnabwp_divider_employee_basics',
         [
             'type'        => 'hidden',
             'section'     => 'arnabwp_employee_section',
@@ -126,12 +126,12 @@ $wp_customize->add_control( new \ARNABWP_THEME\Inc\Controls\Tabs_Control(
 
 
     // ========== Divider: Employee Name Style ========== //
-    $wp_customize->add_setting('divider_employee_name_style', [
+    $wp_customize->add_setting('arnabwp_divider_employee_name_style', [
         'sanitize_callback' => '__return_false',
     ]);
     $wp_customize->add_control(new WP_Customize_Control(
         $wp_customize,
-        'divider_employee_name_style',
+        'arnabwp_divider_employee_name_style',
         [
             'type'        => 'hidden',
             'section'     => 'arnabwp_employee_section',
@@ -150,7 +150,7 @@ $wp_customize->add_control( new \ARNABWP_THEME\Inc\Controls\Tabs_Control(
         'transport' => 'refresh',
        'sanitize_callback' => 'arnabwp_sanitize_employee_font_size',
     ]);
-    $wp_customize->add_control(new \ARNABWP_THEME\Inc\Controls\Responsive_Range_Control(
+    $wp_customize->add_control(new \ARNABWP_THEME\Inc\Customizer\Controls\Responsive_Range_Control(
         $wp_customize,
         'arnabwp_employee_name_font_size', [
         'label'       => __('Employee Name Font Size', 'arnabwp'),
@@ -168,23 +168,23 @@ $wp_customize->add_control( new \ARNABWP_THEME\Inc\Controls\Tabs_Control(
     ));
 
     // === Color: Employee Name === //
-    $wp_customize->add_setting('employee_name_color', [
+    $wp_customize->add_setting('arnabwp_employee_name_color', [
         'default'           => '#187dbc',
         'sanitize_callback' => 'sanitize_hex_color',
     ]);
-    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'employee_name_color', [
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'arnabwp_employee_name_color', [
         'label'   => __('Employee Name Color', 'arnabwp'),
         'section' => 'arnabwp_employee_section',
         'active_callback' => fn() => get_theme_mod('arnabwp_current_employee_tab', 'general') === 'style',
     ]));
 
     // ========== Divider: Employee Description Style ========== //
-    $wp_customize->add_setting('divider_employee_description_style', [
+    $wp_customize->add_setting('arnabwp_divider_employee_description_style', [
         'sanitize_callback' => '__return_false',
     ]);
     $wp_customize->add_control(new WP_Customize_Control(
         $wp_customize,
-        'divider_employee_description_style',
+        'arnabwp_divider_employee_description_style',
         [
             'type'        => 'hidden',
             'section'     => 'arnabwp_employee_section',
@@ -203,7 +203,7 @@ $wp_customize->add_control( new \ARNABWP_THEME\Inc\Controls\Tabs_Control(
         'transport' => 'refresh',
        'sanitize_callback' => 'arnabwp_sanitize_employee_font_size',
     ]);
-    $wp_customize->add_control(new \ARNABWP_THEME\Inc\Controls\Responsive_Range_Control(
+    $wp_customize->add_control(new \ARNABWP_THEME\Inc\Customizer\Controls\Responsive_Range_Control(
         $wp_customize,
         'arnabwp_employee_description_font_size', [
         'label'       => __('Employee Description Font Size', 'arnabwp'),
@@ -221,23 +221,23 @@ $wp_customize->add_control( new \ARNABWP_THEME\Inc\Controls\Tabs_Control(
     ));
 
     // === Color: Employee Description === //
-    $wp_customize->add_setting('employee_description_color', [
+    $wp_customize->add_setting('arnabwp_employee_description_color', [
         'default'           => '#555555',
         'sanitize_callback' => 'sanitize_hex_color',
     ]);
-    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'employee_description_color', [
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'arnabwp_employee_description_color', [
         'label'   => __('Employee Description Color', 'arnabwp'),
         'section' => 'arnabwp_employee_section',
         'active_callback' => fn() => get_theme_mod('arnabwp_current_employee_tab', 'general') === 'style',
     ]));
 
        // ========== Divider: Employee social_link Style ========== //
-       $wp_customize->add_setting('divider_employee_social_link_style', [
+       $wp_customize->add_setting('arnabwp_divider_employee_social_link_style', [
         'sanitize_callback' => '__return_false',
     ]);
     $wp_customize->add_control(new WP_Customize_Control(
         $wp_customize,
-        'divider_employee_social_link_style',
+        'arnabwp_divider_employee_social_link_style',
         [
             'type'        => 'hidden',
             'section'     => 'arnabwp_employee_section',
@@ -256,7 +256,7 @@ $wp_customize->add_control( new \ARNABWP_THEME\Inc\Controls\Tabs_Control(
         'transport' => 'refresh',
        'sanitize_callback' => 'arnabwp_sanitize_employee_font_size',
     ]);
-    $wp_customize->add_control(new \ARNABWP_THEME\Inc\Controls\Responsive_Range_Control(
+    $wp_customize->add_control(new \ARNABWP_THEME\Inc\Customizer\Controls\Responsive_Range_Control(
         $wp_customize,
         'arnabwp_employee_email_font_size', [
         'label'       => __('Employee Email Font Size', 'arnabwp'),
@@ -274,11 +274,11 @@ $wp_customize->add_control( new \ARNABWP_THEME\Inc\Controls\Tabs_Control(
     ));
 
     // === Color: Employee email === //
-    $wp_customize->add_setting('employee_email_color', [
+    $wp_customize->add_setting('arnabwp_employee_email_color', [
         'default'           => '#e83582',
         'sanitize_callback' => 'sanitize_hex_color',
     ]);
-    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'employee_email_color', [
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'arnabwp_employee_email_color', [
         'label'   => __('Employee Email Color', 'arnabwp'),
         'section' => 'arnabwp_employee_section',
         'active_callback' => fn() => get_theme_mod('arnabwp_current_employee_tab', 'general') === 'style',
@@ -294,7 +294,7 @@ $wp_customize->add_control( new \ARNABWP_THEME\Inc\Controls\Tabs_Control(
         'transport' => 'refresh',
        'sanitize_callback' => 'arnabwp_sanitize_employee_font_size',
     ]);
-    $wp_customize->add_control(new \ARNABWP_THEME\Inc\Controls\Responsive_Range_Control(
+    $wp_customize->add_control(new \ARNABWP_THEME\Inc\Customizer\Controls\Responsive_Range_Control(
         $wp_customize,
         'arnabwp_employee_social_icon_font_size', [
         'label'       => __('Employee Social Icon Size', 'arnabwp'),
@@ -312,11 +312,11 @@ $wp_customize->add_control( new \ARNABWP_THEME\Inc\Controls\Tabs_Control(
     ));
 
     // === Color: Employee social icons === //
-    $wp_customize->add_setting('employee_social_icon_color', [
+    $wp_customize->add_setting('arnabwp_employee_social_icon_color', [
         'default'           => '#e83582',
         'sanitize_callback' => 'sanitize_hex_color',
     ]);
-    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'employee_social_icon_color', [
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'arnabwp_employee_social_icon_color', [
         'label'   => __('Employee Social Icons Color', 'arnabwp'),
         'section' => 'arnabwp_employee_section',
         'active_callback' => fn() => get_theme_mod('arnabwp_current_employee_tab', 'general') === 'style',

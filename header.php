@@ -69,7 +69,7 @@ if ( function_exists( 'wp_body_open' ) ) {
 <div id="page" class="site">
 
     <header id="header_area" class="site-header" role="banner">
-       
+    <?php \ARNABWP_THEME\Inc\Helpers\Customizer_Shortcut::arnabwp_display_shortcut( 'arnabwp_header_options' ); ?>
         <?php 
         // Load the topbar template part if enabled in Customizer
         if ( get_theme_mod( 'arnabwp_show_topbar', true ) ) {

@@ -20,6 +20,7 @@ Text Domain: arnabwp
 
    :root {
     --primary-color: #e83582; /* Default primary color */
+    --primary-color-rgb: 232, 53, 130; /* RGB for #0073aa */
     --secondary-color: #187dbc; /* Default secondary color */
     --background-color: #f4f4f4; /* Default background color */
     --text-color: #000000; /* Default text color */
@@ -112,7 +113,7 @@ Text Domain: arnabwp
 
 /*  Sticky navbar with topbar adjustment */
 body.has-topbar .arnabwp-navbar.sticky-navbar {
-  top: 40px; /* Match topbar height */
+  top: 30px; /* Match topbar height */
 }
 
 /*  Sticky navbar on scroll */
@@ -166,6 +167,7 @@ body:not(.home) .arnabwp-navbar {
 .navbar-nav .nav-link:focus {
   color: var(--primary-color) !important;
   letter-spacing: 1.5px;
+  background-color: rgba(var(--primary-color-rgb), 0.1);
 }
 
 .navbar-nav .nav-link:hover::after {
@@ -306,7 +308,115 @@ body:not(.home) .arnabwp-navbar {
 
 
 
+/* WordPress Core
+-------------------------------------------------------------- */
+.alignnone {
+  margin: 5px 20px 20px 0;
+}
 
+.aligncenter,
+div.aligncenter {
+  display: block;
+  margin: 5px auto 5px auto;
+}
+
+.alignright {
+  float:right;
+  margin: 5px 0 20px 20px;
+}
+
+.alignleft {
+  float: left;
+  margin: 5px 20px 20px 0;
+}
+
+a img.alignright {
+  float: right;
+  margin: 5px 0 20px 20px;
+}
+
+a img.alignnone {
+  margin: 5px 20px 20px 0;
+}
+
+a img.alignleft {
+  float: left;
+  margin: 5px 20px 20px 0;
+}
+
+a img.aligncenter {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.wp-caption {
+  background: #fff;
+  border: 1px solid #f0f0f0;
+  max-width: 96%; /* Image does not overflow the content area */
+  padding: 5px 3px 10px;
+  text-align: center;
+}
+
+.wp-caption.alignnone {
+  margin: 5px 20px 20px 0;
+}
+
+.wp-caption.alignleft {
+  margin: 5px 20px 20px 0;
+}
+
+.wp-caption.alignright {
+  margin: 5px 0 20px 20px;
+}
+
+.wp-caption img {
+  border: 0 none;
+  height: auto;
+  margin: 0;
+  max-width: 98.5%;
+  padding: 0;
+  width: auto;
+}
+
+.wp-caption p.wp-caption-text {
+  font-size: 11px;
+  line-height: 17px;
+  margin: 0;
+  padding: 0 4px 5px;
+}
+
+/* Text meant only for screen readers. */
+.screen-reader-text {
+  border: 0;
+  clip: rect(1px, 1px, 1px, 1px);
+  clip-path: inset(50%);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute !important;
+  width: 1px;
+  word-wrap: normal !important; /* Many screen reader and browser combinations announce broken words as they would appear visually. */
+}
+
+.screen-reader-text:focus {
+  background-color: #eee;
+  clip: auto !important;
+  clip-path: none;
+  color: #444;
+  display: block;
+  font-size: 1em;
+  height: auto;
+  left: 5px;
+  line-height: normal;
+  padding: 15px 23px 14px;
+  text-decoration: none;
+  top: 5px;
+  width: auto;
+  z-index: 100000;
+  /* Above WP toolbar. */
+}
 
 
 

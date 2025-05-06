@@ -14,14 +14,18 @@ use ARNABWP_THEME\Inc\Traits\Header_Options;
 use ARNABWP_THEME\Inc\Traits\Frontpage_Options;
 use ARNABWP_THEME\Inc\Traits\Basic_Options;
 
+new \ARNABWP_THEME\Inc\Helpers\Customizer_Shortcut();
+
+
 // Load necessary customizer controls when previewing or in admin mode.
 if (is_customize_preview() || is_admin()) {
-    require_once ARNABWP_DIR_PATH . '/inc/classes/controls/class-toggle-control.php';
-    require_once ARNABWP_DIR_PATH . '/inc/classes/controls/class-range-control.php';
-    require_once ARNABWP_DIR_PATH . '/inc/classes/controls/class-repeater-control.php';
-    require_once ARNABWP_DIR_PATH . '/inc/classes/controls/class-tabs-control.php';
-    require_once ARNABWP_DIR_PATH . '/inc/classes/controls/class-radio-control.php';
-    require_once ARNABWP_DIR_PATH . '/inc/classes/controls/class-responsive-range-control.php';
+    require_once ARNABWP_DIR_PATH . '/inc/customizer/controls/class-toggle-control.php';
+    require_once ARNABWP_DIR_PATH . '/inc/customizer/controls/class-range-control.php';
+    require_once ARNABWP_DIR_PATH . '/inc/customizer/controls/class-repeater-control.php';
+    require_once ARNABWP_DIR_PATH . '/inc/customizer/controls/class-tabs-control.php';
+    require_once ARNABWP_DIR_PATH . '/inc/customizer/controls/class-radio-control.php';
+    require_once ARNABWP_DIR_PATH . '/inc/customizer/controls/class-responsive-range-control.php';
+    require_once ARNABWP_DIR_PATH . '/inc/helpers/class-customizer-shortcut.php';
 }
 
 /**
@@ -40,6 +44,7 @@ class Theme_Customizer
     use Header_Options;
     use Frontpage_Options;
     use Basic_Options;
+
 
     /**
      * Constructor. Registers hooks.
@@ -111,6 +116,9 @@ class Theme_Customizer
         // Output header layout styles based on the customizer settings.
         \ARNABWP_THEME\Inc\Helpers\Layout_Output::arnabwp_output_header_layout_rules();
 
+        // Output header Sticky styles based on the customizer settings.
+        \ARNABWP_THEME\Inc\Helpers\Layout_Output::arnabwp_output_header_sticky_rules();
+
         // Output font family styles based on customizer settings.
         \ARNABWP_THEME\Inc\Helpers\Font_Output::arnabwp_output_font_family([ 
             ['body', 'font-family', 'arnabwp_body_font_family', 'Arial, sans-serif'],
@@ -144,8 +152,18 @@ class Theme_Customizer
             ['.site-footer .footer-copy', 'color', 'arnabwp_footer_copyright_text_color', '#999999'],
             ['.site-footer', 'background-color', 'arnabwp_footer_bg_color', '#f8f9fa'],
             ['.arnabwp-breadcrumb, .arnabwp-breadcrumb a', 'color', 'arnabwp_breadcrumb_color', '#666666'],
-            ['#preloader', 'background-color', 'preloader_background_color', '#ffffff'],
-            ['#preloader .preloader-spinner', 'border-top-color', 'preloader_spinner_color', '#187dbc'],
+            ['#preloader', 'background-color', 'arnabwp_preloader_background_color', '#ffffff'],
+            ['#preloader .preloader-spinner', 'border-top-color', 'arnabwp_preloader_spinner_color', '#187dbc'],
+            ['.testimonial-client-name', 'color', 'arnabwp_testimonial_name_color', '#187dbc'],
+            ['.testimonial-client-title', 'color', 'arnabwp_testimonial_job_color', '#555555'],
+            ['.testimonial-comment', 'color', 'arnabwp_testimonial_comment_color', '#ccc'],
+            ['.testimonial-social-icon a', 'color', 'testimonial_social_icon_color', '#e83582'],
+            ['.service-name', 'color', 'arnabwp_service_name_color', '#187dbc'],
+            ['.service-description', 'color', 'arnabwp_service_description_color', '#555555'],
+            ['.employee-name', 'color', 'arnabwp_employee_name_color', '#187dbc'],
+            ['.employee-description', 'color', 'arnabwp_employee_description_color', '#555555'],
+            ['.employee-email', 'color', 'arnabwp_employee_email_color', '#e83582'],
+            ['.employee-social-icon a', 'color', 'arnabwp_employee_social_icon_color', '#e83582'],
         ]);
 
         // Output font size styles for different elements based on customizer settings.
@@ -184,6 +202,9 @@ class Theme_Customizer
             ['arnabwp_button_radius', 'arnabwp-button-radius', 5, 'px'],
         ]);
 
+
+
+   
         echo "<!-- Customizer Styles Output End -->";
     }
 }

@@ -23,7 +23,7 @@ function add_feature_section($wp_customize)
         'transport'         => 'refresh',
         'sanitize_callback' => 'sanitize_text_field',
     ]);
-    $wp_customize->add_control(new \ARNABWP_THEME\Inc\Controls\Tabs_Control(
+    $wp_customize->add_control(new \ARNABWP_THEME\Inc\Customizer\Controls\Tabs_Control(
         $wp_customize,
         'arnabwp_current_features_tab',
         [
@@ -57,7 +57,7 @@ function add_feature_section($wp_customize)
         'default'           => true,
         'sanitize_callback' => 'wp_validate_boolean',
     ]);
-    $wp_customize->add_control(new \ARNABWP_THEME\Inc\Controls\Toggle_Control(
+    $wp_customize->add_control(new \ARNABWP_THEME\Inc\Customizer\Controls\Toggle_Control(
         $wp_customize,
         'arnabwp_feature_section_enable',
         [
@@ -147,7 +147,7 @@ function add_feature_section($wp_customize)
         'transport' => 'refresh',
        'sanitize_callback' => 'arnabwp_sanitize_service_font_size',
     ]);
-    $wp_customize->add_control(new \ARNABWP_THEME\Inc\Controls\Responsive_Range_Control(
+    $wp_customize->add_control(new \ARNABWP_THEME\Inc\Customizer\Controls\Responsive_Range_Control(
         $wp_customize,
         'arnabwp_service_name_font_size',
         [
@@ -167,7 +167,7 @@ function add_feature_section($wp_customize)
 
     // === Color: Service Name === //
     $wp_customize->add_setting('arnabwp_service_name_color', [
-        'default'           => '#ffffff',
+        'default'           => '#187dbc',
         'sanitize_callback' => 'sanitize_hex_color',
     ]);
     $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'arnabwp_service_name_color', [
@@ -201,7 +201,7 @@ function add_feature_section($wp_customize)
         'transport' => 'refresh',
        'sanitize_callback' => 'arnabwp_sanitize_testimonial_font_size',
     ]);
-    $wp_customize->add_control(new \ARNABWP_THEME\Inc\Controls\Responsive_Range_Control(
+    $wp_customize->add_control(new \ARNABWP_THEME\Inc\Customizer\Controls\Responsive_Range_Control(
         $wp_customize,
         'arnabwp_service_description_font_size',
         [
@@ -221,7 +221,7 @@ function add_feature_section($wp_customize)
 
     // === Color: Service Description === //
     $wp_customize->add_setting('arnabwp_service_description_color', [
-        'default'           => '#dddddd',
+        'default'           => '#555555',
         'sanitize_callback' => 'sanitize_hex_color',
     ]);
     $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'arnabwp_service_description_color', [
@@ -250,7 +250,7 @@ function add_feature_section($wp_customize)
         'default'           => 70,
         'sanitize_callback' => 'absint',
     ]);
-    $wp_customize->add_control(new \ARNABWP_THEME\Inc\Controls\Range_Control(
+    $wp_customize->add_control(new \ARNABWP_THEME\Inc\Customizer\Controls\Range_Control(
         $wp_customize,
         'arnabwp_service_icon_size',
         [
@@ -272,7 +272,7 @@ function add_feature_section($wp_customize)
         'default'           => 50,
         'sanitize_callback' => 'absint',
     ]);
-    $wp_customize->add_control(new \ARNABWP_THEME\Inc\Controls\Range_Control(
+    $wp_customize->add_control(new \ARNABWP_THEME\Inc\Customizer\Controls\Range_Control(
         $wp_customize,
         'arnabwp_service_icon_radius',
         [

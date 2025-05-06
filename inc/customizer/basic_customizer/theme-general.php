@@ -28,7 +28,7 @@ function add_general_section($wp_customize)
         'default'           => '1', // Default is enabled
         'sanitize_callback' => 'sanitize_text_field',
     ]);
-    $wp_customize->add_control(new \ARNABWP_THEME\Inc\Controls\Toggle_Control(
+    $wp_customize->add_control(new \ARNABWP_THEME\Inc\Customizer\Controls\Toggle_Control(
         $wp_customize,
         'enable_scroll_to_top_control',
         [
@@ -56,9 +56,9 @@ function add_general_section($wp_customize)
     // Sidebar Layout
     $wp_customize->add_setting('arnabwp_sidebar_layout', [
         'default'           => 'right',
-        'sanitize_callback' => 'sanitize_text_field',
+        'sanitize_callback' => 'sanitize_sidebar_layout',
     ]);
-    $wp_customize->add_control(new \ARNABWP_THEME\Inc\Controls\Radio_Control(
+    $wp_customize->add_control(new \ARNABWP_THEME\Inc\Customizer\Controls\Radio_Control(
         $wp_customize,
         'arnabwp_sidebar_layout',
         [
@@ -76,9 +76,9 @@ function add_general_section($wp_customize)
     // Blog Layout Style
     $wp_customize->add_setting('arnabwp_blog_layout', [
         'default'           => 'masonry',
-        'sanitize_callback' => 'sanitize_text_field',
+        'sanitize_callback' => 'sanitize_blog_layout',
     ]);
-    $wp_customize->add_control(new \ARNABWP_THEME\Inc\Controls\Radio_Control(
+    $wp_customize->add_control(new \ARNABWP_THEME\Inc\Customizer\Controls\Radio_Control(
         $wp_customize,
         'arnabwp_blog_layout',
         [
@@ -98,7 +98,7 @@ function add_general_section($wp_customize)
         'default'           => 1200, // Default container width in pixels
         'sanitize_callback' => 'absint',
     ]);
-    $wp_customize->add_control(new \ARNABWP_THEME\Inc\Controls\Range_Control(
+    $wp_customize->add_control(new \ARNABWP_THEME\Inc\Customizer\Controls\Range_Control(
         $wp_customize,
         'arnabwp_container_width',
         [
@@ -133,7 +133,7 @@ function add_general_section($wp_customize)
         'default'           => 10, // Default container width in pixels
         'sanitize_callback' => 'absint',
     ]);
-    $wp_customize->add_control(new \ARNABWP_THEME\Inc\Controls\Range_Control(
+    $wp_customize->add_control(new \ARNABWP_THEME\Inc\Customizer\Controls\Range_Control(
         $wp_customize,
         'arnabwp_button_padding_top_bottom',
         [
@@ -153,7 +153,7 @@ function add_general_section($wp_customize)
         'default'           => 15, // Default container width in pixels
         'sanitize_callback' => 'absint',
     ]);
-    $wp_customize->add_control(new \ARNABWP_THEME\Inc\Controls\Range_Control(
+    $wp_customize->add_control(new \ARNABWP_THEME\Inc\Customizer\Controls\Range_Control(
         $wp_customize,
         'arnabwp_button_padding_left_right',
         [
@@ -173,7 +173,7 @@ function add_general_section($wp_customize)
         'default'           => 5, // Default container width in pixels
         'sanitize_callback' => 'absint',
     ]);
-    $wp_customize->add_control(new \ARNABWP_THEME\Inc\Controls\Range_Control(
+    $wp_customize->add_control(new \ARNABWP_THEME\Inc\Customizer\Controls\Range_Control(
         $wp_customize,
         'arnabwp_button_radius',
         [
@@ -188,4 +188,31 @@ function add_general_section($wp_customize)
             'class'       => 'arnabwp-range-control',
         ]
     ));
+}
+
+
+/**
+ * Sanitize the sidebar layout option.
+ *
+ * @param string $value The selected layout option.
+ * @return string Sanitized value if valid; fallback to 'right'.
+ */
+function sanitize_sidebar_layout($value)
+{
+    $valid = ['no', 'left', 'right'];
+
+    return in_array($value, $valid, true) ? $value : 'right';
+}
+
+/**
+ * Sanitize the sidebar layout option.
+ *
+ * @param string $value The selected layout option.
+ * @return string Sanitized value if valid; fallback to 'right'.
+ */
+function sanitize_blog_layout($value)
+{
+    $valid = ['masonry', 'list'];
+
+    return in_array($value, $valid, true) ? $value : 'masonry';
 }

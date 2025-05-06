@@ -34,89 +34,55 @@ if (!is_array($hero_slider)) {
 
 $content_align     = get_theme_mod('arnabwp_hero_content_alignment', 'center');
 $align_class    = 'align-' . esc_attr($content_align);
+
 ?>
 
 
 <section class="hero-section"  role="banner" aria-label="Hero Section">
+<?php \ARNABWP_THEME\Inc\Helpers\Customizer_Shortcut::arnabwp_display_shortcut( 'arnabwp_hero_section' ); ?>
 
-<?php 
-// If hero type is image and a valid image is set
-if ($hero_type === 'image' && $hero_image) :
-    ?>
-    <!-- Hero Image Background -->
-    <div class="hero-image" style="background-image: url('<?php echo esc_url($hero_image); ?>');">
-        <div class="hero-overlay"></div>
-
-        <!-- SEO-friendly hidden image for background -->
-        <img src="<?php echo esc_url( $hero_image ); ?>" alt="Hero Background Image" loading="lazy" class="visually-hidden">
-
-        <!-- Hero Content -->
-     
-        <div class="hero-content site-container <?php echo esc_attr($align_class); ?>">
-            <h1 class="hero-title"><?php echo esc_html($hero_title); ?></h1>
-            <p class="hero-subtitle"><?php echo esc_html($hero_subtitle); ?></p>
-
-            <!-- CTA Buttons -->
-            <?php if (!empty($hero_buttons) && is_array($hero_buttons)) : ?>
-                <div class="hero-buttons">
-                    <?php foreach ($hero_buttons as $button) :
-                        $text = isset($button['text']) ? $button['text'] : '';
-                        $url = isset($button['url']) ? $button['url'] : '#';
-                        $target = isset($button['target']) && $button['target'] ? ' target="_blank" rel="noopener noreferrer"' : '';
-                        $aria   = 'aria-label="' . esc_attr( $text ) . '"';
-                        ?>
-                        <a href="<?php echo esc_url($url); ?>" class="hero-btn" <?php echo $target; ?> <?php echo $aria; ?>>
-                            <?php echo esc_html($text); ?>
-                        </a>
-                    <?php endforeach; ?>
-                </div>
-            <?php endif; ?>
+    <!-- Background Image or Slider -->
+    <?php if ($hero_type === 'image' && $hero_image) : ?>
+        <div class="hero-image" style="background-image: url('<?php echo esc_url($hero_image); ?>');">
+            <div class="hero-overlay"></div>
         </div>
-    </div>
-
-
-<?php
-// If hero type is slider and slides exist
-elseif ($hero_type === 'slider' && !empty($hero_slider)) :
-?>
-
-    <!-- Owl Carousel Wrapper -->
-    <div class="owl-carousel hero-slider" aria-live="polite">
-        <?php foreach ($hero_slider as $slide) :
-            $img = isset($slide['image']) ? $slide['image'] : '';
-            if (!$img) continue; // Skip if no image set
-            ?>
-            <div class="hero-slide" style="background-image: url('<?php echo esc_url($img); ?>');">
-                <div class="hero-overlay"></div>
-
-                        <!-- SEO hidden image -->
-                        <img src="<?php echo esc_url( $img ); ?>" alt="<?php echo esc_attr( $hero_title ); ?> Background Image <?php foreach ( $hero_slider as $index => $slide ) :
-                            echo esc_attr( $index + 1 ); 
-                        endforeach;?>" loading="lazy" class="visually-hidden">
-
-                <!-- Slider Content (same as image section) -->
-                <div class="hero-content site-container <?php echo esc_attr($align_class); ?>">
-                    <h1 class="hero-title"><?php echo esc_html($hero_title); ?></h1>
-                    <p class="hero-subtitle"><?php echo esc_html($hero_subtitle); ?></p>
-
-                    <!-- CTA Buttons -->
-                    <?php if (!empty($hero_buttons) && is_array($hero_buttons)) : ?>
-                        <div class="hero-buttons">
-                            <?php foreach ($hero_buttons as $button) :
-                                $text = isset($button['text']) ? $button['text'] : '';
-                                $url = isset($button['url']) ? $button['url'] : '#';
-                                $target = isset($button['target']) && $button['target'] ? ' target="_blank" rel="noopener noreferrer"' : '';
-                                $aria   = 'aria-label="' . esc_attr( $text ) . '"';
-                                ?>
-                                <a href="<?php echo esc_url($url); ?>" class="hero-btn" <?php echo $target; ?> <?php echo $aria; ?>>
-                                    <?php echo esc_html($text); ?>
-                                </a>
-                            <?php endforeach; ?>
-                        </div>
-                    <?php endif; ?>
+    <?php elseif ($hero_type === 'slider' && !empty($hero_slider)) : ?>
+        <div class="owl-carousel hero-slider" aria-live="polite">
+            <?php foreach ($hero_slider as $slide) :
+                $img = isset($slide['image']) ? $slide['image'] : '';
+                if (!$img) continue; // Skip if no image set
+                ?>
+                <div class="hero-slide" style="background-image: url('<?php echo esc_url($img); ?>');">
+                    <div class="hero-overlay"></div>
                 </div>
-            </div>
-        <?php endforeach; ?>
-    </div>
+            <?php endforeach; ?>
+        </div>
     <?php endif; ?>
+       <!-- SEO-friendly hidden image for background -->
+       <img src="<?php echo esc_url( $hero_image ); ?>" alt="Hero Background Image" loading="lazy" class="visually-hidden">
+       
+<!-- Hero Content -->
+<div class="hero-content site-container <?php echo esc_attr($align_class); ?>">
+    <h1 class="hero-title"><?php echo esc_html($hero_title); ?></h1>
+    <p class="hero-subtitle"><?php echo esc_html($hero_subtitle); ?></p>
+
+    <!-- CTA Buttons -->
+    <?php if (!empty($hero_buttons) && is_array($hero_buttons)) : ?>
+        <div class="hero-buttons">
+            <?php foreach ($hero_buttons as $button) :
+                $text = isset($button['text']) ? $button['text'] : '';
+                $url = isset($button['url']) ? $button['url'] : '#';
+                $target = isset($button['target']) && $button['target'] ? ' target="_blank" rel="noopener noreferrer"' : '';
+                $aria   = 'aria-label="' . esc_attr( $text ) . '"';
+                ?>
+                <a href="<?php echo esc_url($url); ?>" class="hero-btn" <?php echo $target; ?> <?php echo $aria; ?>>
+                    <?php echo esc_html($text); ?>
+                </a>
+            <?php endforeach; ?>
+        </div>
+    <?php endif; ?>
+</div>
+</div>
 </section>
+
+

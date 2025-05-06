@@ -38,7 +38,7 @@ function add_client_section($wp_customize)
         'sanitize_callback' => 'wp_validate_boolean',
     ]);
 
-    $wp_customize->add_control(new \ARNABWP_THEME\Inc\Controls\Toggle_Control(
+    $wp_customize->add_control(new \ARNABWP_THEME\Inc\Customizer\Controls\Toggle_Control(
         $wp_customize,
         'arnabwp_client_section_enable',
         [
@@ -120,7 +120,7 @@ function add_client_section($wp_customize)
         'sanitize_callback' => 'wp_validate_boolean',
     ]);
 
-    $wp_customize->add_control(new \ARNABWP_THEME\Inc\Controls\Toggle_Control(
+    $wp_customize->add_control(new \ARNABWP_THEME\Inc\Customizer\Controls\Toggle_Control(
         $wp_customize,
         'client_section_bg_scroll',
         [

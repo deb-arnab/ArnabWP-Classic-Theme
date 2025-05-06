@@ -6,6 +6,7 @@ window.addEventListener("load", function() {
 });
 
 
+
 document.addEventListener('DOMContentLoaded', function () {
   const navbar = document.querySelector('.arnabwp-navbar');
   const mainNav = document.getElementById('mainNav');

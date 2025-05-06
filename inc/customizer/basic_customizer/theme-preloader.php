@@ -14,7 +14,7 @@ function add_preloader_section( $wp_customize ) {
     /**
      * Add Section: Preloader Settings
      */
-    $wp_customize->add_section( 'theme_preloader_options', [
+    $wp_customize->add_section( 'arnabwp_preloader_options', [
         'title'       => __( 'Preloader Settings', 'arnabwp' ),
         'description' => __( 'Control preloader options of the theme.', 'arnabwp' ),
         'priority'    => 5,
@@ -32,12 +32,12 @@ function add_preloader_section( $wp_customize ) {
     /**
      * Preloader Enable Control
      */
-    $wp_customize->add_control( new \ARNABWP_THEME\Inc\Controls\Toggle_Control(
+    $wp_customize->add_control( new \ARNABWP_THEME\Inc\Customizer\Controls\Toggle_Control(
         $wp_customize,
         'arnabwp_preloader_enable',
         [
             'label'    => __( 'Enable Preloader', 'arnabwp' ),
-            'section'  => 'theme_preloader_options',
+            'section'  => 'arnabwp_preloader_options',
             'settings' => 'arnabwp_preloader_enable',
         ]
     ));
@@ -45,7 +45,7 @@ function add_preloader_section( $wp_customize ) {
     /**
      * Preloader Background Color Setting
      */
-    $wp_customize->add_setting( 'preloader_background_color', [
+    $wp_customize->add_setting( 'arnabwp_preloader_background_color', [
         'default'           => '#ffffff', // Default background color: white
         'sanitize_callback' => 'sanitize_hex_color',
     ]);
@@ -55,18 +55,18 @@ function add_preloader_section( $wp_customize ) {
      */
     $wp_customize->add_control( new WP_Customize_Color_Control(
         $wp_customize,
-        'preloader_background_color',
+        'arnabwp_preloader_background_color',
         [
             'label'    => __( 'Preloader Background Color', 'arnabwp' ),
-            'section'  => 'theme_preloader_options',
-            'settings' => 'preloader_background_color',
+            'section'  => 'arnabwp_preloader_options',
+            'settings' => 'arnabwp_preloader_background_color',
         ]
     ));
 
     /**
      * Preloader Spinner Color Setting
      */
-    $wp_customize->add_setting( 'preloader_spinner_color', [
+    $wp_customize->add_setting( 'arnabwp_preloader_spinner_color', [
         'default'           => '#187dbc', 
         'sanitize_callback' => 'sanitize_hex_color',
     ]);
@@ -76,11 +76,11 @@ function add_preloader_section( $wp_customize ) {
      */
     $wp_customize->add_control( new WP_Customize_Color_Control(
         $wp_customize,
-        'preloader_spinner_color',
+        'arnabwp_preloader_spinner_color',
         [
             'label'    => __( 'Preloader Spinner Color', 'arnabwp' ),
-            'section'  => 'theme_preloader_options',
-            'settings' => 'preloader_spinner_color',
+            'section'  => 'arnabwp_preloader_options',
+            'settings' => 'arnabwp_preloader_spinner_color',
         ]
     ));
 }

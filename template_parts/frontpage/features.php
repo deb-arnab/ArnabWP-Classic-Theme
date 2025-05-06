@@ -30,22 +30,19 @@ $service_query = new WP_Query([
 $section_title       =  get_theme_mod('arnabwp_service_section_title', __('Our Services', 'arnabwp'));
 $section_description =  get_theme_mod('arnabwp_service_section_description', __('Explore the solutions we offer', 'arnabwp'));
 
-
-$name_color          = esc_attr(get_theme_mod('arnabwp_service_name_color', '#ffffff'));
-
-
-$desc_color          = esc_attr(get_theme_mod('arnabwp_service_description_color', '#dddddd'));
-
 $icon_size           = absint(get_theme_mod('arnabwp_service_icon_size', 70));
 $icon_radius         = absint(get_theme_mod('arnabwp_service_icon_radius', 50));
 
-if ($service_query->have_posts()) : ?>
+?>
+<?php \ARNABWP_THEME\Inc\Helpers\Customizer_Shortcut::arnabwp_display_shortcut( 'arnabwp_feature_section' ); ?>
+<?php if ($service_query->have_posts()) : ?>
     <section class="services-section py-5" aria-label="Services">
+   
     <div class="site-container">
             <!-- Section heading -->
             <div class="text-center mb-4">
                 <h2 class="fw-bold section-title"><?php echo esc_html($section_title); ?></h2>
-                <p class="text-muted section-description"><?php echo esc_html($section_description); ?></p>
+                <p class="section-description"><?php echo esc_html($section_description); ?></p>
             </div>
 
             <div class="row">
@@ -78,15 +75,14 @@ if ($service_query->have_posts()) : ?>
                             <div class="card-body">
                                 <?php if (! empty($service_name)) : ?>
                                     <a href="<?php the_permalink(); ?>" class="text-decoration-none">
-                                        <h5 class="card-title service-name entry-title"
-                                            style="color: <?php echo $name_color; ?>;">
+                                        <h5 class="card-title service-name entry-title">
                                             <?php echo esc_html($service_name ?: get_the_title()); ?>
                                         </h5>
                                     </a>
                                 <?php endif; ?>
                                 <?php if (! empty($service_description)) : ?>
                                     <p class="card-text service-description"
-                                        style="color: <?php echo esc_attr($desc_color); ?>;">
+                                   >
                                         <?php echo esc_html($service_description); ?>
                                     </p>
                                 <?php endif; ?>

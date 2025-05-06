@@ -35,7 +35,9 @@ $clients = new WP_Query([
 ]);
 
 if ($clients->have_posts()) : ?>
+<?php \ARNABWP_THEME\Inc\Helpers\Customizer_Shortcut::arnabwp_display_shortcut( 'arnabwp_client_section' ); ?>
     <section class="client-section py-5" role="region" aria-label="<?php esc_attr_e('Our Clients', 'arnabwp'); ?>" <?php echo $bg_style; ?>>
+    
     <div class="site-container">
             <div class="owl-carousel owl-theme client-carousel" role="region" aria-label="Clients Carousel">
                 <?php

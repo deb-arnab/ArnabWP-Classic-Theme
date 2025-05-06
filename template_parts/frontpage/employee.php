@@ -21,14 +21,14 @@ $employee_count = absint(get_theme_mod('arnabwp_employee_count', 6));
 
 // Get style settings
 
-$name_color        = esc_attr(get_theme_mod('employee_name_color', '#187dbc'));
-$desc_color        = esc_attr(get_theme_mod('employee_description_color', '#555555'));
+$name_color        = esc_attr(get_theme_mod('arnabwp_employee_name_color', '#187dbc'));
+$desc_color        = esc_attr(get_theme_mod('arnabwp_employee_description_color', '#555555'));
 
 
-$email_color       = esc_attr(get_theme_mod('employee_email_color', '#e83582'));
+$email_color       = esc_attr(get_theme_mod('arnabwp_employee_email_color', '#e83582'));
 
 
-$social_icon_color = esc_attr(get_theme_mod('employee_social_icon_color', '#e83582'));
+$social_icon_color = esc_attr(get_theme_mod('arnabwp_employee_social_icon_color', '#e83582'));
 
 // Query employees
 $team_query = new WP_Query([
@@ -39,7 +39,7 @@ $team_query = new WP_Query([
 
 if ($team_query->have_posts()) :
 ?>
-
+<?php \ARNABWP_THEME\Inc\Helpers\Customizer_Shortcut::arnabwp_display_shortcut( 'arnabwp_employee_section' ); ?>
 <section id="team" class="py-5" role="region" aria-labelledby="team-section">
     <div class="site-container">
         <!-- Section Header -->
@@ -47,7 +47,7 @@ if ($team_query->have_posts()) :
             <h2 class="fw-bold section-title">
                 <?php echo esc_html($section_title); ?>
             </h2>
-            <p class="text-muted section-description">
+            <p class="section-description">
                 <?php echo esc_html($section_description); ?>
             </p>
         </div>

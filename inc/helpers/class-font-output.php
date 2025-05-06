@@ -54,8 +54,7 @@ class Font_Output {
      * @param string $default_size Default desktop size if setting is missing.
      */
     public static function arnabwp_output_responsive_size( $selector, $mod_name, $default_size ) {
-        // Debugging
-        error_log('Font_Output::render called!');
+     
 
         $values = get_theme_mod( $mod_name, json_encode([
             'desktop' => $default_size,
@@ -65,8 +64,7 @@ class Font_Output {
 
         $values = json_decode( $values, true );
 
-        // Debugging values
-        error_log(print_r($values, true));
+
 
         if ( ! is_array( $values ) ) {
             error_log('Values are not an array');
@@ -83,19 +81,18 @@ class Font_Output {
         }
 
         if ( ! empty( $values['tablet'] ) ) {
-            $css .= "@media (min-width: 768px) and (max-width: 991px) {\n";
+            $css .= "@media (min-width: 769px) and (max-width: 991px) {\n";
             $css .= "{$selector} { font-size: {$values['tablet']}{$unit}; }\n";
             $css .= "}\n";
         }
 
         if ( ! empty( $values['mobile'] ) ) {
-            $css .= "@media (max-width: 767px) {\n";
+            $css .= "@media (max-width: 768px) {\n";
             $css .= "{$selector} { font-size: {$values['mobile']}{$unit}; }\n";
             $css .= "}\n";
         }
 
-        // Debugging output
-        error_log("CSS: $css");
+ 
 
         echo "<style type='text/css'>\n" . $css . "\n</style>";
     }

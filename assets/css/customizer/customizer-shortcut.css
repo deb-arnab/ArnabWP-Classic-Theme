@@ -1,0 +1,54 @@
+/* Position the customizer shortcut */
+.customizer-shortcut {
+    position: absolute;
+    z-index: 9999; /* Ensure it's on top of other content */
+}
+
+.customizer-shortcut a {
+    background-color: var(--primary-color); /* WordPress blue background */
+    padding: 10px; /* Adjust padding */
+    border-radius: 50%;
+    color: white;
+    left: 20px;
+    top: 20px;
+    font-size: 25px; /* Icon size */
+    text-decoration: none;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); /* Softer shadow */
+    transition: all 0.3s ease-in-out; /* Smooth transitions */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px; /* Set width */
+    height: 40px; /* Set height */
+}
+
+/* Hover effect for customizer shortcut */
+.customizer-shortcut a:hover {
+    background-color: var(--secondary-color);
+    transform: scale(1.05); /* Slightly enlarge the icon */
+}
+
+/* Add a tooltip when hovering over the shortcut */
+.customizer-shortcut a:hover::after {
+    content: attr(data-section-name); /* Display the section name */
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
+    font-size: 12px;
+    white-space: nowrap;
+}
+
+/* Center the icon vertically */
+.customizer-shortcut span.dashicons {
+    vertical-align: middle;
+    display: inline-block;
+    color: white;
+}
+
+/* Adjust only inside hero section */
+.hero-section .customizer-shortcut a {
+    top: 100px; /* Override only for hero section */
+}

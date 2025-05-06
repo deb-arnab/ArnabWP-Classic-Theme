@@ -55,7 +55,7 @@ trait Header_Options
 			'sanitize_callback' => 'wp_validate_boolean',
 		]);
 
-		$wp_customize->add_control(new \ARNABWP_THEME\Inc\Controls\Toggle_Control(
+		$wp_customize->add_control(new \ARNABWP_THEME\Inc\Customizer\Controls\Toggle_Control(
 			$wp_customize,
 			'arnabwp_show_topbar',
 			[
@@ -85,7 +85,7 @@ trait Header_Options
 		// === Topbar Phone ===
 		$wp_customize->add_setting('arnabwp_topbar_phone', [
 			'default'           => '',
-			'sanitize_callback' => 'absint',
+			'sanitize_callback' => [$this,'sanitize_phone_input'],
 			'transport'         => 'refresh',
 		]);
 
@@ -179,7 +179,7 @@ trait Header_Options
 			'sanitize_callback' => 'wp_validate_boolean',
 		]);
 
-		$wp_customize->add_control(new \ARNABWP_THEME\Inc\Controls\Toggle_Control(
+		$wp_customize->add_control(new \ARNABWP_THEME\Inc\Customizer\Controls\Toggle_Control(
 			$wp_customize,
 			'arnabwp_sticky_header',
 			[
@@ -210,7 +210,7 @@ trait Header_Options
 			'sanitize_callback' => 'absint',
 		]);
 
-		$wp_customize->add_control( new \ARNABWP_THEME\Inc\Controls\Range_Control(
+		$wp_customize->add_control( new \ARNABWP_THEME\Inc\Customizer\Controls\Range_Control(
         $wp_customize,
 		'arnabwp_menu_font_size', [
 			'label'    => __('Menu Font Size', 'arnabwp'),
@@ -225,8 +225,6 @@ trait Header_Options
 		) );
 
 	}
-
-
 
 	/**
 	 * Sanitize the header layout option.
@@ -243,22 +241,19 @@ trait Header_Options
 	}
 
 
+
+
 	/**
-	 * Sanitize font size input.
-	 *
-	 * @param mixed $value Font size value.
-	 * @return int Sanitized and constrained font size.
-	 */
-	public function sanitize_header_font_size($value)
-	{
-		$value = absint($value);
-		if ($value < 14) {
-			return 14;
-		}
-		if ($value > 18) {
-			return 18;
-		}
-		return $value;
-	}
+ * Sanitize phone number input.
+ *
+ * @param string $value The phone number to sanitize.
+ * @return string Sanitized phone number.
+ */
+public function sanitize_phone_input($value)
+{
+    return preg_replace('/[^0-9+]/', '', $value);  // Allow only numbers and plus sign.
 }
+}
+
+
 

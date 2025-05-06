@@ -34,8 +34,9 @@ if ($bg_image) {
     $bg_style = 'style="background-image: url(' . esc_url($bg_image) . '); background-attachment: ' . ($bg_scroll ? 'fixed' : 'scroll') . '; background-size: cover; background-position: center;"';
 }
 ?>
-
+<?php \ARNABWP_THEME\Inc\Helpers\Customizer_Shortcut::arnabwp_display_shortcut( 'arnabwp_about_section' ); ?>
 <section id="about" class="py-5" <?php echo $bg_style; ?> aria-labelledby="about-section-title">
+
     <?php if ($has_bg_image) : ?>
         <div class="bg-overlay" aria-hidden="true"></div>
     <?php endif; ?>
@@ -50,7 +51,7 @@ if ($bg_image) {
             <!-- About Section Content -->
             <div class="about-content col-lg-8">
                 <?php if ($subtitle) : ?>
-                    <p class="text-muted mb-1 small"><?php echo esc_html($subtitle); ?></p>
+                    <p class="mb-1 small"><?php echo esc_html($subtitle); ?></p>
                 <?php endif; ?>
 
                 <?php if ($title) : ?>

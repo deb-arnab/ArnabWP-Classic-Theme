@@ -57,7 +57,7 @@ trait Footer_Options
 			'sanitize_callback' => 'wp_validate_boolean',
 		]);
 
-		$wp_customize->add_control(new \ARNABWP_THEME\Inc\Controls\Toggle_Control(
+		$wp_customize->add_control(new \ARNABWP_THEME\Inc\Customizer\Controls\Toggle_Control(
 			$wp_customize,
 			'arnabwp_footer_show_widgets',
 			[
@@ -73,7 +73,7 @@ trait Footer_Options
 			'sanitize_callback' => 'wp_validate_boolean',
 		]);
 
-		$wp_customize->add_control(new \ARNABWP_THEME\Inc\Controls\Toggle_Control(
+		$wp_customize->add_control(new \ARNABWP_THEME\Inc\Customizer\Controls\Toggle_Control(
 			$wp_customize,
 			'arnabwp_footer_show_copyright',
 			[
@@ -100,7 +100,7 @@ trait Footer_Options
 
 		// Footer copyright text
 		$wp_customize->add_setting('arnabwp_footer_copyright_text', [
-			'default'           => __('© ' . get_the_date('Y') . ' ArnabWP. All rights reserved.', 'arnabwp'),
+			'default'           =>  sprintf(__('© %s ArnabWP. All rights reserved.', 'arnabwp'), date('Y')),
 			'sanitize_callback' => 'wp_kses_post',
 		]);
 

@@ -56,7 +56,7 @@ $blog_class  = ( 'list' === $blog_layout ) ? 'list-layout' : 'masonry-grid';
             while ( have_posts() ) :
               the_post();
               $arnabwp_post_index++;
-              get_template_part( 'template_parts/blogs/content' );
+              get_template_part( 'template_parts/blogs/content', get_post_format() );
             endwhile;
             ?>
           </div><!-- /.<?php echo esc_attr( $blog_class ); ?> -->
